@@ -435,9 +435,26 @@
             
             <div class="relative flex justify-center items-center mt-20">
                 <img src="/images/img4.png" alt="Interfejs aplikacji DawnoTemu" class="max-w-full relative z-10" loading="lazy">
-                <div class="absolute w-[70px] h-[70px] rounded-full bg-peach/25 flex items-center justify-center text-xl font-semibold text-peach-dark shadow-[0_8px_16px_rgba(255,181,167,0.2)] z-20 top-[15%] left-[20%] animate-pulse-custom highlight-1">1</div>
-                <div class="absolute w-[70px] h-[70px] rounded-full bg-peach/25 flex items-center justify-center text-xl font-semibold text-peach-dark shadow-[0_8px_16px_rgba(255,181,167,0.2)] z-20 bottom-[25%] right-[15%] animate-pulse-custom highlight-2">2</div>
-                <div class="absolute w-[70px] h-[70px] rounded-full bg-peach/25 flex items-center justify-center text-xl font-semibold text-peach-dark shadow-[0_8px_16px_rgba(255,181,167,0.2)] z-20 top-[60%] left-[10%] animate-pulse-custom highlight-3">3</div>
+                
+                <div class="hidden md:flex">
+                    <!-- Feature 1: Original position with arrow and label -->
+                    <div class="absolute w-[70px] h-[70px] rounded-full bg-peach/25 flex items-center justify-center text-xl font-semibold text-peach-dark shadow-[0_8px_16px_rgba(255,181,167,0.2)] z-20 top-[15%] left-[22%] animate-pulse-custom highlight-1">1</div>
+                    <div class="absolute top-[calc(15%+60px)] left-[calc(20%+100px)] bg-white px-4 py-2 rounded-md shadow-md text-sm font-medium text-text-dark border-l-4 border-peach transform hover:-translate-y-1 transition-transform duration-300 whitespace-nowrap z-30">
+                        Biblioteka bajek
+                    </div>
+                    
+                    <!-- Feature 2: Original position with arrow and label -->
+                    <div class="absolute w-[70px] h-[70px] rounded-full bg-peach/25 flex items-center justify-center text-xl font-semibold text-peach-dark shadow-[0_8px_16px_rgba(255,181,167,0.2)] z-20 bottom-[20%] right-[17%] animate-pulse-custom highlight-2">2</div>
+                    <div class="absolute bottom-[calc(25%-60px)] right-[calc(15%+100px)] bg-white px-4 py-2 rounded-md shadow-md text-sm font-medium text-text-dark border-l-4 border-peach transform hover:-translate-y-1 transition-transform duration-300 whitespace-nowrap z-30">
+                        Timer usypiania
+                    </div>
+                    
+                    <!-- Feature 3: Original position with arrow and label -->
+                    <div class="absolute w-[70px] h-[70px] rounded-full bg-peach/25 flex items-center justify-center text-xl font-semibold text-peach-dark shadow-[0_8px_16px_rgba(255,181,167,0.2)] z-20 top-[60%] left-[15%] animate-pulse-custom highlight-3">3</div>
+                    <div class="absolute top-[calc(70%+20px)] left-[calc(10%+120px)] bg-white px-4 py-2 rounded-md shadow-md text-sm font-medium text-text-dark border-l-4 border-peach transform hover:-translate-y-1 transition-transform duration-300 whitespace-nowrap z-30">
+                        Spersonalizowane historie
+                    </div>
+                </div>
             </div>
         </div>
     </section>

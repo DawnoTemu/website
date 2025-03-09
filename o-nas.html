@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>O nas | DawnoTemu</title>
+    <meta name="description" content="Poznaj historię DawnoTemu, nasz zespół i misję tworzenia więzi między rodzicami a dziećmi dzięki technologii AI głosu.">
+    
+    <!-- Primary Meta Tags -->
+    <meta name="description" content="DawnoTemu to zespół rodziców, ekspertów i programistów, których połączyła wspólna misja: podtrzymywanie magicznej więzi między rodzicami a dziećmi poprzez opowiadanie historii.">
+
+    <!-- Favicon Suite -->
+    <link rel="icon" href="/icons/favicon.ico" sizes="any">
+    <link rel="icon" href="/icons/favicon.svg" type="image/svg+xml">
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/icons/favicon.svg" color="#D4C1EC">
+
+    <!-- PWA/Safari Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="DawnoTemu">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="/icons/web-app-manifest-192x192.png">
+    <meta name="theme-color" content="#D4C1EC">
+    <meta name="msapplication-TileColor" content="#D4C1EC">
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Quicksand:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Preconnect to External Domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Font Loading with Fallback -->
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Quicksand:wght@400;600&display=swap&display=swap">
+    </noscript>
+
+    <!-- Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="O nas | DawnoTemu">
+    <meta property="og:description" content="Poznaj historię DawnoTemu, nasz zespół i misję tworzenia więzi między rodzicami a dziećmi dzięki technologii AI głosu.">
+    <meta property="og:image" content="/images/social-preview.jpg">
+    <meta property="og:url" content="https://dawnotemu.example.com/o-nas">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@DawnoTemu">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              peach: '#FFB5A7',
+              'peach-dark': '#FF9A8A',
+              lavender: '#D4C1EC',
+              'lavender-dark': '#B8A2DC',
+              mint: '#B8E0D2',
+              'soft-yellow': '#FAE8B0',
+              'text-dark': '#2D3047',
+              'text-medium': '#6C6F93',
+              'text-light': '#9CA3AF',
+              'bg-light': '#F9FAFC',
+            },
+            fontFamily: {
+              'comfortaa': ['Comfortaa', 'cursive'],
+              'sans': ['Quicksand', 'sans-serif'],
+            },
+            boxShadow: {
+              'sm-custom': '0 4px 6px rgba(45, 48, 71, 0.05)',
+              'md-custom': '0 10px 20px rgba(45, 48, 71, 0.08)',
+              'lg-custom': '0 20px 25px -5px rgba(45, 48, 71, 0.1)',
+            },
+            borderRadius: {
+              'sm-custom': '8px',
+              'md-custom': '16px',
+              'lg-custom': '24px',
+            },
+            screens: {
+              'xs': '480px',
+            },
+          }
+        }
+      }
+    </script>
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(255, 181, 167, 0.4);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 15px rgba(255, 181, 167, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(255, 181, 167, 0);
+            }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-pulse-custom {
+            animation: pulse 2s infinite;
+        }
+        
+        .bubble-1 {
+            animation-delay: 0s;
+        }
+        
+        .bubble-2 {
+            animation-delay: 1.5s;
+        }
+        
+        .bubble-3 {
+            animation-delay: 3s;
+        }
+        
+        .timeline-container {
+            position: relative;
+        }
+        
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: rgba(212, 193, 236, 0.3);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-container::before {
+                left: 30px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-bg-light text-text-dark leading-relaxed font-sans font-normal overflow-x-hidden">
+    <header class="bg-white py-3 sm:py-5 fixed top-0 left-0 w-full z-50 shadow-sm-custom backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-8 relative">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center">
+                        <img src="/logo.png" alt="DawnoTemu Logo" class="h-8 sm:h-10 mr-2 sm:mr-3" loading="lazy">
+                        <h1 class="text-xl sm:text-2xl text-text-dark tracking-tight font-comfortaa font-bold">DawnoTemu</h1>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-text-medium hover:text-text-dark transition-colors">Strona główna</a>
+                    <a href="/o-nas" class="text-lavender-dark font-semibold">O nas</a>
+                    <a href="/biblioteka" class="text-text-medium hover:text-text-dark transition-colors">Biblioteka bajek</a>
+                    <a href="/kontakt" class="text-text-medium hover:text-text-dark transition-colors">Kontakt</a>
+                    <a href="#waitlist" class="bg-peach text-white py-2.5 px-5 rounded-full font-semibold transition duration-300 ease-in-out border-none cursor-pointer text-sm shadow-md hover:bg-peach-dark hover:transform hover:shadow-lg">Dołącz do listy</a>
+                </div>
+                
+                <!-- Mobile menu toggle -->
+                <div class="flex flex-col justify-between w-[24px] sm:w-[30px] h-[18px] sm:h-[21px] cursor-pointer md:hidden" id="mobile-menu-toggle">
+                    <span class="w-full h-[2px] sm:h-[3px] bg-text-dark rounded transition duration-300"></span>
+                    <span class="w-full h-[2px] sm:h-[3px] bg-text-dark rounded transition duration-300"></span>
+                    <span class="w-full h-[2px] sm:h-[3px] bg-text-dark rounded transition duration-300"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile Navigation -->
+    <div class="fixed top-[57px] sm:top-[71px] left-0 w-full h-[calc(100vh-57px)] sm:h-[calc(100vh-71px)] bg-white z-40 p-5 sm:p-8 flex-col hidden transform translate-x-full transition-transform duration-300 ease-in-out" id="mobile-nav">
+        <div class="flex flex-col gap-4 sm:gap-6 mb-6 sm:mb-8">
+            <a href="/" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">Strona główna</a>
+            <a href="/o-nas" class="text-lavender text-lg sm:text-xl font-semibold no-underline">O nas</a>
+            <a href="/biblioteka" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">Biblioteka bajek</a>
+            <a href="#team" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">Zespół</a>
+            <a href="#mission" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">Misja</a>
+            <a href="#story" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">Historia</a>
+            <a href="#tech" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">Technologia</a>
+        </div>
+        <a href="#waitlist" class="bg-peach text-white py-3 sm:py-3.5 px-6 sm:px-7 rounded-full font-semibold transition duration-300 ease-in-out border-none cursor-pointer text-sm sm:text-base shadow-md w-full text-center">Dołącz do listy</a>
+    </div>
+    
+    <!-- Hero Section -->
+    <section id="hero" class="pt-32 md:pt-40 pb-16 relative overflow-hidden">
+        <div class="absolute top-[-20%] right-[-10%] w-[80%] h-[80%] md:rounded-[50%] bg-[radial-gradient(circle_at_center,_rgba(212,193,236,0.3)_0%,_rgba(212,193,236,0)_70%)] z-[-1]"></div>
+        <div class="absolute bottom-[-20%] left-[-10%] w-[70%] h-[70%] md:rounded-[50%] bg-[radial-gradient(circle_at_center,_rgba(184,224,210,0.25)_0%,_rgba(184,224,210,0)_70%)] z-[-1]"></div>
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row items-center gap-16">
+                <div class="flex-1 text-center md:text-left">
+                    <div class="inline-flex items-center px-4 py-2 bg-lavender/15 text-lavender-dark rounded-full text-sm font-semibold mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 mr-2">
+                            <path d="M15.98 1.804a1 1 0 00-1.96 0l-.24 1.192a1 1 0 01-.784.785l-1.192.238a1 1 0 000 1.962l1.192.238a1 1 0 01.785.785l.238 1.192a1 1 0 001.962 0l.238-1.192a1 1 0 01.785-.785l1.192-.238a1 1 0 000-1.962l-1.192-.238a1 1 0 01-.785-.785l-.238-1.192z" />
+                            <path d="M1.804 4.02a1 1 0 011.962 0l.238 1.192a1 1 0 00.785.785l1.192.238a1 1 0 010 1.962l-1.192.238a1 1 0 00-.785.785l-.238 1.192a1 1 0 01-1.962 0l-.238-1.192a1 1 0 00-.785-.785L.83 9.192a1 1 0 010-1.962l1.192-.238a1 1 0 00.785-.785L3.02 5.02a1 1 0 011.962 0l.238 1.192a1 1 0 00.785.785l1.192.238a1 1 0 010 1.962l-1.192.238a1 1 0 00-.785.785l-.238 1.192a1 1 0 01-1.962 0l-.238-1.192a1 1 0 00-.785-.785L.83 10.192a1 1 0 010-1.962l1.192-.238a1 1 0 00.785-.785L3.02 6.02a1 1 0 010-1.962l1.192-.238a1 1 0 00.785-.785L5.02 2.02a1 1 0 011.962 0l.238 1.192a1 1 0 00.785.785l1.192.238a1 1 0 010 1.962l-1.192.238a1 1 0 00-.785.785l-.238 1.192a1 1 0 01-1.962 0l-.238-1.192a1 1 0 00-.785-.785L3.02 7.192a1 1 0 010-1.962l1.192-.238a1 1 0 00.785-.785L5.02 3.02z" />
+                        </svg>
+                        Nasza historia
+                    </div>
+                    <h2 class="text-4xl md:text-5xl leading-tight mb-6 tracking-tight font-comfortaa font-bold">Jak powstało DawnoTemu?</h2>
+                    <p class="text-xl text-text-medium mb-10 font-normal max-w-2xl mx-auto md:mx-0">Jesteśmy zespołem rodziców, ekspertów i programistów, których połączyła wspólna misja: podtrzymywanie magicznej więzi między rodzicami a dziećmi poprzez opowiadanie historii, nawet gdy życie stawia przed nami wyzwania.</p>
+                </div>
+                
+                <div class="flex-1 relative mt-10 md:mt-0">
+                    <div class="relative z-10">
+                        <img src="/images/team-photo.jpg" alt="Zespół DawnoTemu" class="w-full rounded-lg-custom shadow-lg-custom mx-auto" loading="lazy">
+                        <div class="absolute w-[80px] sm:w-[120px] h-[80px] sm:h-[120px] bg-lavender/20 rounded-full top-[-20px] sm:top-[-30px] right-[20%] z-[-1] animate-float bubble-1"></div>
+                        <div class="absolute w-[60px] sm:w-[80px] h-[60px] sm:h-[80px] bg-mint/20 rounded-full bottom-[-10%] left-[10%] z-[-1] animate-float bubble-2"></div>
+                        <div class="absolute w-[40px] sm:w-[60px] h-[40px] sm:h-[60px] bg-peach/20 rounded-full bottom-[30%] right-[-5%] z-[-1] animate-float bubble-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Mission Section -->
+    <section id="mission" class="py-16 sm:py-20 md:py-24 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2760%27%20height%3D%2760%27%20viewBox%3D%270%200%2060%2060%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cg%20fill%3D%27none%27%20fill-rule%3D%27evenodd%27%3E%3Cg%20fill%3D%27%23D4C1EC%27%20fill-opacity%3D%270.05%27%3E%3Cpath%20d%3D%27M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%27%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-50"></div>
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-8">
+            <div class="text-center mb-16 relative z-10">
+                <h3 class="text-3xl md:text-4xl mb-4 tracking-tight font-comfortaa font-bold">Nasza misja i wartości</h3>
+                <p class="text-text-medium max-w-2xl mx-auto text-lg">W centrum wszystkiego, co robimy, jest troska o relację między rodzicami a dziećmi</p>
+            </div>
+            
+            <div class="bg-bg-light p-10 rounded-lg-custom shadow-md-custom relative mb-16 max-w-4xl mx-auto">
+                <div class="absolute top-[-20px] left-[-20px] w-[150px] h-[150px] bg-lavender/10 rounded-full z-0"></div>
+                <div class="absolute bottom-[-20px] right-[-20px] w-[150px] h-[150px] bg-lavender/10 rounded-full z-0"></div>
+                
+                <div class="text-center text-3xl text-peach mb-8">
+                    <i class="fas fa-star"></i>
+                </div>
+                
+                <h4 class="text-2xl mb-6 font-bold tracking-tight font-comfortaa text-center">Dlaczego istniejemy?</h4>
+                
+                <p class="text-lg text-text-medium mb-6 leading-relaxed relative z-10">
+                    DawnoTemu istnieje, aby podtrzymywać magiczną więź między rodzicami a dziećmi poprzez opowiadanie historii, niezależnie od życiowych wymagań. Wierzymy, że dźwięk głosu rodzica czytającego bajkę na dobranoc tworzy niepowtarzalne poczucie komfortu i bezpieczeństwa dla dzieci.
+                </p>
+                <p class="text-lg text-text-medium mb-6 leading-relaxed relative z-10">
+                    Dzięki innowacyjnej technologii klonowania głosu zapewniamy, że żadne dziecko nie musi rezygnować z wieczornej bajki, nawet gdy rodzice nie mogą być fizycznie obecni. Nie zastępujemy doświadczenia wspólnego czytania rodzic-dziecko – rozszerzamy je poza fizyczne ograniczenia.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 sm:gap-8 md:gap-10 relative z-10">
+                <div class="bg-bg-light p-8 rounded-md-custom shadow-sm-custom transition duration-300 hover:transform hover:-translate-y-1 hover:shadow-md-custom text-center">
+                    <div class="w-20 h-20 flex items-center justify-center bg-lavender/15 rounded-full text-lavender-dark text-3xl mx-auto mb-6">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h5 class="text-xl font-bold mb-3">Więź</h5>
+                    <p class="text-text-medium">Podtrzymywanie emocjonalnej więzi między rodzicami a dziećmi</p>
+                </div>
+                
+                <div class="bg-bg-light p-8 rounded-md-custom shadow-sm-custom transition duration-300 hover:transform hover:-translate-y-1 hover:shadow-md-custom text-center">
+                    <div class="w-20 h-20 flex items-center justify-center bg-lavender/15 rounded-full text-lavender-dark text-3xl mx-auto mb-6">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h5 class="text-xl font-bold mb-3">Obecność</h5>
+                    <p class="text-text-medium">Umożliwianie rodzicom bycia przy dzieciach, nawet gdy są fizycznie nieobecni</p>
+                </div>
+                
+                <div class="bg-bg-light p-8 rounded-md-custom shadow-sm-custom transition duration-300 hover:transform hover:-translate-y-1 hover:shadow-md-custom text-center">
+                    <div class="w-20 h-20 flex items-center justify-center bg-lavender/15 rounded-full text-lavender-dark text-3xl mx-auto mb-6">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <h5 class="text-xl font-bold mb-3">Komfort</h5>
+                    <p class="text-text-medium">Tworzenie poczucia bezpieczeństwa dla dzieci poprzez znajome głosy</p>
+                </div>
+                
+                <div class="bg-bg-light p-8 rounded-md-custom shadow-sm-custom transition duration-300 hover:transform hover:-translate-y-1 hover:shadow-md-custom text-center">
+                    <div class="w-20 h-20 flex items-center justify-center bg-lavender/15 rounded-full text-lavender-dark text-3xl mx-auto mb-6">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h5 class="text-xl font-bold mb-3">Innowacja</h5>
+                    <p class="text-text-medium">Wykorzystanie technologii z empatią do rozwiązywania rodzinnych wyzwań</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Team Section -->
+    <section id="team" class="py-16 sm:py-20 md:py-24 bg-bg-light relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-8">
+            <div class="text-center mb-16 relative z-10">
+                <h3 class="text-3xl md:text-4xl mb-4 tracking-tight font-comfortaa font-bold">Nasz zespół</h3>
+                <p class="text-text-medium max-w-2xl mx-auto text-lg">Poznaj ludzi, których pasją jest tworzenie technologii, która łączy rodziny</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12 relative z-10">
+                <div class="bg-white rounded-md-custom overflow-hidden shadow-md-custom transition duration-300 hover:transform hover:-translate-y-1 hover:shadow-lg-custom group">
+                    <div class="h-64 overflow-hidden">
+                        <img src="/images/avatar1.jpg" alt="Katarzyna Nowak" class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-1">Katarzyna Nowak</h4>
+                        <p class="text-lavender-dark font-medium text-sm mb-4">Założycielka & CEO</p>
+                        <p class="text-text-medium text-sm mb-5">Mama dwójki dzieci, była konsultantka biznesowa, która doświadczyła trudności z równoważeniem pracy i rodzicielstwa.</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-lavender/10 text-lavender-dark transition duration-300 hover:bg-lavender hover:text-white">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-lavender/10 text-lavender-dark transition duration-300 hover:bg-lavender hover:text-white">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-md-custom overflow-hidden shadow-md-custom transition duration-300 hover:transform hover:-translate-y-1 hover:shadow-lg-custom group">
+                    <div class="h-64 overflow-hidden">
+                        <img src="/images/avatar3.jpg" alt="Tomasz Kowalski" class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-1">Tomasz Kowalski</h4>
+                        <p class="text-lavender-dark font-medium text-sm mb-4">CTO</p>
+                        <p class="text-text-medium text-sm mb-5">Doświadczony inżynier AI z pasją do rozwiązywania problemów przy pomocy technologii. Ojciec bliźniaków.</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-lavender/10 text-lavender-dark transition duration-300 hover:bg-lavender hover:text-white">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-lavender/10 text-lavender-dark transition duration-300 hover:bg-lavender hover:text-white">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-md-custom overflow-hidden shadow-md-custom transition duration-300 hover:transform hover:-translate-y-1 hover:shadow-lg-custom group">
+                    <div class="h-64 overflow-hidden">
+                        <img src="/images/avatar5.jpg" alt="Joanna Kowalska" class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-1">Dr Joanna Kowalska</h4>
+                        <p class="text-lavender-dark font-medium text-sm mb-4">Ekspert ds. Rozwoju Dziecka</p>
+                        <p class="text-text-medium text-sm mb-5">Psycholog dziecięcy z 15-letnim doświadczeniem, specjalizująca się w rozwoju językowym i więzi rodzic-dziecko.</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-lavender/10 text-lavender-dark transition duration-300 hover:bg-lavender hover:text-white">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-lavender/10 text-lavender-dark transition duration-300 hover:bg-lavender hover:text-white">
+                                <i class="fas fa-graduation-cap"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-md-custom overflow-hidden shadow-md-custom transition duration-300 hover:transform hover:-translate-y-1 hover:shadow-lg-custom group">
+                    <div class="h-64 overflow-hidden">
+                        <img src="/images/avatar4.jpg" alt="Marta Wiśniewska" class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-1">Marta Wiśniewska</h4>
+                        <p class="text-lavender-dark font-medium text-sm mb-4">Head of Content</p>
+                        <p class="text-text-medium text-sm mb-5">Pisarka i redaktorka dziecięca z doświadczeniem w tworzeniu treści edukacyjnych i zabawnych historii dla najmłodszych.</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-lavender/10 text-lavender-dark transition duration-300 hover:bg-lavender hover:text-white">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-lavender/10 text-lavender-dark transition duration-300 hover:bg-lavender hover:text-white">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-md-custom overflow-hidden shadow-md-custom transition duration-300 hover:transform hover:-translate-y-1 hover:shadow-lg-custom group">
+                    <div class="h-64 overflow-hidden">
+                        <img src="/images/avatar2.jpg" alt="Anna Kamińska" class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-1">Anna Kamińska</h4>
+                        <p class="text-lavender-dark font-medium text-sm mb-4">Product Manager</p>
+                        <p class="text-text-medium text-sm mb-5">Doświadczona w tworzeniu produktów cyfrowych z myślą o użytkownikach. Miłośniczka storytellingu i mama 5-letniej córki.</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-lavender/10 text-lavender-dark transition duration-300 hover:bg-lavender hover:text-white">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-lavender/10 text-lavender-dark transition duration-300 hover:bg-lavender hover:text-white">
+                                <i class="fab fa-medium"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-md-custom overflow-hidden shadow-md-custom transition duration-300 hover:transform hover:-translate-y-1 hover:shadow-lg-custom group flex flex-col items-center justify-center p-10 text-center">
+                    <div class="w-20 h-20 flex items-center justify-center bg-lavender/15 rounded-full text-lavender-dark text-3xl mb-6">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Dołącz do nas</h4>
+                    <p class="text-text-medium mb-6">Szukamy pasjonatów, którzy chcą zmieniać świat dziecięcej edukacji i rozrywki</p>
+                    <a href="#" class="inline-flex items-center font-semibold text-peach hover:text-peach-dark transition duration-300">
+                        Zobacz oferty pracy <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Story Timeline Section -->
+    <section id="story" class="py-16 sm:py-20 md:py-24 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2760%27%20height%3D%2760%27%20viewBox%3D%270%200%2060%2060%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cg%20fill%3D%27none%27%20fill-rule%3D%27evenodd%27%3E%3Cg%20fill%3D%27%23D4C1EC%27%20fill-opacity%3D%270.05%27%3E%3Cpath%20d%3D%27M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%27%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-50"></div>
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-8">
+            <div class="text-center mb-16 relative z-10">
+                <h3 class="text-3xl md:text-4xl mb-4 tracking-tight font-comfortaa font-bold">Historia DawnoTemu</h3>
+                <p class="text-text-medium max-w-2xl mx-auto text-lg">Poznaj naszą drogę od pomysłu do stworzenia aplikacji, która łączy rodziny</p>
+            </div>
+            
+            <div class="timeline-container py-4 max-w-4xl mx-auto">
+                <!-- Timeline Item 1 -->
+                <div class="flex flex-col md:flex-row mb-16 relative">
+                    <div class="md:w-1/2 md:text-right md:pr-12 md:mb-0 mb-8">
+                        <div class="bg-lavender text-white text-sm font-semibold px-3 py-1 rounded-full inline-block md:ml-auto mb-2">Sierpień 2023</div>
+                        <h4 class="text-xl font-bold mb-2">Narodziny pomysłu</h4>
+                        <p class="text-text-medium">Katarzyna Nowak, pracując do późna, nie mogła przeczytać wieczornej bajki swojej córce. To doświadczenie zainspirowało ją do szukania rozwiązania technologicznego.</p>
+                    </div>
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 md:block hidden">
+                        <div class="w-10 h-10 rounded-full bg-lavender flex items-center justify-center text-white">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                    </div>
+                    <div class="block md:hidden absolute left-0 top-0">
+                        <div class="w-10 h-10 ml-[25px] rounded-full bg-lavender flex items-center justify-center text-white">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12"></div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="flex flex-col md:flex-row mb-16 relative">
+                    <div class="md:w-1/2 md:pr-12"></div>
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 md:block hidden">
+                        <div class="w-10 h-10 rounded-full bg-lavender flex items-center justify-center text-white">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+                    <div class="block md:hidden absolute left-0 top-0">
+                        <div class="w-10 h-10 ml-[25px] rounded-full bg-lavender flex items-center justify-center text-white">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 md:text-left md:mb-0 mb-8">
+                        <div class="bg-lavender text-white text-sm font-semibold px-3 py-1 rounded-full inline-block mb-2">Październik 2023</div>
+                        <h4 class="text-xl font-bold mb-2">Formowanie zespołu</h4>
+                        <p class="text-text-medium">Katarzyna zebrała zespół pasjonatów - inżynierów AI, projektantów UX i ekspertów ds. rozwoju dzieci - aby wspólnie opracować najlepsze rozwiązanie.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 -->
+                <div class="flex flex-col md:flex-row mb-16 relative">
+                    <div class="md:w-1/2 md:text-right md:pr-12 md:mb-0 mb-8">
+                        <div class="bg-lavender text-white text-sm font-semibold px-3 py-1 rounded-full inline-block md:ml-auto mb-2">Styczeń 2024</div>
+                        <h4 class="text-xl font-bold mb-2">Pierwszy prototyp</h4>
+                        <p class="text-text-medium">Po miesiącach pracy zespół przedstawił pierwszy prototyp aplikacji. Wczesne testy przeprowadzono wśród wybranej grupy rodziców i ich dzieci.</p>
+                    </div>
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 md:block hidden">
+                        <div class="w-10 h-10 rounded-full bg-lavender flex items-center justify-center text-white">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                    </div>
+                    <div class="block md:hidden absolute left-0 top-0">
+                        <div class="w-10 h-10 ml-[25px] rounded-full bg-lavender flex items-center justify-center text-white">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12"></div>
+                </div>
+
+                <!-- Timeline Item 4 -->
+                <div class="flex flex-col md:flex-row mb-16 relative">
+                    <div class="md:w-1/2 md:pr-12"></div>
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 md:block hidden">
+                        <div class="w-10 h-10 rounded-full bg-lavender flex items-center justify-center text-white">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                    </div>
+                    <div class="block md:hidden absolute left-0 top-0">
+                        <div class="w-10 h-10 ml-[25px] rounded-full bg-lavender flex items-center justify-center text-white">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 md:text-left md:mb-0 mb-8">
+                        <div class="bg-lavender text-white text-sm font-semibold px-3 py-1 rounded-full inline-block mb-2">Marzec 2024</div>
+                        <h4 class="text-xl font-bold mb-2">Pozyskanie finansowania</h4>
+                        <p class="text-text-medium">DawnoTemu pozyskało pierwsze finansowanie od inwestorów zainteresowanych innowacyjnymi rozwiązaniami dla rodzin i cyfrową edukacją.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 5 -->
+                <div class="flex flex-col md:flex-row relative">
+                    <div class="md:w-1/2 md:text-right md:pr-12 md:mb-0 mb-8">
+                        <div class="bg-peach text-white text-sm font-semibold px-3 py-1 rounded-full inline-block md:ml-auto mb-2">Teraz</div>
+                        <h4 class="text-xl font-bold mb-2">Lista oczekujących</h4>
+                        <p class="text-text-medium">Obecnie pracujemy nad udoskonalaniem naszej technologii i tworzeniem biblioteki opowieści, a ponad 2500 rodziców już zapisało się na listę oczekujących.</p>
+                    </div>
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 md:block hidden">
+                        <div class="w-10 h-10 rounded-full bg-peach flex items-center justify-center text-white animate-pulse-custom">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="block md:hidden absolute left-0 top-0">
+                        <div class="w-10 h-10 ml-[25px] rounded-full bg-peach flex items-center justify-center text-white animate-pulse-custom">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Technology Section -->
+    <section id="tech" class="py-16 sm:py-20 md:py-24 bg-bg-light relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-8">
+            <div class="text-center mb-16 relative z-10">
+                <h3 class="text-3xl md:text-4xl mb-4 tracking-tight font-comfortaa font-bold">Nasza technologia</h3>
+                <p class="text-text-medium max-w-2xl mx-auto text-lg">Jak działa DawnoTemu i dlaczego możesz nam zaufać</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div class="w-full md:w-1/2 order-2 md:order-1">
+                    <h4 class="text-2xl mb-6 font-bold tracking-tight">Jak działa klonowanie głosu?</h4>
+                    
+                    <div class="space-y-8">
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 flex-shrink-0 bg-gradient-to-br from-lavender to-mint rounded-full flex items-center justify-center text-white text-xl shadow-[0_4px_10px_rgba(212,193,236,0.3)]">1</div>
+                            <div>
+                                <h5 class="text-lg font-bold mb-2">Nagranie próbki</h5>
+                                <p class="text-text-medium">Wystarczy 30-sekundowe nagranie Twojego głosu, czytającego przygotowany tekst w spokojnym miejscu.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 flex-shrink-0 bg-gradient-to-br from-lavender to-mint rounded-full flex items-center justify-center text-white text-xl shadow-[0_4px_10px_rgba(212,193,236,0.3)]">2</div>
+                            <div>
+                                <h5 class="text-lg font-bold mb-2">Analiza AI</h5>
+                                <p class="text-text-medium">Nasza zaawansowana technologia analizuje charakterystykę Twojego głosu - barwę, akcent, intonację i rytm mowy.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 flex-shrink-0 bg-gradient-to-br from-lavender to-mint rounded-full flex items-center justify-center text-white text-xl shadow-[0_4px_10px_rgba(212,193,236,0.3)]">3</div>
+                            <div>
+                                <h5 class="text-lg font-bold mb-2">Tworzenie cyfrowego modelu</h5>
+                                <p class="text-text-medium">System tworzy cyfrowy model Twojego głosu, który jest używany do odczytania tekstu bajek w sposób naturalny i ekspresyjny.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 flex-shrink-0 bg-gradient-to-br from-lavender to-mint rounded-full flex items-center justify-center text-white text-xl shadow-[0_4px_10px_rgba(212,193,236,0.3)]">4</div>
+                            <div>
+                                <h5 class="text-lg font-bold mb-2">Bezpieczne przechowywanie</h5>
+                                <p class="text-text-medium">Twój cyfrowy model głosu jest szyfrowany i bezpiecznie przechowywany, używany wyłącznie do generowania bajek w Twojej aplikacji.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="w-full md:w-1/2 order-1 md:order-2">
+                    <img src="/images/img4.png" alt="Technologia DawnoTemu" class="rounded-lg-custom shadow-lg-custom mx-auto w-full max-w-lg" loading="lazy">
+                </div>
+            </div>
+            
+            <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-md-custom shadow-sm-custom transition duration-300 hover:transform hover:-translate-y-1 hover:shadow-md-custom text-center">
+                    <div class="w-16 h-16 flex items-center justify-center bg-lavender/15 rounded-full text-lavender-dark text-2xl mx-auto mb-6">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h5 class="text-xl font-bold mb-3">Bezpieczeństwo</h5>
+                    <p class="text-text-medium">Twoje dane są chronione najwyższymi standardami bezpieczeństwa i szyfrowania. Nigdy nie udostępniamy Twoich nagrań osobom trzecim.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-md-custom shadow-sm-custom transition duration-300 hover:transform hover:-translate-y-1 hover:shadow-md-custom text-center">
+                    <div class="w-16 h-16 flex items-center justify-center bg-lavender/15 rounded-full text-lavender-dark text-2xl mx-auto mb-6">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h5 class="text-xl font-bold mb-3">Prywatność</h5>
+                    <p class="text-text-medium">Twój model głosu jest używany wyłącznie do generowania bajek w Twojej aplikacji. Dane są przetwarzane zgodnie z najwyższymi standardami RODO.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-md-custom shadow-sm-custom transition duration-300 hover:transform hover:-translate-y-1 hover:shadow-md-custom text-center">
+                    <div class="w-16 h-16 flex items-center justify-center bg-lavender/15 rounded-full text-lavender-dark text-2xl mx-auto mb-6">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h5 class="text-xl font-bold mb-3">Etyka</h5>
+                    <p class="text-text-medium">Nasze rozwiązanie zostało stworzone z myślą o prawdziwych potrzebach rodzin. Konsultowaliśmy je z ekspertami ds. rozwoju dzieci i rodzicami.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="py-16 sm:py-20 md:py-24 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2760%27%20height%3D%2760%27%20viewBox%3D%270%200%2060%2060%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cg%20fill%3D%27none%27%20fill-rule%3D%27evenodd%27%3E%3Cg%20fill%3D%27%23D4C1EC%27%20fill-opacity%3D%270.05%27%3E%3Cpath%20d%3D%27M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%27%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-50"></div>
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-8">
+            <div class="text-center mb-16 relative z-10">
+                <h3 class="text-3xl md:text-4xl mb-4 tracking-tight font-comfortaa font-bold">Co mówią rodzice</h3>
+                <p class="text-text-medium max-w-2xl mx-auto text-lg">Poznaj opinie pierwszych użytkowników testujących DawnoTemu</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 md:gap-12 relative z-10">
+                <div class="bg-bg-light rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-mint/30">
+                    <div class="text-6xl leading-none text-lavender font-serif h-10 sm:h-12 flex items-center">"</div>
+                    <div class="text-lg leading-relaxed mb-8 relative italic before:content-['\"'] before:absolute before:top-[-1rem] before:left-[-0.5rem] before:text-8xl before:text-lavender/20 before:font-serif before:leading-none">
+                        Kiedy muszę pracować do późna, moja córka nadal zasypia słuchając bajki czytanej moim głosem. To niesamowite, jak technologia może pomóc w utrzymaniu naszej więzi mimo napięć czasowych.
+                    </div>
+                    <div class="flex items-center">
+                        <img src="/images/avatar2.jpg" alt="Anna K." class="w-14 h-14 rounded-full object-cover mr-4 border-3 border-white shadow-sm-custom" loading="lazy">
+                        <div class="leading-tight">
+                            <strong class="block text-lg font-semibold text-text-dark">Anna K.</strong>
+                            <span class="text-text-medium text-sm">Mama 5-latki, Kraków</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-bg-light rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-mint/30">
+                    <div class="text-6xl leading-none text-lavender font-serif h-10 sm:h-12 flex items-center">"</div>
+                    <div class="text-lg leading-relaxed mb-8 relative italic before:content-['\"'] before:absolute before:top-[-1rem] before:left-[-0.5rem] before:text-8xl before:text-lavender/20 before:font-serif before:leading-none">
+                        Jako tata, który często wyjeżdża służbowo, czułem się winny, że nie czytam dzieciom na dobranoc. Teraz, dzięki DawnoTemu, moje dzieci słyszą mój głos każdego wieczoru. To zrewolucjonizowało nasz wieczorny rytuał.
+                    </div>
+                    <div class="flex items-center">
+                        <img src="/images/avatar3.jpg" alt="Tomek S." class="w-14 h-14 rounded-full object-cover mr-4 border-3 border-white shadow-sm-custom" loading="lazy">
+                        <div class="leading-tight">
+                            <strong class="block text-lg font-semibold text-text-dark">Tomek S.</strong>
+                            <span class="text-text-medium text-sm">Tata dwójki dzieci, Gdańsk</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-bg-light rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-mint/30">
+                    <div class="text-6xl leading-none text-lavender font-serif h-10 sm:h-12 flex items-center">"</div>
+                    <div class="text-lg leading-relaxed mb-8 relative italic before:content-['\"'] before:absolute before:top-[-1rem] before:left-[-0.5rem] before:text-8xl before:text-lavender/20 before:font-serif before:leading-none">
+                        Czasami po długim dniu z trójką dzieci brakuje mi energii na ekspresyjne czytanie. DawnoTemu pozwala mi odpocząć, a jednocześnie dziecko słyszy moją wersję ulubionej bajki. To jak mieć supermoc bycia w dwóch miejscach naraz.
+                    </div>
+                    <div class="flex items-center">
+                        <img src="/images/avatar4.jpg" alt="Marta W." class="w-14 h-14 rounded-full object-cover mr-4 border-3 border-white shadow-sm-custom" loading="lazy">
+                        <div class="leading-tight">
+                            <strong class="block text-lg font-semibold text-text-dark">Marta W.</strong>
+                            <span class="text-text-medium text-sm">Mama trojaczków, Wrocław</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section id="waitlist" class="py-16 sm:py-20 md:py-32 text-center bg-gradient-to-br from-lavender to-mint text-white relative overflow-hidden">
+        <div class="absolute bottom-0 left-0 w-full h-[10%] bg-[url('data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%201200%20120%27%20preserveAspectRatio=%27none%27%3E%3Cpath%20d=%27M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z%27%20opacity=%27.1%27%20fill=%27%23FFFFFF%27%3E%3C/path%3E%3C/svg%3E')] bg-cover z-0"></div>
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-8">
+            <div class="relative z-10">
+                <h3 class="text-2xl sm:text-3xl md:text-4xl mb-4 sm:mb-6 font-bold tracking-tight font-comfortaa">Dołącz do rodzin, które już odkryły magię DawnoTemu</h3>
+                <p class="max-w-2xl mx-auto mb-8 sm:mb-12 text-lg sm:text-xl opacity-90">Zapisz się do listy oczekujących i uzyskaj wcześniejszy dostęp do aplikacji DawnoTemu. Otrzymasz również kody dla znajomych i rodziny!</p>
+                
+                <form class="relative max-w-lg mt-10 mx-auto" class="waitlist">
+                    <input type="email" placeholder="Twój adres e-mail" required class="w-full py-5 px-6 border border-gray-200 rounded-full text-base outline-none bg-white shadow-sm-custom transition duration-300 focus:border-lavender focus:shadow-[0_0_0_3px_rgba(212,193,236,0.2)]">
+                    <button type="submit" class="static mt-2 w-full right-1.5 top-1.5 bottom-1.5 bg-peach text-white py-5 md:py-0 px-6 rounded-full font-semibold transition duration-300 hover:bg-peach-dark hover:transform hover:shadow-lg md:absolute md:mt-auto md:w-auto">Dołącz do listy oczekujących</button>
+                </form>
+                
+                <div class="flex justify-center gap-12 mt-10">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold mb-2 bg-gradient-to-br from-white to-white bg-clip-text text-transparent inline-block">2500+</div>
+                        <div class="text-white/80 text-sm">Rodziców na liście</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold mb-2 bg-gradient-to-br from-white to-white bg-clip-text text-transparent inline-block">92%</div>
+                        <div class="text-white/80 text-sm">Pozytywnych opinii</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="bg-text-dark text-white pt-20 pb-8 relative">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div class="flex flex-col">
+                    <div class="flex items-center mb-6">
+                        <img src="/logo.png" alt="DawnoTemu Logo" class="h-10 mr-3" loading="lazy">
+                        <h3 class="text-2xl text-white font-comfortaa">DawnoTemu</h3>
+                    </div>
+                    <p class="text-white/70 text-sm mb-6">
+                        Innowacyjna aplikacja, która pomaga rodzicom utrzymać magię wieczornych bajek, nawet gdy życie staje się zbyt intensywne.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition duration-300 hover:bg-peach hover:transform hover:-translate-y-1">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition duration-300 hover:bg-peach hover:transform hover:-translate-y-1">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition duration-300 hover:bg-peach hover:transform hover:-translate-y-1">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition duration-300 hover:bg-peach hover:transform hover:-translate-y-1">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h5 class="text-xl mb-6 font-semibold">Aplikacja</h5>
+                    <ul class="list-none">
+                        <li class="mb-3"><a href="/#features" class="text-white/70 no-underline transition duration-300 hover:text-white">Funkcje</a></li>
+                        <li class="mb-3"><a href="/#how-it-works" class="text-white/70 no-underline transition duration-300 hover:text-white">Jak to działa</a></li>
+                        <li class="mb-3"><a href="/biblioteka" class="text-white/70 no-underline transition duration-300 hover:text-white">Biblioteka bajek</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Wsparcie</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="text-xl mb-6 font-semibold">Firma</h5>
+                    <ul class="list-none">
+                        <li class="mb-3"><a href="/o-nas" class="text-white/70 no-underline transition duration-300 hover:text-white">O nas</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Blog</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Kariera</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Kontakt</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="text-xl mb-6 font-semibold">Informacje</h5>
+                    <ul class="list-none">
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Prywatność</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Warunki</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Bezpieczeństwo</a></li>
+                        <li class="mb-3"><a href="/#faq" class="text-white/70 no-underline transition duration-300 hover:text-white">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 text-white/50 text-sm">
+                <div class="flex items-center">
+                    <img src="/logo.png" alt="DawnoTemu Logo" class="h-5 mr-2" loading="lazy">
+                    © 2025 DawnoTemu. Wszelkie prawa zastrzeżone.
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 mt-4 md:mt-0">
+                    <a href="#" class="text-white/50 transition duration-300 hover:text-white">Mapa strony</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile Navigation
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        
+        mobileMenuToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileNav.classList.toggle('hidden');
+            mobileNav.classList.toggle('flex');
+            
+            // Toggle transform for slide effect
+            if (mobileNav.classList.contains('translate-x-full')) {
+                mobileNav.classList.remove('translate-x-full');
+            } else {
+                mobileNav.classList.add('translate-x-full');
+            }
+            
+            // Toggle body scroll
+            if (!mobileNav.classList.contains('hidden')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+            
+            // Animate hamburger to X
+            const spans = this.querySelectorAll('span');
+            if (this.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+            } else {
+                spans[0].style.transform = '';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = '';
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        const mobileNavLinks = mobileNav.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileNav.classList.add('hidden');
+                mobileNav.classList.remove('flex');
+                mobileNav.classList.add('translate-x-full');
+                mobileMenuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                // Reset hamburger icon
+                const spans = mobileMenuToggle.querySelectorAll('span');
+                spans[0].style.transform = '';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = '';
+            });
+        });
+        
+        // Form submission
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = form.querySelector('input[type="email"]')?.value;
+                
+                // Display success message
+                const successMessage = document.createElement('div');
+                successMessage.className = 'bg-mint text-text-dark p-4 rounded-lg mt-4 text-sm font-medium animate-fade-in';
+                successMessage.textContent = email 
+                    ? `Dziękujemy! Na adres ${email} wyślemy informacje o dostępie do aplikacji.`
+                    : 'Dziękujemy! Twoja wiadomość została wysłana.';
+                
+                form.appendChild(successMessage);
+                form.reset();
+                
+                // Remove message after 5 seconds
+                setTimeout(() => {
+                    successMessage.className += ' animate-fade-out';
+                    setTimeout(() => {
+                        form.removeChild(successMessage);
+                    }, 500);
+                }, 5000);
+            });
+        });
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Append fade animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            @keyframes fadeOut {
+                from { opacity: 1; transform: translateY(0); }
+                to { opacity: 0; transform: translateY(-10px); }
+            }
+            .animate-fade-in {
+                animation: fadeIn 0.5s ease-in-out;
+            }
+            .animate-fade-out {
+                animation: fadeOut 0.5s ease-in-out;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

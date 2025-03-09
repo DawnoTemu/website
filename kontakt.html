@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>O nas | DawnoTemu</title>
+    <meta name="description" content="Poznaj historię DawnoTemu, nasz zespół i misję tworzenia więzi między rodzicami a dziećmi dzięki technologii AI głosu.">
+    
+    <!-- Primary Meta Tags -->
+    <meta name="description" content="DawnoTemu to zespół rodziców, ekspertów i programistów, których połączyła wspólna misja: podtrzymywanie magicznej więzi między rodzicami a dziećmi poprzez opowiadanie historii.">
+
+    <!-- Favicon Suite -->
+    <link rel="icon" href="/icons/favicon.ico" sizes="any">
+    <link rel="icon" href="/icons/favicon.svg" type="image/svg+xml">
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/icons/favicon.svg" color="#D4C1EC">
+
+    <!-- PWA/Safari Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="DawnoTemu">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="/icons/web-app-manifest-192x192.png">
+    <meta name="theme-color" content="#D4C1EC">
+    <meta name="msapplication-TileColor" content="#D4C1EC">
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Quicksand:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Preconnect to External Domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Font Loading with Fallback -->
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Quicksand:wght@400;600&display=swap&display=swap">
+    </noscript>
+
+    <!-- Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="O nas | DawnoTemu">
+    <meta property="og:description" content="Poznaj historię DawnoTemu, nasz zespół i misję tworzenia więzi między rodzicami a dziećmi dzięki technologii AI głosu.">
+    <meta property="og:image" content="/images/social-preview.jpg">
+    <meta property="og:url" content="https://dawnotemu.example.com/o-nas">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@DawnoTemu">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              peach: '#FFB5A7',
+              'peach-dark': '#FF9A8A',
+              lavender: '#D4C1EC',
+              'lavender-dark': '#B8A2DC',
+              mint: '#B8E0D2',
+              'soft-yellow': '#FAE8B0',
+              'text-dark': '#2D3047',
+              'text-medium': '#6C6F93',
+              'text-light': '#9CA3AF',
+              'bg-light': '#F9FAFC',
+            },
+            fontFamily: {
+              'comfortaa': ['Comfortaa', 'cursive'],
+              'sans': ['Quicksand', 'sans-serif'],
+            },
+            boxShadow: {
+              'sm-custom': '0 4px 6px rgba(45, 48, 71, 0.05)',
+              'md-custom': '0 10px 20px rgba(45, 48, 71, 0.08)',
+              'lg-custom': '0 20px 25px -5px rgba(45, 48, 71, 0.1)',
+            },
+            borderRadius: {
+              'sm-custom': '8px',
+              'md-custom': '16px',
+              'lg-custom': '24px',
+            },
+            screens: {
+              'xs': '480px',
+            },
+          }
+        }
+      }
+    </script>
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(255, 181, 167, 0.4);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 15px rgba(255, 181, 167, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(255, 181, 167, 0);
+            }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-pulse-custom {
+            animation: pulse 2s infinite;
+        }
+        
+        .bubble-1 {
+            animation-delay: 0s;
+        }
+        
+        .bubble-2 {
+            animation-delay: 1.5s;
+        }
+        
+        .bubble-3 {
+            animation-delay: 3s;
+        }
+        
+        .timeline-container {
+            position: relative;
+        }
+        
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: rgba(212, 193, 236, 0.3);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-container::before {
+                left: 30px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-bg-light text-text-dark leading-relaxed font-sans font-normal overflow-x-hidden">
+    <header class="bg-white py-3 sm:py-5 fixed top-0 left-0 w-full z-50 shadow-sm-custom backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-8 relative">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center">
+                        <img src="/logo.png" alt="DawnoTemu Logo" class="h-8 sm:h-10 mr-2 sm:mr-3" loading="lazy">
+                        <h1 class="text-xl sm:text-2xl text-text-dark tracking-tight font-comfortaa font-bold">DawnoTemu</h1>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-text-medium hover:text-text-dark transition-colors">Strona główna</a>
+                    <a href="/o-nas" class="text-text-medium hover:text-text-dark transition-colors">O nas</a>
+                    <a href="/biblioteka" class="text-text-medium hover:text-text-dark transition-colors">Biblioteka bajek</a>
+                    <a href="/kontakt" class="text-lavender text-lg sm:text-xl font-semibold no-underline">Kontakt</a>
+                    <a href="#waitlist" class="bg-peach text-white py-2.5 px-5 rounded-full font-semibold transition duration-300 ease-in-out border-none cursor-pointer text-sm shadow-md hover:bg-peach-dark hover:transform hover:shadow-lg">Dołącz do listy</a>
+                </div>
+                
+                <!-- Mobile menu toggle -->
+                <div class="flex flex-col justify-between w-[24px] sm:w-[30px] h-[18px] sm:h-[21px] cursor-pointer md:hidden" id="mobile-menu-toggle">
+                    <span class="w-full h-[2px] sm:h-[3px] bg-text-dark rounded transition duration-300"></span>
+                    <span class="w-full h-[2px] sm:h-[3px] bg-text-dark rounded transition duration-300"></span>
+                    <span class="w-full h-[2px] sm:h-[3px] bg-text-dark rounded transition duration-300"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile Navigation -->
+    <div class="fixed top-[57px] sm:top-[71px] left-0 w-full h-[calc(100vh-57px)] sm:h-[calc(100vh-71px)] bg-white z-40 p-5 sm:p-8 flex-col hidden transform translate-x-full transition-transform duration-300 ease-in-out" id="mobile-nav">
+        <div class="flex flex-col gap-4 sm:gap-6 mb-6 sm:mb-8">
+            <a href="/" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">Strona główna</a>
+            <a href="/o-nas" class="text-lavender text-lg sm:text-xl font-semibold no-underline">O nas</a>
+            <a href="/biblioteka" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">Biblioteka bajek</a>
+            <a href="#team" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">Zespół</a>
+            <a href="#mission" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">Misja</a>
+            <a href="#story" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">Historia</a>
+            <a href="#tech" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">Technologia</a>
+        </div>
+        <a href="#waitlist" class="bg-peach text-white py-3 sm:py-3.5 px-6 sm:px-7 rounded-full font-semibold transition duration-300 ease-in-out border-none cursor-pointer text-sm sm:text-base shadow-md w-full text-center">Dołącz do listy</a>
+    </div>
+    
+    <!-- Hero Section -->
+    <section id="hero" class="pt-32 md:pt-40 pb-16 relative overflow-hidden">
+        <div class="absolute top-[-20%] right-[-10%] w-[80%] h-[80%] md:rounded-[50%] bg-[radial-gradient(circle_at_center,_rgba(212,193,236,0.3)_0%,_rgba(212,193,236,0)_70%)] z-[-1]"></div>
+        <div class="absolute bottom-[-20%] left-[-10%] w-[70%] h-[70%] md:rounded-[50%] bg-[radial-gradient(circle_at_center,_rgba(184,224,210,0.25)_0%,_rgba(184,224,210,0)_70%)] z-[-1]"></div>
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row items-center gap-16">
+                <div class="flex-1 text-center md:text-left">
+                    <div class="inline-flex items-center px-4 py-2 bg-lavender/15 text-lavender-dark rounded-full text-sm font-semibold mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 mr-2">
+                            <path d="M15.98 1.804a1 1 0 00-1.96 0l-.24 1.192a1 1 0 01-.784.785l-1.192.238a1 1 0 000 1.962l1.192.238a1 1 0 01.785.785l.238 1.192a1 1 0 001.962 0l.238-1.192a1 1 0 01.785-.785l1.192-.238a1 1 0 000-1.962l-1.192-.238a1 1 0 01-.785-.785l-.238-1.192z" />
+                            <path d="M1.804 4.02a1 1 0 011.962 0l.238 1.192a1 1 0 00.785.785l1.192.238a1 1 0 010 1.962l-1.192.238a1 1 0 00-.785.785l-.238 1.192a1 1 0 01-1.962 0l-.238-1.192a1 1 0 00-.785-.785L.83 9.192a1 1 0 010-1.962l1.192-.238a1 1 0 00.785-.785L3.02 5.02a1 1 0 011.962 0l.238 1.192a1 1 0 00.785.785l1.192.238a1 1 0 010 1.962l-1.192.238a1 1 0 00-.785.785l-.238 1.192a1 1 0 01-1.962 0l-.238-1.192a1 1 0 00-.785-.785L.83 10.192a1 1 0 010-1.962l1.192-.238a1 1 0 00.785-.785L3.02 6.02a1 1 0 010-1.962l1.192-.238a1 1 0 00.785-.785L5.02 2.02a1 1 0 011.962 0l.238 1.192a1 1 0 00.785.785l1.192.238a1 1 0 010 1.962l-1.192.238a1 1 0 00-.785.785l-.238 1.192a1 1 0 01-1.962 0l-.238-1.192a1 1 0 00-.785-.785L3.02 7.192a1 1 0 010-1.962l1.192-.238a1 1 0 00.785-.785L5.02 3.02z" />
+                        </svg>
+                        Kontakt
+                    </div>
+                    <div>
+                        <h2 class="text-4xl md:text-5xl leading-tight mb-6 tracking-tight font-comfortaa font-bold">Masz pytania?</h2>
+                        <p class="text-xl text-text-medium mb-10 font-normal max-w-2xl mx-auto md:mx-0">Chcesz dowiedzieć się więcej o DawnoTemu? Skontaktuj się z nami - jesteśmy tu, aby pomóc!</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 flex-shrink-0 bg-lavender/15 rounded-full flex items-center justify-center text-lavender-dark text-lg">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-lg font-bold mb-1">Email</h5>
+                                    <p class="text-text-medium">kontakt@dawnotemu.pl</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 flex-shrink-0 bg-lavender/15 rounded-full flex items-center justify-center text-lavender-dark text-lg">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-lg font-bold mb-1">Adres</h5>
+                                    <p class="text-text-medium">ul. Bajkowa 12/4<br>00-000 Warszawa</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 flex-shrink-0 bg-lavender/15 rounded-full flex items-center justify-center text-lavender-dark text-lg">
+                                    <i class="fas fa-headset"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-lg font-bold mb-1">Wsparcie</h5>
+                                    <p class="text-text-medium">pomoc@dawnotemu.pl</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-12">
+                            <h5 class="text-lg font-bold mb-4">Obserwuj nas</h5>
+                            <div class="flex gap-4">
+                                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-lavender/15 text-lavender-dark transition duration-300 hover:bg-lavender hover:text-white">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-lavender/15 text-lavender-dark transition duration-300 hover:bg-lavender hover:text-white">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-lavender/15 text-lavender-dark transition duration-300 hover:bg-lavender hover:text-white">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-lavender/15 text-lavender-dark transition duration-300 hover:bg-lavender hover:text-white">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+                
+                <div class="flex-1 relative mt-10 md:mt-0">
+                    <div class="relative z-10">
+                        <div class="bg-white rounded-lg-custom shadow-md-custom p-8 md:p-10 border border-gray-200/50">
+                            <h4 class="text-2xl font-bold mb-6 font-comfortaa">Wypełnij formularz</h4>
+                            <form class="space-y-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label for="name" class="block text-text-medium font-medium mb-2">Imię i nazwisko</label>
+                                        <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-200 rounded-full text-text-dark focus:outline-none focus:border-lavender focus:ring-2 focus:ring-lavender/20 transition">
+                                    </div>
+                                    <div>
+                                        <label for="email" class="block text-text-medium font-medium mb-2">Email</label>
+                                        <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-200 rounded-full text-text-dark focus:outline-none focus:border-lavender focus:ring-2 focus:ring-lavender/20 transition">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="subject" class="block text-text-medium font-medium mb-2">Temat</label>
+                                    <input type="text" id="subject" name="subject" class="w-full px-4 py-3 border border-gray-200 rounded-full text-text-dark focus:outline-none focus:border-lavender focus:ring-2 focus:ring-lavender/20 transition">
+                                </div>
+                                <div>
+                                    <label for="message" class="block text-text-medium font-medium mb-2">Wiadomość</label>
+                                    <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border border-gray-200 rounded-3xl text-text-dark focus:outline-none focus:border-lavender focus:ring-2 focus:ring-lavender/20 transition"></textarea>
+                                </div>
+                                <div>
+                                    <button type="submit" class="w-full sm:w-auto bg-peach text-white py-3 px-8 rounded-full font-semibold transition duration-300 hover:bg-peach-dark hover:shadow-lg">Wyślij wiadomość</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="absolute w-[80px] sm:w-[120px] h-[80px] sm:h-[120px] bg-lavender/20 rounded-full top-[-20px] sm:top-[-30px] right-[20%] z-[-1] animate-float bubble-1"></div>
+                        <div class="absolute w-[60px] sm:w-[80px] h-[60px] sm:h-[80px] bg-mint/20 rounded-full bottom-[-10%] left-[10%] z-[-1] animate-float bubble-2"></div>
+                        <div class="absolute w-[40px] sm:w-[60px] h-[40px] sm:h-[60px] bg-peach/20 rounded-full bottom-[30%] right-[-5%] z-[-1] animate-float bubble-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="waitlist" class="py-16 sm:py-20 md:py-32 text-center bg-gradient-to-br from-lavender to-mint text-white relative overflow-hidden">
+        <div class="absolute bottom-0 left-0 w-full h-[10%] bg-[url('data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%201200%20120%27%20preserveAspectRatio=%27none%27%3E%3Cpath%20d=%27M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z%27%20opacity=%27.1%27%20fill=%27%23FFFFFF%27%3E%3C/path%3E%3C/svg%3E')] bg-cover z-0"></div>
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-8">
+            <div class="relative z-10">
+                <h3 class="text-2xl sm:text-3xl md:text-4xl mb-4 sm:mb-6 font-bold tracking-tight font-comfortaa">Dołącz do rodzin, które już odkryły magię DawnoTemu</h3>
+                <p class="max-w-2xl mx-auto mb-8 sm:mb-12 text-lg sm:text-xl opacity-90">Zapisz się do listy oczekujących i uzyskaj wcześniejszy dostęp do aplikacji DawnoTemu. Otrzymasz również kody dla znajomych i rodziny!</p>
+                
+                <form class="relative max-w-lg mt-10 mx-auto" class="waitlist">
+                    <input type="email" placeholder="Twój adres e-mail" required class="w-full py-5 px-6 border border-gray-200 rounded-full text-base outline-none bg-white shadow-sm-custom transition duration-300 focus:border-lavender focus:shadow-[0_0_0_3px_rgba(212,193,236,0.2)]">
+                    <button type="submit" class="static mt-2 w-full right-1.5 top-1.5 bottom-1.5 bg-peach text-white py-5 md:py-0 px-6 rounded-full font-semibold transition duration-300 hover:bg-peach-dark hover:transform hover:shadow-lg md:absolute md:mt-auto md:w-auto">Dołącz do listy oczekujących</button>
+                </form>
+                
+                <div class="flex justify-center gap-12 mt-10">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold mb-2 bg-gradient-to-br from-white to-white bg-clip-text text-transparent inline-block">2500+</div>
+                        <div class="text-white/80 text-sm">Rodziców na liście</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold mb-2 bg-gradient-to-br from-white to-white bg-clip-text text-transparent inline-block">92%</div>
+                        <div class="text-white/80 text-sm">Pozytywnych opinii</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="bg-text-dark text-white pt-20 pb-8 relative">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div class="flex flex-col">
+                    <div class="flex items-center mb-6">
+                        <img src="/logo.png" alt="DawnoTemu Logo" class="h-10 mr-3" loading="lazy">
+                        <h3 class="text-2xl text-white font-comfortaa">DawnoTemu</h3>
+                    </div>
+                    <p class="text-white/70 text-sm mb-6">
+                        Innowacyjna aplikacja, która pomaga rodzicom utrzymać magię wieczornych bajek, nawet gdy życie staje się zbyt intensywne.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition duration-300 hover:bg-peach hover:transform hover:-translate-y-1">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition duration-300 hover:bg-peach hover:transform hover:-translate-y-1">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition duration-300 hover:bg-peach hover:transform hover:-translate-y-1">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition duration-300 hover:bg-peach hover:transform hover:-translate-y-1">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h5 class="text-xl mb-6 font-semibold">Aplikacja</h5>
+                    <ul class="list-none">
+                        <li class="mb-3"><a href="/#features" class="text-white/70 no-underline transition duration-300 hover:text-white">Funkcje</a></li>
+                        <li class="mb-3"><a href="/#how-it-works" class="text-white/70 no-underline transition duration-300 hover:text-white">Jak to działa</a></li>
+                        <li class="mb-3"><a href="/biblioteka" class="text-white/70 no-underline transition duration-300 hover:text-white">Biblioteka bajek</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Wsparcie</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="text-xl mb-6 font-semibold">Firma</h5>
+                    <ul class="list-none">
+                        <li class="mb-3"><a href="/o-nas" class="text-white/70 no-underline transition duration-300 hover:text-white">O nas</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Blog</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Kariera</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Kontakt</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="text-xl mb-6 font-semibold">Informacje</h5>
+                    <ul class="list-none">
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Prywatność</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Warunki</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Bezpieczeństwo</a></li>
+                        <li class="mb-3"><a href="/#faq" class="text-white/70 no-underline transition duration-300 hover:text-white">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 text-white/50 text-sm">
+                <div class="flex items-center">
+                    <img src="/logo.png" alt="DawnoTemu Logo" class="h-5 mr-2" loading="lazy">
+                    © 2025 DawnoTemu. Wszelkie prawa zastrzeżone.
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 mt-4 md:mt-0">
+                    <a href="#" class="text-white/50 transition duration-300 hover:text-white">Mapa strony</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile Navigation
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        
+        mobileMenuToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileNav.classList.toggle('hidden');
+            mobileNav.classList.toggle('flex');
+            
+            // Toggle transform for slide effect
+            if (mobileNav.classList.contains('translate-x-full')) {
+                mobileNav.classList.remove('translate-x-full');
+            } else {
+                mobileNav.classList.add('translate-x-full');
+            }
+            
+            // Toggle body scroll
+            if (!mobileNav.classList.contains('hidden')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+            
+            // Animate hamburger to X
+            const spans = this.querySelectorAll('span');
+            if (this.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+            } else {
+                spans[0].style.transform = '';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = '';
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        const mobileNavLinks = mobileNav.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileNav.classList.add('hidden');
+                mobileNav.classList.remove('flex');
+                mobileNav.classList.add('translate-x-full');
+                mobileMenuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                // Reset hamburger icon
+                const spans = mobileMenuToggle.querySelectorAll('span');
+                spans[0].style.transform = '';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = '';
+            });
+        });
+        
+        // Form submission
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = form.querySelector('input[type="email"]')?.value;
+                
+                // Display success message
+                const successMessage = document.createElement('div');
+                successMessage.className = 'bg-mint text-text-dark p-4 rounded-lg mt-4 text-sm font-medium animate-fade-in';
+                successMessage.textContent = email 
+                    ? `Dziękujemy! Na adres ${email} wyślemy informacje o dostępie do aplikacji.`
+                    : 'Dziękujemy! Twoja wiadomość została wysłana.';
+                
+                form.appendChild(successMessage);
+                form.reset();
+                
+                // Remove message after 5 seconds
+                setTimeout(() => {
+                    successMessage.className += ' animate-fade-out';
+                    setTimeout(() => {
+                        form.removeChild(successMessage);
+                    }, 500);
+                }, 5000);
+            });
+        });
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Append fade animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            @keyframes fadeOut {
+                from { opacity: 1; transform: translateY(0); }
+                to { opacity: 0; transform: translateY(-10px); }
+            }
+            .animate-fade-in {
+                animation: fadeIn 0.5s ease-in-out;
+            }
+            .animate-fade-out {
+                animation: fadeOut 0.5s ease-in-out;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
