@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- For legacy IE support -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>DawnoTemu | Twój głos, ich ulubione bajki</title>
     <meta name="description" content="Pozwól dziecku słuchać bajek opowiadanych Twoim głosem, nawet gdy nie możesz być przy nim. Personalizowane baśnie na dobranoc z DawnoTemu.">
     
     <!-- Primary Meta Tags -->
-    <title>DawnoTemu | Twój głos, ich ulubione bajki</title>
     <meta name="description" content="Twórz spersonalizowane bajki na dobranoc swoim głosem. DawnoTemu to idealne miejsce dla rodziców i dzieci, by wspólnie odkrywać magiczne historie przed snem.">
 
-
-    <!-- Favicon Suite (Modern Approach) -->
+    <!-- Favicon Suite -->
     <link rel="icon" href="/icons/favicon.ico" sizes="any">
     <link rel="icon" href="/icons/favicon.svg" type="image/svg+xml">
     <link rel="shortcut icon" href="/icons/favicon.ico" />
@@ -31,7 +29,6 @@
 
     <!-- Preload Critical Resources -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Quicksand:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    
     
     <!-- Preconnect to External Domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,727 +48,54 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@DawnoTemu">
 
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              peach: '#FFB5A7',
+              'peach-dark': '#FF9A8A',
+              lavender: '#D4C1EC',
+              'lavender-dark': '#B8A2DC',
+              mint: '#B8E0D2',
+              'soft-yellow': '#FAE8B0',
+              'text-dark': '#2D3047',
+              'text-medium': '#6C6F93',
+              'text-light': '#9CA3AF',
+              'bg-light': '#F9FAFC',
+            },
+            fontFamily: {
+              'comfortaa': ['Comfortaa', 'cursive'],
+              'sans': ['Plus Jakarta Sans', 'sans-serif'],
+            },
+            boxShadow: {
+              'sm-custom': '0 4px 6px rgba(45, 48, 71, 0.05)',
+              'md-custom': '0 10px 20px rgba(45, 48, 71, 0.08)',
+              'lg-custom': '0 20px 25px -5px rgba(45, 48, 71, 0.1)',
+            },
+            borderRadius: {
+              'sm-custom': '8px',
+              'md-custom': '16px',
+              'lg-custom': '24px',
+            },
+            screens: {
+              'xs': '480px',
+            },
+          }
+        }
+      }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        :root {
-            --peach: #FFB5A7;
-            --peach-dark: #FF9A8A;
-            --lavender: #D4C1EC;
-            --lavender-dark: #B8A2DC;
-            --mint: #B8E0D2;
-            --soft-yellow: #FAE8B0;
-            --text-dark: #2D3047;
-            --text-medium: #6C6F93;
-            --text-light: #9CA3AF;
-            --bg-light: #F9FAFC;
-            --bg-white: #FFFFFF;
-            --primary-gradient: linear-gradient(135deg, #D4C1EC 0%, #B8E0D2 100%);
-            --shadow-sm: 0 4px 6px rgba(45, 48, 71, 0.05);
-            --shadow-md: 0 10px 20px rgba(45, 48, 71, 0.08);
-            --shadow-lg: 0 20px 25px -5px rgba(45, 48, 71, 0.1);
-            --radius-sm: 8px;
-            --radius-md: 16px;
-            --radius-lg: 24px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.6;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 400;
-            overflow-x: hidden;
-        }
-        
-        .logo-font {
-            font-family: 'Comfortaa', cursive;
-            font-weight: 700;
-        }
-        
-        header {
-            background-color: var(--bg-white);
-            padding: 1.25rem 0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            box-shadow: var(--shadow-sm);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-        
-        .container {
-            max-width: 1240px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-        }
-        
-        .narrow-container {
-            max-width: 940px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo img {
-            height: 2.5rem;
-            margin-right: 0.75rem;
-        }
-        
-        .logo h1 {
-            font-size: 1.5rem;
-            color: var(--text-dark);
-            letter-spacing: -0.02em;
-        }
-        
-        .cta-button {
-            background-color: var(--peach);
-            color: white;
-            padding: 0.875rem 1.75rem;
-            border-radius: 3rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            box-shadow: 0 4px 14px rgba(255, 181, 167, 0.4);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            letter-spacing: 0.01em;
-        }
-        
-        .cta-button:hover {
-            background-color: var(--peach-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 181, 167, 0.5);
-        }
-        
-        .cta-button-outline {
-            background-color: transparent;
-            color: var(--peach);
-            border: 2px solid var(--peach);
-            padding: 0.75rem 1.75rem;
-            border-radius: 3rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-            cursor: pointer;
-            font-size: 1rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            letter-spacing: 0.01em;
-        }
-        
-        .cta-button-outline:hover {
-            background-color: var(--peach);
-            color: white;
-            transform: translateY(-2px);
-        }
-        
-        .hero {
-            padding: 10rem 0 6rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-gradient {
-            position: absolute;
-            top: -20%;
-            right: -10%;
-            width: 80%;
-            height: 80%;
-            border-radius: 50%;
-            background: radial-gradient(circle at center, rgba(212, 193, 236, 0.3) 0%, rgba(212, 193, 236, 0) 70%);
-            z-index: -1;
-        }
-        
-        .hero-gradient-2 {
-            position: absolute;
-            bottom: -20%;
-            left: -10%;
-            width: 70%;
-            height: 70%;
-            border-radius: 50%;
-            background: radial-gradient(circle at center, rgba(184, 224, 210, 0.25) 0%, rgba(184, 224, 210, 0) 70%);
-            z-index: -1;
-        }
-        
-        .hero-content {
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-        }
-        
-        .hero-text {
-            flex: 1;
-        }
-        
-        .hero-image {
-            flex: 1;
-            position: relative;
-        }
-        
-        .hero h2 {
-            font-size: 3.5rem;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-            font-weight: 700;
-        }
-        
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-medium);
-            margin-bottom: 2.5rem;
-            font-weight: 400;
-            max-width: 36rem;
-        }
-        
-        .waitlist-form {
-            position: relative;
-            max-width: 28rem;
-            margin-top: 2.5rem;
-        }
-        
-        .waitlist-form input {
-            width: 100%;
-            padding: 1.25rem 1.5rem;
-            border: 1px solid #E5E7EB;
-            border-radius: 3rem;
-            font-size: 1rem;
-            outline: none;
-            background-color: var(--bg-white);
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-        }
-        
-        .waitlist-form input:focus {
-            border-color: var(--lavender);
-            box-shadow: 0 0 0 3px rgba(212, 193, 236, 0.2);
-        }
-        
-        .waitlist-form button {
-            position: absolute;
-            right: 0.375rem;
-            top: 0.375rem;
-            bottom: 0.375rem;
-            padding: 0 1.5rem;
-        }
-        
-        .device-mockup {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .device-mockup img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .floating-bubble {
-            position: absolute;
-            z-index: 0;
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .bubble-1 {
-            width: 120px;
-            height: 120px;
-            background-color: rgba(212, 193, 236, 0.2);
-            top: -30px;
-            right: 20%;
-            animation-delay: 0s;
-        }
-        
-        .bubble-2 {
-            width: 80px;
-            height: 80px;
-            background-color: rgba(184, 224, 210, 0.2);
-            bottom: 10%;
-            left: 10%;
-            animation-delay: 1.5s;
-        }
-        
-        .bubble-3 {
-            width: 60px;
-            height: 60px;
-            background-color: rgba(255, 181, 167, 0.2);
-            bottom: 30%;
-            right: 5%;
-            animation-delay: 3s;
-        }
-        
         @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-            100% {
-                transform: translateY(0px);
-            }
-        }
-        
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.5rem 1rem;
-            background-color: rgba(212, 193, 236, 0.15);
-            color: var(--lavender-dark);
-            border-radius: 2rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
-        
-        .badge svg {
-            margin-right: 0.5rem;
-            height: 1rem;
-            width: 1rem;
-        }
-        
-        .about-section {
-            padding: 6rem 0;
-            background: linear-gradient(to bottom, var(--bg-white) 0%, var(--bg-light) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .narrative-container {
-            display: flex;
-            align-items: center;
-            gap: 5rem;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .narrative-image {
-            flex: 1;
-            position: relative;
-        }
-        
-        .narrative-image img {
-            width: 100%;
-            max-width: 500px;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .narrative-content {
-            flex: 1;
-        }
-        
-        .quote-marks {
-            font-size: 5rem;
-            line-height: 0;
-            margin-bottom: 2rem;
-            color: var(--lavender);
-            font-family: Georgia, serif;
-            height: 3rem;
-            display: flex;
-            align-items: center;
-        }
-        
-        .narrative-heading {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
-        }
-        
-        .narrative-text {
-            font-size: 1.125rem;
-            color: var(--text-medium);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-        
-        .narrative-author {
-            display: flex;
-            align-items: center;
-            margin-top: 2rem;
-        }
-        
-        .narrative-author img {
-            width: 3.5rem;
-            height: 3.5rem;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 1rem;
-            border: 3px solid white;
-            box-shadow: var(--shadow-sm);
-        }
-        
-        .narrative-author-info {
-            line-height: 1.4;
-        }
-        
-        .narrative-author-info strong {
-            display: block;
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-        
-        .narrative-author-info span {
-            color: var(--text-medium);
-            font-size: 0.875rem;
-        }
-        
-        .highlight-text {
-            display: inline-block;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .highlight-text::after {
-            content: '';
-            position: absolute;
-            bottom: 0.2em;
-            left: 0;
-            width: 100%;
-            height: 0.3em;
-            background-color: rgba(255, 181, 167, 0.3);
-            z-index: -1;
-        }
-        
-        .benefits {
-            padding: 8rem 0;
-            background-color: var(--bg-white);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 5rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .section-title h3 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-            font-weight: 700;
-        }
-        
-        .section-title p {
-            color: var(--text-medium);
-            max-width: 36rem;
-            margin: 0 auto;
-            font-size: 1.125rem;
-        }
-        
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .benefit-card {
-            background-color: var(--bg-light);
-            border-radius: var(--radius-md);
-            padding: 2.5rem;
-            position: relative;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between; /* Zapewnia, że zawartość jest rozmieszczona */
-            height: 100%; /* Wyrównuje wysokość kart */
-            align-items: flex-start;
-            border: 1px solid rgba(229, 231, 235, 0.5);
-        }
-        
-        .benefit-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-            border-color: rgba(212, 193, 236, 0.3);
-        }
-        
-        .benefit-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .benefit-icon::after {
-            content: '';
-            position: absolute;
-            width: 3rem;
-            height: 3rem;
-            background-color: rgba(212, 193, 236, 0.15);
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: -1;
-        }
-        
-        .benefit-card h4 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-        }
-        
-        .benefit-card p {
-            color: var(--text-medium);
-            font-size: 1rem;
-        }
-        
-        .subtle-pattern {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4C1EC' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.5;
-            z-index: 0;
-        }
-        
-        .app-preview {
-            padding: 0;
-            padding-top: 6rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .app-mockup-container {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .app-mockup {
-            max-width: 100%;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-lg);
-            position: relative;
-            z-index: 2;
-        }
-        
-        .app-mockup::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 5%;
-            width: 90%;
-            height: 30px;
-            background: rgba(45, 48, 71, 0.1);
-            filter: blur(20px);
-            border-radius: 50%;
-            z-index: 1;
-        }
-        
-        .how-it-works {
-            padding: 8rem 0;
-            padding-top: 3rem;
-            background-color: var(--bg-light);
-            position: relative;
-        }
-        
-        .steps {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .step {
-            display: flex;
-            margin-bottom: 5rem;
-            position: relative;
-        }
-        
-        .step:last-child {
-            margin-bottom: 0;
-        }
-        
-        .step-number {
-            position: relative;
-            background: var(--primary-gradient);
-            color: white;
-            width: 4rem;
-            height: 4rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            flex-shrink: 0;
-            margin-right: 2rem;
-            box-shadow: 0 8px 16px rgba(212, 193, 236, 0.3);
-        }
-        
-        .step-content {
-            padding-top: 0.5rem;
-        }
-        
-        .step-content h4 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-        }
-        
-        .step-content p {
-            color: var(--text-medium);
-            font-size: 1.125rem;
-            max-width: 36rem;
-        }
-        
-        .step-connection {
-            position: absolute;
-            top: 4rem;
-            left: 2rem;
-            width: 2px;
-            height: calc(100% - 2rem);
-            background-color: rgba(212, 193, 236, 0.3);
-            z-index: -1;
-        }
-        
-        .step:last-child .step-connection {
-            display: none;
-        }
-        
-        .features {
-            padding: 8rem 0;
-            background-color: var(--bg-white);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .feature-card {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-            padding: 2rem;
-            border-radius: var(--radius-md);
-            background-color: var(--bg-light);
-            transition: var(--transition);
-            border: 1px solid rgba(229, 231, 235, 0.5);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-            border-color: rgba(212, 193, 236, 0.3);
-        }
-        
-        .feature-icon-container {
-            width: 3.5rem;
-            height: 3.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--primary-gradient);
-            border-radius: var(--radius-md);
-            color: white;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-            box-shadow: 0 8px 16px rgba(212, 193, 236, 0.3);
-        }
-        
-        .feature-content h4 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            letter-spacing: -0.01em;
-        }
-        
-        .feature-content p {
-            color: var(--text-medium);
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-        
-        .feature-app-preview {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 5rem;
-        }
-        
-        .feature-app-preview img {
-            max-width: 100%;
-            /* border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-lg); */
-            position: relative;
-            z-index: 2;
-        }
-        
-        .feature-highlight {
-            position: absolute;
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background-color: rgba(255, 181, 167, 0.25);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--peach-dark);
-            box-shadow: 0 8px 16px rgba(255, 181, 167, 0.2);
-            z-index: 3;
-            animation: pulse 2s infinite;
-        }
-        
-        .highlight-1 {
-            top: 15%;
-            left: 20%;
-            animation-delay: 0s;
-        }
-        
-        .highlight-2 {
-            bottom: 25%;
-            right: 15%;
-            animation-delay: 0.5s;
-        }
-        
-        .highlight-3 {
-            top: 60%;
-            left: 10%;
-            animation-delay: 1s;
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
         }
         
         @keyframes pulse {
@@ -779,952 +103,157 @@
                 transform: scale(0.95);
                 box-shadow: 0 0 0 0 rgba(255, 181, 167, 0.4);
             }
-            
             70% {
                 transform: scale(1);
                 box-shadow: 0 0 0 15px rgba(255, 181, 167, 0);
             }
-            
             100% {
                 transform: scale(0.95);
                 box-shadow: 0 0 0 0 rgba(255, 181, 167, 0);
             }
         }
         
-        .testimonials {
-            padding: 8rem 0;
-            background-color: var(--bg-light);
-            position: relative;
-            overflow: hidden;
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
         }
         
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            position: relative;
-            z-index: 1;
+        .animate-pulse-custom {
+            animation: pulse 2s infinite;
         }
         
-        .testimonial-card {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between; /* Zapewnia, że zawartość jest rozmieszczona */
-            height: 100%; /* Wyrównuje wysokość kart */
-            background-color: var(--bg-white);
-            border-radius: var(--radius-md);
-            padding: 2.5rem;
-            position: relative;
-            transition: var(--transition);
-            border: 1px solid rgba(229, 231, 235, 0.5);
+        .bubble-1 {
+            animation-delay: 0s;
         }
         
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-            border-color: rgba(184, 224, 210, 0.3);
+        .bubble-2 {
+            animation-delay: 1.5s;
         }
         
-        .testimonial-text {
-            font-size: 1.125rem;
-            line-height: 1.7;
-            margin-bottom: 2rem;
-            position: relative;
-            padding-top: 2rem;
-            font-style: italic;
+        .bubble-3 {
+            animation-delay: 3s;
         }
         
-        .testimonial-text::before {
-            content: '"';
-            position: absolute;
-            top: -1rem;
-            left: -0.5rem;
-            font-size: 5rem;
-            color: rgba(212, 193, 236, 0.2);
-            font-family: Georgia, serif;
-            line-height: 1;
+        .highlight-1 {
+            animation-delay: 0s;
         }
         
-        .testimonial-author {
-            display: flex;
-            align-items: center;
+        .highlight-2 {
+            animation-delay: 0.5s;
         }
         
-        .testimonial-author img {
-            width: 3.5rem;
-            height: 3.5rem;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 1rem;
-            border: 3px solid white;
-            box-shadow: var(--shadow-sm);
+        .highlight-3 {
+            animation-delay: 1s;
         }
-        
-        .testimonial-author-info {
-            line-height: 1.4;
-        }
-        
-        .testimonial-author-info strong {
-            display: block;
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-        
-        .testimonial-author-info span {
-            color: var(--text-medium);
-            font-size: 0.875rem;
-        }
-        
-        .faq {
-            padding: 8rem 0;
-            background-color: var(--bg-light);
-            position: relative;
-        }
-        
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .faq-item {
-            margin-bottom: 1.5rem;
-            background-color: var(--bg-white);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            transition: var(--transition);
-            border: 1px solid rgba(229, 231, 235, 0.5);
-        }
-        
-        .faq-item:hover {
-            box-shadow: var(--shadow-sm);
-        }
-        
-        .faq-question {
-            padding: 1.5rem 2rem;
-            font-weight: 600;
-            font-size: 1.125rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            user-select: none;
-            color: var(--text-dark);
-        }
-        
-        .faq-question::after {
-            content: '+';
-            font-size: 1.5rem;
-            color: var(--lavender);
-            transition: var(--transition);
-        }
-        
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-            padding: 0 2rem;
-        }
-        
-        .faq-answer p {
-            color: var(--text-medium);
-            font-size: 1rem;
-            line-height: 1.7;
-            padding-bottom: 1.5rem;
-        }
-        
-        .faq-item.active {
-            box-shadow: var(--shadow-sm);
-            border-color: rgba(212, 193, 236, 0.3);
-        }
-        
-        .faq-item.active .faq-question {
-            color: var(--lavender-dark);
-        }
-        
-        .faq-item.active .faq-question::after {
-            content: '−';
-            transform: rotate(180deg);
-        }
-        
-        .faq-item.active .faq-answer {
-            max-height: 1000px;
-        }
-        
-        .final-cta {
-            padding: 8rem 0;
-            text-align: center;
-            background: var(--primary-gradient);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .final-cta-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .final-cta h3 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-        
-        .final-cta p {
-            max-width: 36rem;
-            margin: 0 auto 3rem;
-            font-size: 1.25rem;
-            opacity: 0.9;
-        }
-        
-        .final-cta-form {
-            max-width: 28rem;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        .final-cta-form input {
-            width: 100%;
-            padding: 1.25rem 1.5rem;
-            border: none;
-            border-radius: 3rem;
-            font-size: 1rem;
-            outline: none;
-            background-color: white;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-        }
-        
-        .final-cta-form button {
-            position: absolute;
-            right: 0.375rem;
-            top: 0.375rem;
-            bottom: 0.375rem;
-            background-color: var(--peach);
-            box-shadow: 0 4px 14px rgba(255, 181, 167, 0.5);
-        }
-        
-        .final-cta-form button:hover {
-            background-color: var(--peach-dark);
-        }
-        
-        .wave-pattern {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 10%;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.1' fill='%23FFFFFF'%3E%3C/path%3E%3C/svg%3E");
-            background-size: cover;
-            z-index: 0;
-        }
-        
-        footer {
-            background-color: var(--text-dark);
-            color: white;
-            padding: 5rem 0 2rem;
-            position: relative;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-        
-        .footer-column h5 {
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.75rem;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: var(--transition);
-            font-size: 0.9375rem;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-        }
-        
-        .footer-logo-column {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        .footer-logo img {
-            height: 2.5rem;
-            margin-right: 0.75rem;
-        }
-        
-        .footer-logo h3 {
-            font-size: 1.5rem;
-            color: white;
-        }
-        
-        .footer-description {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9375rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .social-icons {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .social-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 2.5rem;
-            height: 2.5rem;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            transition: var(--transition);
-        }
-        
-        .social-icon:hover {
-            background-color: var(--peach);
-            transform: translateY(-3px);
-        }
-        
-        .bottom-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.875rem;
-        }
-        
-        .copyright {
-            display: flex;
-            align-items: center;
-        }
-        
-        .copyright img {
-            height: 1.25rem;
-            margin-right: 0.5rem;
-        }
-        
-        .bottom-links a {
-            color: rgba(255, 255, 255, 0.5);
-            margin-left: 1.5rem;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .bottom-links a:hover {
-            color: white;
-        }
-        
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-        
-        .stat {
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-        }
-        
-        .stat-label {
-            color: var(--text-medium);
-            font-size: 1rem;
-        }
-        
-        @media (max-width: 1100px) {
-            .hero-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 3rem;
-            }
-            
-            .waitlist-form {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            .hero h2 {
-                font-size: 3rem;
-            }
-            
-            .hero p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            .step {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            
-            .step-number {
-                margin-right: 0;
-                margin-bottom: 1.5rem;
-            }
-            
-            .step-connection {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            
-            .narrative-container {
-                flex-direction: column;
-                text-align: center;
-                gap: 3rem;
-            }
-            
-            .narrative-author {
-                justify-content: center;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hero {
-                padding: 8rem 0 5rem;
-            }
-            
-            .hero h2 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.125rem;
-            }
-            
-            .section-title h3 {
-                font-size: 2rem;
-            }
-            
-            .benefit-card {
-                align-items: center;
-                text-align: center;
-            }
-            
-            .testimonial-card {
-                min-height: auto;
-            }
-            
-            .final-cta h3 {
-                font-size: 2rem;
-            }
-            
-            .final-cta p {
-                font-size: 1.125rem;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .bottom-footer {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .bottom-links {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
-            }
-            
-            .bottom-links a {
-                margin-left: 0;
-            }
-            
-            .stats {
-                flex-direction: column;
-                gap: 2rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .waitlist-form {
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .waitlist-form button,
-            .final-cta-form button {
-                position: static;
-                width: 100%;
-                margin-top: 0.75rem;
-            }
-            
-            .hero h2 {
-                font-size: 2rem;
-            }
-            
-            .section-title h3 {
-                font-size: 1.75rem;
-            }
-        }
-
-    .research {
-        padding: 8rem 0;
-        background-color: var(--bg-white);
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .research-highlights {
-        margin-top: 5rem;
-    }
-    
-    .research-title {
-        text-align: center;
-        font-size: 1.75rem;
-        margin-bottom: 2.5rem;
-        color: var(--text-dark);
-        font-weight: 700;
-    }
-    
-    .research-link {
-        display: inline-flex;
-        align-items: center;
-        margin-top: 1rem;
-        color: var(--lavender-dark);
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 0.875rem;
-        transition: var(--transition);
-    }
-    
-    .research-link i {
-        font-size: 0.75rem;
-        margin-left: 0.25rem;
-    }
-    
-    .research-link:hover {
-        color: var(--peach);
-    }
-    
-    .research-disclaimer {
-        margin-top: 3rem;
-        text-align: center;
-        padding: 1.5rem;
-        background-color: var(--peach);
-        border-radius: var(--radius-md);
-        color: white;
-        font-size: 0.9375rem;
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .research-image {
-        flex: 1;
-        position: relative;
-    }
-
-    .research-image img {
-        width: 100%;
-        max-width: 500px;
-    }
-
-    @media (max-width: 768px) {
-        .research {
-            padding: 5rem 0;
-        }
-        
-        .research-title {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-        }
-    }
-
-    /* Mobile-First Improvements for DawnoTemu Landing Page */
-
-/* ===== 1. Fix Form Button Layout ===== */
-/* Change the button position from absolute to static on mobile */
-@media (max-width: 480px) {
-    .waitlist-form,
-    .final-cta-form {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-    }
-    
-    .waitlist-form button,
-    .final-cta-form button {
-        position: static;
-        width: 100%;
-        margin-top: 0.5rem;
-        padding: 0.875rem;
-    }
-    
-    .waitlist-form input,
-    .final-cta-form input {
-        width: 100%;
-        padding: 1rem;
-    }
-}
-
-/* ===== 2. Improve Content Spacing ===== */
-@media (max-width: 768px) {
-    /* General spacing adjustments */
-    .container {
-        padding: 0 1.25rem;
-    }
-    
-    /* Section padding adjustments */
-    .hero,
-    .about-section,
-    .benefits,
-    .features,
-    .how-it-works,
-    .testimonials,
-    .research,
-    .faq,
-    .final-cta {
-        padding: 4rem 0;
-    }
-    
-    /* Hero section spacing */
-    .hero {
-        padding-top: 7rem; /* Account for fixed header */
-    }
-    
-    /* Adjust vertical spacing between sections */
-    .section-title {
-        margin-bottom: 2.5rem;
-    }
-}
-
-/* ===== 3. Fix Grid Layouts ===== */
-/* Force single column on small screens */
-@media (max-width: 768px) {
-    .features-grid,
-    .testimonial-grid,
-    .benefits-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    /* Adjust card padding */
-    .benefit-card,
-    .feature-card,
-    .testimonial-card {
-        padding: 1.5rem;
-    }
-}
-
-/* ===== 4. Add Mobile Navigation ===== */
-/* Add responsive mobile menu */
-.mobile-menu-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-    cursor: pointer;
-}
-
-.mobile-menu-toggle span {
-    width: 100%;
-    height: 3px;
-    background-color: var(--text-dark);
-    border-radius: 3px;
-    transition: var(--transition);
-}
-
-.mobile-nav {
-    display: none;
-    position: fixed;
-    top: 71px; /* Height of the header */
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 71px);
-    background-color: var(--bg-white);
-    z-index: 99;
-    padding: 2rem;
-    flex-direction: column;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
-}
-
-.mobile-nav.active {
-    transform: translateX(0);
-}
-
-.mobile-nav-links {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.mobile-nav-links a {
-    color: var(--text-dark);
-    font-size: 1.25rem;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-@media (max-width: 768px) {
-    .mobile-menu-toggle {
-        display: flex;
-    }
-    
-    .header-content .cta-button {
-        display: none;
-    }
-    
-    .mobile-nav {
-        display: flex;
-    }
-}
-
-/* ===== 5. Improve Touch Targets ===== */
-@media (max-width: 768px) {
-    /* Increase tap area for interactive elements */
-    .faq-question {
-        padding: 1.25rem 1.5rem;
-        min-height: 60px; /* Minimum touch target height */
-    }
-    
-    /* Increase spacing between footer links */
-    .footer-links li {
-        margin-bottom: 1rem;
-        padding: 0.5rem 0;
-    }
-    
-    /* Make social icons larger */
-    .social-icon {
-        width: 3rem;
-        height: 3rem;
-    }
-}
-
-/* ===== 6. Improve Text Scaling ===== */
-@media (max-width: 768px) {
-    /* Adjust font sizes for readability */
-    .hero h2 {
-        font-size: 2.25rem;
-        line-height: 1.2;
-    }
-    
-    .section-title h3 {
-        font-size: 1.75rem;
-    }
-    
-    .narrative-heading {
-        font-size: 1.75rem;
-    }
-    
-    body {
-        font-size: 16px; /* Base font size for mobile */
-    }
-    
-    .hero p, 
-    .narrative-text,
-    .benefit-card p,
-    .feature-content p {
-        font-size: 1rem;
-        line-height: 1.6;
-    }
-}
-
-/* ===== 7. Image Handling ===== */
-@media (max-width: 768px) {
-    /* Keep images within bounds */
-    .hero-image, 
-    .narrative-image, 
-    .research-image {
-        max-width: 100%;
-        margin: 0 auto;
-    }
-    
-    /* Adjust image containers */
-    .app-mockup-container {
-        width: 100%;
-        max-width: 350px;
-        margin: 0 auto;
-    }
-    
-    /* Handle feature app preview highlights */
-    .feature-highlight {
-        width: 50px;
-        height: 50px;
-        font-size: 1rem;
-    }
-}
-
-/* ===== 8. Fix Bottom Footer Layout ===== */
-@media (max-width: 768px) {
-    .bottom-footer {
-        flex-direction: column;
-        text-align: center;
-        gap: 1rem;
-    }
-    
-    .bottom-links {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
-    }
-    
-    .bottom-links a {
-        margin-left: 0;
-    }
-}
-
-/* ===== 9. Better Responsive Stats ===== */
-@media (max-width: 480px) {
-    .stats {
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-}
-
-/* ===== 10. Fix Very Small Screens (320px) ===== */
-@media (max-width: 320px) {
-    .hero h2 {
-    font-size: 1.75rem;
-    }
-    
-    .logo h1 {
-        font-size: 1.25rem;
-    }
-    
-    .container {
-        padding: 0 1rem;
-    }
-}
-
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="/logo.png" alt="DawnoTemu Logo" loading="lazy" loading="lazy">
-                    <h1 class="logo-font">DawnoTemu</h1>
+<body class="bg-bg-light text-text-dark leading-relaxed font-sans font-normal overflow-x-hidden">
+    <header class="bg-white py-3 sm:py-5 fixed top-0 left-0 w-full z-50 shadow-sm-custom backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-8 relative">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <img src="/logo.png" alt="DawnoTemu Logo" class="h-8 sm:h-10 mr-2 sm:mr-3" loading="lazy">
+                    <h1 class="text-xl sm:text-2xl text-text-dark tracking-tight font-comfortaa font-bold">DawnoTemu</h1>
                 </div>
-                <a href="#waitlist" class="cta-button">Dołącz do listy</a>
+                <a href="#waitlist" class="hidden md:inline-flex bg-peach text-white py-2.5 sm:py-3.5 px-5 sm:px-7 rounded-full font-semibold transition duration-300 ease-in-out border-none cursor-pointer text-sm sm:text-base shadow-md hover:bg-peach-dark hover:transform  hover:shadow-lg items-center justify-center tracking-wide">Dołącz do listy</a>
+                
+                <!-- Mobile menu toggle -->
+                <div class="flex flex-col justify-between w-[24px] sm:w-[30px] h-[18px] sm:h-[21px] cursor-pointer md:hidden" id="mobile-menu-toggle">
+                    <span class="w-full h-[2px] sm:h-[3px] bg-text-dark rounded transition duration-300"></span>
+                    <span class="w-full h-[2px] sm:h-[3px] bg-text-dark rounded transition duration-300"></span>
+                    <span class="w-full h-[2px] sm:h-[3px] bg-text-dark rounded transition duration-300"></span>
+                </div>
             </div>
         </div>
     </header>
     
-    <section id="hero" class="hero">
-        <div class="hero-gradient"></div>
-        <div class="hero-gradient-2"></div>
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <div class="badge">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+    <!-- Mobile Navigation -->
+    <div class="fixed top-[57px] sm:top-[71px] left-0 w-full h-[calc(100vh-57px)] sm:h-[calc(100vh-71px)] bg-white z-40 p-5 sm:p-8 flex-col hidden transform translate-x-full transition-transform duration-300 ease-in-out" id="mobile-nav">
+        <div class="flex flex-col gap-4 sm:gap-6 mb-6 sm:mb-8">
+            <a href="#about-section" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">O DawnoTemu</a>
+            <a href="#benefits" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">Korzyści</a>
+            <a href="#how-it-works" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">Jak to działa</a>
+            <a href="#features" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">Funkcje</a>
+            <a href="#testimonials" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">Opinie</a>
+            <a href="#research" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">Badania</a>
+            <a href="#faq" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">FAQ</a>
+        </div>
+        <a href="#waitlist" class="bg-peach text-white py-3 sm:py-3.5 px-6 sm:px-7 rounded-full font-semibold transition duration-300 ease-in-out border-none cursor-pointer text-sm sm:text-base shadow-md w-full text-center">Dołącz do listy</a>
+    </div>
+    
+    <section id="hero" class="pt-20 md:pt-40 pb-24 relative overflow-hidden">
+        <div class="absolute top-[-20%] right-[-10%] w-[80%] h-[80%]  md:rounded-[50%] bg-[radial-gradient(circle_at_center,_rgba(212,193,236,0.3)_0%,_rgba(212,193,236,0)_70%)] z-[-1]"></div>
+        <div class="absolute bottom-[-20%] left-[-10%] w-[70%] h-[70%] md:rounded-[50%] bg-[radial-gradient(circle_at_center,_rgba(184,224,210,0.25)_0%,_rgba(184,224,210,0)_70%)] z-[-1]"></div>
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row items-center gap-16">
+                <div class="flex-1 text-center md:text-left">
+                    <div class="inline-flex items-center px-4 py-2 bg-lavender/15 text-lavender-dark rounded-full text-sm font-semibold mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 mr-2">
                             <path d="M15.98 1.804a1 1 0 00-1.96 0l-.24 1.192a1 1 0 01-.784.785l-1.192.238a1 1 0 000 1.962l1.192.238a1 1 0 01.785.785l.238 1.192a1 1 0 001.962 0l.238-1.192a1 1 0 01.785-.785l1.192-.238a1 1 0 000-1.962l-1.192-.238a1 1 0 01-.785-.785l-.238-1.192z" />
                             <path d="M1.804 4.02a1 1 0 011.962 0l.238 1.192a1 1 0 00.785.785l1.192.238a1 1 0 010 1.962l-1.192.238a1 1 0 00-.785.785l-.238 1.192a1 1 0 01-1.962 0l-.238-1.192a1 1 0 00-.785-.785L.83 9.192a1 1 0 010-1.962l1.192-.238a1 1 0 00.785-.785L3.02 5.02a1 1 0 011.962 0l.238 1.192a1 1 0 00.785.785l1.192.238a1 1 0 010 1.962l-1.192.238a1 1 0 00-.785.785l-.238 1.192a1 1 0 01-1.962 0l-.238-1.192a1 1 0 00-.785-.785L.83 10.192a1 1 0 010-1.962l1.192-.238a1 1 0 00.785-.785L3.02 6.02a1 1 0 010-1.962l1.192-.238a1 1 0 00.785-.785L5.02 2.02a1 1 0 011.962 0l.238 1.192a1 1 0 00.785.785l1.192.238a1 1 0 010 1.962l-1.192.238a1 1 0 00-.785.785l-.238 1.192a1 1 0 01-1.962 0l-.238-1.192a1 1 0 00-.785-.785L3.02 7.192a1 1 0 010-1.962l1.192-.238a1 1 0 00.785-.785L5.02 3.02z" />
                         </svg>
                         Innowacja dla rodziców
                     </div>
-                    <h2 class="logo-font">Twój głos opowiada baśnie, zawsze gdy potrzebujesz</h2>
-                    <p>DawnoTemu to aplikacja, która tworzy perfekcyjną kopię Twojego głosu, aby Twoje dziecko mogło słuchać bajek opowiadanych przez Ciebie w każdej chwili - nawet gdy jesteś zajęty lub daleko.</p>
+                    <h2 class="text-5xl leading-tight mb-6 tracking-tight font-comfortaa font-bold">Twój głos opowiada baśnie, zawsze gdy potrzebujesz</h2>
+                    <p class="text-xl text-text-medium mb-10 font-normal max-w-2xl">DawnoTemu to aplikacja, która tworzy perfekcyjną kopię Twojego głosu, aby Twoje dziecko mogło słuchać bajek opowiadanych przez Ciebie w każdej chwili - nawet gdy jesteś zajęty lub daleko.</p>
                     
-                    <form class="waitlist-form" id="waitlist">
-                        <input type="email" placeholder="Twój adres e-mail" required>
-                        <button type="submit" class="cta-button">Dołącz do listy oczekujących</button>
+                    <form class="relative max-w-lg mt-10" class="waitlist">
+                        <input type="email" placeholder="Twój adres e-mail" required class="w-full py-5 px-6 border border-gray-200 rounded-full text-base outline-none bg-white shadow-sm-custom transition duration-300 focus:border-lavender focus:shadow-[0_0_0_3px_rgba(212,193,236,0.2)]">
+                        <button type="submit" class="static mt-2 w-full right-1.5 top-1.5 bottom-1.5 bg-peach text-white py-5 md:py-0 px-6 rounded-full font-semibold transition duration-300 hover:bg-peach-dark hover:transform hover:shadow-lg md:absolute md:mt-auto md:w-auto">Dołącz do listy oczekujących</button>
                     </form>
                     
-                    <div class="stats">
-                        <div class="stat">
-                            <div class="stat-number">2500+</div>
-                            <div class="stat-label">Rodziców na liście</div>
+                    <div class="flex justify-center gap-6 sm:gap-12 mt-8 sm:mt-10">
+                        <div class="text-center">
+                            <div class="text-3xl sm:text-4xl font-bold mb-1 sm:mb-2 bg-gradient-to-br from-lavender to-mint bg-clip-text text-transparent inline-block">2500+</div>
+                            <div class="text-text-medium text-sm sm:text-base">Rodziców na liście</div>
                         </div>
-                        <div class="stat">
-                            <div class="stat-number">92%</div>
-                            <div class="stat-label">Pozytywnych opinii</div>
+                        <div class="text-center">
+                            <div class="text-3xl sm:text-4xl font-bold mb-1 sm:mb-2 bg-gradient-to-br from-lavender to-mint bg-clip-text text-transparent inline-block">92%</div>
+                            <div class="text-text-medium text-sm sm:text-base">Pozytywnych opinii</div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="hero-image">
-                    <div class="device-mockup">
-                        <video class="app-mockup" autoplay muted playsinline loop>
+                <div class="flex-1 relative mt-10 md:mt-0">
+                    <div class="relative z-10">
+                        <video class="w-full  rounded-lg-custom shadow-lg-custom mx-auto" autoplay muted playsinline loop>
                             <source src="/videos/vid1.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        <div class="floating-bubble bubble-1"></div>
-                        <div class="floating-bubble bubble-2"></div>
-                        <div class="floating-bubble bubble-3"></div>
+                        <div class="absolute w-[80px] sm:w-[120px] h-[80px] sm:h-[120px] bg-lavender/20 rounded-full top-[-20px] sm:top-[-30px] right-[20%] z-[-1] animate-float bubble-1"></div>
+                        <div class="absolute w-[60px] sm:w-[80px] h-[60px] sm:h-[80px] bg-mint/20 rounded-full bottom-[-10%] left-[10%] z-[-1] animate-float bubble-2"></div>
+                        <div class="absolute w-[40px] sm:w-[60px] h-[40px] sm:h-[60px] bg-peach/20 rounded-full bottom-[30%] right-[-5%] z-[-1] animate-float bubble-3"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- New About/Narrative Section -->
-    <section id="about-section" class="about-section">
-        <div class="container">
-            <div class="narrative-container">
-                <div class="narrative-image">
-                    <img src="/images/img1.jpg" alt="Rodzic czytający dziecku przed snem" loading="lazy">
+    <!-- About/Narrative Section -->
+    <section id="about-section" class="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-white to-bg-light relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-8">
+            <div class="flex flex-col md:flex-row items-center gap-10 sm:gap-12 md:gap-16 lg:gap-20 relative z-10">
+                <div class="flex-1 w-full md:w-auto">
+                    <img src="/images/img1.jpg" alt="Rodzic czytający dziecku przed snem" class="w-full max-w-lg rounded-lg-custom shadow-lg-custom mx-auto" loading="lazy">
                 </div>
                 
-                <div class="narrative-content">
-                    <div class="quote-marks">"</div>
-                    <h3 class="narrative-heading">Wieczór, kiedy nie mogłam przeczytać bajki na dobranoc</h3>
-                    <p class="narrative-text">
-                        Pamiętam dokładnie ten wieczór, gdy musiałam zostać dłużej w pracy. Moja córka Julia zawsze przed snem czeka na naszą <span class="highlight-text">wspólną bajkę</span>. To nasz rytuał, nasza chwila bliskości. 
+                <div class="flex-1 mt-10 md:mt-0">
+                    <div class="text-6xl sm:text-7xl md:text-8xl leading-none text-lavender font-serif h-10 sm:h-12 flex items-center">"</div>
+                    <h3 class="text-2xl sm:text-3xl md:text-4xl mb-4 sm:mb-6 font-bold tracking-tight leading-tight">Wieczór, kiedy nie mogłam przeczytać bajki na dobranoc</h3>
+                    <p class="text-base sm:text-lg text-text-medium mb-6 sm:mb-8 leading-relaxed">
+                        Pamiętam dokładnie ten wieczór, gdy musiałam zostać dłużej w pracy. Moja córka Julia zawsze przed snem czeka na naszą <span class="underline decoration-solid decoration-peach/30 decoration-4 underline-offset-4">wspólną bajkę</span>. To nasz rytuał, nasza chwila bliskości. 
                     </p>
-                    <p class="narrative-text">
+                    <p class="text-base sm:text-lg text-text-medium mb-6 sm:mb-8 leading-relaxed">
                         Gdy zadzwoniłam do domu, usłyszałam jej zapłakany głos: <em>"Mamo, kto mi dzisiaj przeczyta bajkę?"</em> Poczułam ukłucie w sercu. My, rodzice, doskonale wiemy, jak ważne są te małe rytuały. Jak budują poczucie bezpieczeństwa i spokoju naszych dzieci.
                     </p>
-                    <p class="narrative-text">
-                        Tego wieczoru narodził się pomysł na DawnoTemu - aplikację, która pozwala na to, by Twój głos był zawsze przy dziecku, nawet gdy Ty nie możesz. Bo <span class="highlight-text">żadne dziecko nie powinno zasypiać bez ukochanej bajki</span> opowiedzianej znajomym głosem.
+                    <p class="text-base sm:text-lg text-text-medium mb-6 sm:mb-8 leading-relaxed">
+                        Tego wieczoru narodził się pomysł na <strong>DawnoTemu</strong> - aplikację, która pozwala na to, by Twój głos był zawsze przy dziecku, nawet gdy Ty nie możesz. Bo <span class="underline decoration-solid decoration-peach/30 decoration-4 underline-offset-4">żadne dziecko nie powinno zasypiać bez ukochanej bajki</span> opowiedzianej znajomym głosem.
                     </p>
                     
-                    <div class="narrative-author">
-                        <img src="/images/avatar1.jpg" alt="Katarzyna N." loading="lazy">
-                        <div class="narrative-author-info">
-                            <strong>Katarzyna Nowak</strong>
-                            <span>Założycielka DawnoTemu, mama Julii</span>
+                    <div class="flex items-center mt-6 sm:mt-8">
+                        <img src="/images/avatar1.jpg" alt="Katarzyna N." class="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover mr-3 sm:mr-4 border-2 sm:border-3 border-white shadow-sm-custom" loading="lazy">
+                        <div class="leading-tight">
+                            <strong class="block text-base sm:text-lg font-semibold text-text-dark">Katarzyna Nowak</strong>
+                            <span class="text-text-medium text-xs sm:text-sm">Założycielka DawnoTemu, mama Julii</span>
                         </div>
                     </div>
                 </div>
@@ -1732,223 +261,226 @@
         </div>
     </section>
     
-    <section id="benefits" class="benefits">
-        <div class="subtle-pattern"></div>
-        <div class="container">
-            <div class="section-title">
-                <h3 class="logo-font">Dlaczego rodzice pokochają DawnoTemu</h3>
-                <p>Odkryj, jak nasza aplikacja rozwiązuje codzienne wyzwania związane z wieczornym czytaniem bajek</p>
+    <section id="benefits" class="py-16 sm:py-20 md:py-32 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2760%27%20height%3D%2760%27%20viewBox%3D%270%200%2060%2060%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cg%20fill%3D%27none%27%20fill-rule%3D%27evenodd%27%3E%3Cg%20fill%3D%27%23D4C1EC%27%20fill-opacity%3D%270.05%27%3E%3Cpath%20d%3D%27M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%27%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-50"></div>
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-8">
+            <div class="text-center mb-12 sm:mb-16 md:mb-20 relative z-10">
+                <h3 class="text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 tracking-tight font-comfortaa font-bold">Dlaczego rodzice pokochają DawnoTemu</h3>
+                <p class="text-text-medium max-w-2xl mx-auto text-base sm:text-lg">Odkryj, jak nasza aplikacja rozwiązuje codzienne wyzwania związane z wieczornym czytaniem bajek</p>
             </div>
             
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">👔</div>
-                    <h4>Gdy nie możesz być przy dziecku</h4>
-                    <p>Pracujesz do późna? Wyjeżdżasz służbowo? Twój głos zawsze będzie przy dziecku o porze snu, zapewniając poczucie bezpieczeństwa i rutynę.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 relative z-10">
+                <div class="bg-bg-light rounded-md-custom p-6 sm:p-8 md:p-10 relative transition duration-300 flex flex-col justify-between h-full items-start border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="text-3xl sm:text-4xl mb-4 sm:mb-6 relative z-10 after:content-[''] after:absolute after:w-10 sm:after:w-12 after:h-10 sm:after:h-12 after:bg-lavender/15 after:rounded-full after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:-z-10">👔</div>
+                    <h4 class="text-lg sm:text-xl mb-3 sm:mb-4 font-bold tracking-tight">Gdy nie możesz być przy dziecku</h4>
+                    <p class="text-text-medium text-sm sm:text-base">Pracujesz do późna? Wyjeżdżasz służbowo? Twój głos zawsze będzie przy dziecku o porze snu, zapewniając poczucie bezpieczeństwa i rutynę.</p>
                 </div>
                 
-                <div class="benefit-card">
-                    <div class="benefit-icon">😴</div>
-                    <h4>Gdy jesteś zmęczony</h4>
-                    <p>Po ciężkim dniu trudno czytać z energią. Teraz możesz odpocząć, podczas gdy Twój głos opowiada bajkę z entuzjazmem i ekspresją.</p>
+                <div class="bg-bg-light rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full items-start border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="text-4xl mb-6 relative z-10 after:content-[''] after:absolute after:w-12 after:h-12 after:bg-lavender/15 after:rounded-full after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:-z-10">😴</div>
+                    <h4 class="text-xl mb-4 font-bold tracking-tight">Gdy jesteś zmęczony</h4>
+                    <p class="text-text-medium">Po ciężkim dniu trudno czytać z energią. Teraz możesz odpocząć, podczas gdy Twój głos opowiada bajkę z entuzjazmem i ekspresją.</p>
                 </div>
                 
-                <div class="benefit-card">
-                    <div class="benefit-icon">💡</div>
-                    <h4>Rozwój języka i wyobraźni</h4>
-                    <p>Regularne słuchanie bajek wspiera rozwój słownictwa i kreatywnego myślenia Twojego dziecka, co potwierdzają badania psychologiczne.</p>
+                <div class="bg-bg-light rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full items-start border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="text-4xl mb-6 relative z-10 after:content-[''] after:absolute after:w-12 after:h-12 after:bg-lavender/15 after:rounded-full after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:-z-10">💡</div>
+                    <h4 class="text-xl mb-4 font-bold tracking-tight">Rozwój języka i wyobraźni</h4>
+                    <p class="text-text-medium">Regularne słuchanie bajek wspiera rozwój słownictwa i kreatywnego myślenia Twojego dziecka, co potwierdzają badania psychologiczne.</p>
                 </div>
                 
-                <div class="benefit-card">
-                    <div class="benefit-icon">🔄</div>
-                    <h4>Zawsze nowe historie</h4>
-                    <p>Bogata biblioteka klasycznych polskich baśni i nowoczesnych opowieści edukacyjnych - nigdy nie zabraknie Ci pomysłów na nową historię.</p>
+                <div class="bg-bg-light rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full items-start border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="text-4xl mb-6 relative z-10 after:content-[''] after:absolute after:w-12 after:h-12 after:bg-lavender/15 after:rounded-full after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:-z-10">🔄</div>
+                    <h4 class="text-xl mb-4 font-bold tracking-tight">Zawsze nowe historie</h4>
+                    <p class="text-text-medium">Bogata biblioteka klasycznych polskich baśni i nowoczesnych opowieści edukacyjnych - nigdy nie zabraknie Ci pomysłów na nową historię.</p>
                 </div>
                 
-                <div class="benefit-card">
-                    <div class="benefit-icon">🌙</div>
-                    <h4>Spokojniejszy sen</h4>
-                    <p>Znajomy głos rodzica uspokaja dziecko i pomaga mu zasnąć szybciej i spokojniej, redukując stres i budując poczucie bezpieczeństwa.</p>
+                <div class="bg-bg-light rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full items-start border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="text-4xl mb-6 relative z-10 after:content-[''] after:absolute after:w-12 after:h-12 after:bg-lavender/15 after:rounded-full after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:-z-10">🌙</div>
+                    <h4 class="text-xl mb-4 font-bold tracking-tight">Spokojniejszy sen</h4>
+                    <p class="text-text-medium">Znajomy głos rodzica uspokaja dziecko i pomaga mu zasnąć szybciej i spokojniej, redukując stres i budując poczucie bezpieczeństwa.</p>
                 </div>
                 
-                <div class="benefit-card">
-                    <div class="benefit-icon">📱</div>
-                    <h4>Bez ekranu przed snem</h4>
-                    <p>Tylko dźwięk - bez szkodliwego niebieskiego światła, które zaburza rytm snu. Idealne rozwiązanie na dobry, zdrowy sen Twojego dziecka.</p>
+                <div class="bg-bg-light rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full items-start border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="text-4xl mb-6 relative z-10 after:content-[''] after:absolute after:w-12 after:h-12 after:bg-lavender/15 after:rounded-full after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:-z-10">📱</div>
+                    <h4 class="text-xl mb-4 font-bold tracking-tight">Bez ekranu przed snem</h4>
+                    <p class="text-text-medium">Tylko dźwięk - bez szkodliwego niebieskiego światła, które zaburza rytm snu. Idealne rozwiązanie na dobry, zdrowy sen Twojego dziecka.</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <section id="app-preview" class="app-preview">
-        <div class="container">
-            <div class="app-mockup-container">
-                <img src="/images/img3.jpg" alt="Aplikacja DawnoTemu w akcji" class="app-mockup" loading="lazy">
+    <section id="app-preview" class="pt-24 text-center relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="inline-block relative">
+                <img src="/images/img3.jpg" alt="Aplikacja DawnoTemu w akcji" class="w-full rounded-lg-custom shadow-lg-custom relative z-10 after:content-[''] after:absolute after:bottom-[-20px] after:left-[5%] after:w-[90%] after:h-[30px] after:bg-text-dark/10 after:blur-xl after:rounded-full after:z-0" loading="lazy">
             </div>
         </div>
     </section>
     
-    <section id="how-it-works" class="how-it-works">
-        <div class="narrow-container">
-            <div class="section-title">
-                <h3 class="logo-font">Jak to działa?</h3>
-                <p>Prosto i magicznie - stwórz swój cyfrowy głos w kilka minut</p>
+    <section id="how-it-works" class="py-32 pt-12 bg-bg-light relative">
+        <div class="max-w-3xl mx-auto px-8">
+            <div class="text-center mb-20">
+                <h3 class="text-4xl mb-4 tracking-tight font-comfortaa font-bold">Jak to działa?</h3>
+                <p class="text-text-medium text-lg">Prosto i magicznie - stwórz swój cyfrowy głos w kilka minut</p>
             </div>
             
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-connection"></div>
-                    <div class="step-content">
-                        <h4>Nagraj próbkę swojego głosu</h4>
-                        <p>Wystarczy, że przeczytasz krótki fragment tekstu. To zajmie około 30 sekund! Nasza zaawansowana technologia AI analizuje charakterystykę Twojego głosu, aby stworzyć jego cyfrowy klon.</p>
+            <div class="relative z-10">
+                <div class="flex flex-col md:flex-row mb-20 relative">
+                    <div class="relative bg-gradient-to-br from-lavender to-mint text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold flex-shrink-0 md:mr-8 mx-auto md:mx-0 mb-6 md:mb-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">1</div>
+                    <div class="absolute top-16 left-8 w-0.5 h-[calc(100%-2rem)] bg-lavender/30 -z-10 hidden md:block"></div>
+                    <div class="md:pt-2 text-center md:text-left">
+                        <h4 class="text-2xl mb-4 font-bold tracking-tight">Nagraj próbkę swojego głosu</h4>
+                        <p class="text-text-medium text-lg max-w-2xl">Wystarczy, że przeczytasz krótki fragment tekstu. To zajmie około 30 sekund! Nasza zaawansowana technologia AI analizuje charakterystykę Twojego głosu, aby stworzyć jego cyfrowy klon.</p>
                     </div>
                 </div>
                 
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-connection"></div>
-                    <div class="step-content">
-                        <h4>Wybierz bajkę z biblioteki</h4>
-                        <p>Znajdziesz klasyczne polskie baśnie, popularne opowieści i edukacyjne historie. Możesz też stworzyć własną bajkę, wpisując temat lub imię dziecka - nasza AI wygeneruje spersonalizowaną opowieść.</p>
+                <div class="flex flex-col md:flex-row mb-20 relative">
+                    <div class="relative bg-gradient-to-br from-lavender to-mint text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold flex-shrink-0 md:mr-8 mx-auto md:mx-0 mb-6 md:mb-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">2</div>
+                    <div class="absolute top-16 left-8 w-0.5 h-[calc(100%-2rem)] bg-lavender/30 -z-10 hidden md:block"></div>
+                    <div class="md:pt-2 text-center md:text-left">
+                        <h4 class="text-2xl mb-4 font-bold tracking-tight">Wybierz bajkę z biblioteki</h4>
+                        <p class="text-text-medium text-lg max-w-2xl">Znajdziesz klasyczne polskie baśnie, popularne opowieści i edukacyjne historie. Możesz też stworzyć własną bajkę, wpisując temat lub imię dziecka - nasza AI wygeneruje spersonalizowaną opowieść.</p>
                     </div>
                 </div>
                 
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h4>Słuchaj bajki swoim głosem</h4>
-                        <p>Twoje dziecko usłyszy bajkę opowiadaną Twoim głosem - idealnie na czas snu lub podróży. Możesz słuchać razem z dzieckiem lub włączyć aplikację, gdy nie możesz być obecny. Aplikacja działa offline, więc jest idealna w każdej sytuacji.</p>
+                <div class="flex flex-col md:flex-row relative">
+                    <div class="relative bg-gradient-to-br from-lavender to-mint text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold flex-shrink-0 md:mr-8 mx-auto md:mx-0 mb-6 md:mb-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">3</div>
+                    <div class="md:pt-2 text-center md:text-left">
+                        <h4 class="text-2xl mb-4 font-bold tracking-tight">Słuchaj bajki swoim głosem</h4>
+                        <p class="text-text-medium text-lg max-w-2xl">Twoje dziecko usłyszy bajkę opowiadaną Twoim głosem - idealnie na czas snu lub podróży. Możesz słuchać razem z dzieckiem lub włączyć aplikację, gdy nie możesz być obecny. Aplikacja działa offline, więc jest idealna w każdej sytuacji.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- New Features Section -->
-    <section id="features" class="features">
-        <div class="subtle-pattern"></div>
-        <div class="container">
-            <div class="section-title">
-                <h3 class="logo-font">Funkcje, które pokochasz</h3>
-                <p>DawnoTemu to więcej niż tylko bajki - to kompletne rozwiązanie dla współczesnych rodziców</p>
+    <!-- Features Section -->
+    <section id="features" class="py-32 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2760%27%20height%3D%2760%27%20viewBox%3D%270%200%2060%2060%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cg%20fill%3D%27none%27%20fill-rule%3D%27evenodd%27%3E%3Cg%20fill%3D%27%23D4C1EC%27%20fill-opacity%3D%270.05%27%3E%3Cpath%20d%3D%27M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%27%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-50"></div>
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="text-center mb-20 relative z-10">
+                <h3 class="text-4xl mb-4 tracking-tight font-comfortaa font-bold">Funkcje, które pokochasz</h3>
+                <p class="text-text-medium max-w-2xl mx-auto text-lg">DawnoTemu to więcej niż tylko bajki - to kompletne rozwiązanie dla współczesnych rodziców</p>
             </div>
             
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon-container">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                <div class="flex items-start gap-6 p-8 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-lavender to-mint rounded-md-custom text-white text-2xl flex-shrink-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">
                         <i class="fas fa-microphone-alt"></i>
                     </div>
-                    <div class="feature-content">
-                        <h4>Doskonałe klonowanie głosu</h4>
-                        <p>Zaawansowana technologia AI perfekcyjnie odwzorowuje barwę, akcent i sposób mówienia. Twoje dziecko nie zauważy różnicy - usłyszy bajkę dokładnie Twoim głosem.</p>
+                    <div>
+                        <h4 class="text-xl font-bold mb-3 tracking-tight">Doskonałe klonowanie głosu</h4>
+                        <p class="text-text-medium leading-relaxed">Zaawansowana technologia AI perfekcyjnie odwzorowuje barwę, akcent i sposób mówienia. Twoje dziecko nie zauważy różnicy - usłyszy bajkę dokładnie Twoim głosem.</p>
                     </div>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon-container">
+                <div class="flex items-start gap-6 p-8 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-lavender to-mint rounded-md-custom text-white text-2xl flex-shrink-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">
                         <i class="fas fa-book"></i>
                     </div>
-                    <div class="feature-content">
-                        <h4>Biblioteka polskich bajek</h4>
-                        <p>Bogata kolekcja klasycznych polskich bajek i baśni, dostosowanych do różnych grup wiekowych. Od Smoka Wawelskiego po współczesne opowieści edukacyjne.</p>
+                    <div>
+                        <h4 class="text-xl font-bold mb-3 tracking-tight">Biblioteka polskich bajek</h4>
+                        <p class="text-text-medium leading-relaxed">Bogata kolekcja klasycznych polskich bajek i baśni, dostosowanych do różnych grup wiekowych. Od Smoka Wawelskiego po współczesne opowieści edukacyjne.</p>
                     </div>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon-container">
+                <div class="flex items-start gap-6 p-8 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-lavender to-mint rounded-md-custom text-white text-2xl flex-shrink-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">
                         <i class="fas fa-magic"></i>
                     </div>
-                    <div class="feature-content">
-                        <h4>Generator spersonalizowanych historii</h4>
-                        <p>Utwórz własną, unikalną bajkę dopasowaną do zainteresowań Twojego dziecka. Wystarczy, że wpiszesz imię dziecka i temat - AI stworzy wciągającą opowieść.</p>
+                    <div>
+                        <h4 class="text-xl font-bold mb-3 tracking-tight">Generator spersonalizowanych historii</h4>
+                        <p class="text-text-medium leading-relaxed">Utwórz własną, unikalną bajkę dopasowaną do zainteresowań Twojego dziecka. Wystarczy, że wpiszesz imię dziecka i temat - AI stworzy wciągającą opowieść.</p>
                     </div>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon-container">
+                <div class="flex items-start gap-6 p-8 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-lavender to-mint rounded-md-custom text-white text-2xl flex-shrink-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">
                         <i class="fas fa-volume-up"></i>
                     </div>
-                    <div class="feature-content">
-                        <h4>Efekty dźwiękowe i muzyka</h4>
-                        <p>Delikatna muzyka w tle i subtelne efekty dźwiękowe wzbogacają opowieść, tworząc magiczny klimat bez rozpraszania uwagi dziecka.</p>
+                    <div>
+                        <h4 class="text-xl font-bold mb-3 tracking-tight">Efekty dźwiękowe i muzyka</h4>
+                        <p class="text-text-medium leading-relaxed">Delikatna muzyka w tle i subtelne efekty dźwiękowe wzbogacają opowieść, tworząc magiczny klimat bez rozpraszania uwagi dziecka.</p>
                     </div>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon-container">
+                <div class="flex items-start gap-6 p-8 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-lavender to-mint rounded-md-custom text-white text-2xl flex-shrink-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">
                         <i class="fas fa-clock"></i>
                     </div>
-                    <div class="feature-content">
-                        <h4>Timer usypiania</h4>
-                        <p>Ustaw automatyczne wyciszanie po zakończeniu bajki lub po określonym czasie. Aplikacja sama się wyłączy, gdy dziecko zaśnie.</p>
+                    <div>
+                        <h4 class="text-xl font-bold mb-3 tracking-tight">Timer usypiania</h4>
+                        <p class="text-text-medium leading-relaxed">Ustaw automatyczne wyciszanie po zakończeniu bajki lub po określonym czasie. Aplikacja sama się wyłączy, gdy dziecko zaśnie.</p>
                     </div>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon-container">
+                <div class="flex items-start gap-6 p-8 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-lavender to-mint rounded-md-custom text-white text-2xl flex-shrink-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">
                         <i class="fas fa-wifi"></i>
                     </div>
-                    <div class="feature-content">
-                        <h4>Tryb offline</h4>
-                        <p>Pobierz bajki na urządzenie i słuchaj ich bez dostępu do internetu. Idealne rozwiązanie w podróży lub miejscach z słabym zasięgiem.</p>
+                    <div>
+                        <h4 class="text-xl font-bold mb-3 tracking-tight">Tryb offline</h4>
+                        <p class="text-text-medium leading-relaxed">Pobierz bajki na urządzenie i słuchaj ich bez dostępu do internetu. Idealne rozwiązanie w podróży lub miejscach z słabym zasięgiem.</p>
                     </div>
                 </div>
             </div>
             
-            <div class="feature-app-preview">
-                <img src="/images/img4.png" alt="Interfejs aplikacji DawnoTemu" loading="lazy">
-                <div class="feature-highlight highlight-1">1</div>
-                <div class="feature-highlight highlight-2">2</div>
-                <div class="feature-highlight highlight-3">3</div>
+            <div class="relative flex justify-center items-center mt-20">
+                <img src="/images/img4.png" alt="Interfejs aplikacji DawnoTemu" class="max-w-full relative z-10" loading="lazy">
+                <div class="absolute w-[70px] h-[70px] rounded-full bg-peach/25 flex items-center justify-center text-xl font-semibold text-peach-dark shadow-[0_8px_16px_rgba(255,181,167,0.2)] z-20 top-[15%] left-[20%] animate-pulse-custom highlight-1">1</div>
+                <div class="absolute w-[70px] h-[70px] rounded-full bg-peach/25 flex items-center justify-center text-xl font-semibold text-peach-dark shadow-[0_8px_16px_rgba(255,181,167,0.2)] z-20 bottom-[25%] right-[15%] animate-pulse-custom highlight-2">2</div>
+                <div class="absolute w-[70px] h-[70px] rounded-full bg-peach/25 flex items-center justify-center text-xl font-semibold text-peach-dark shadow-[0_8px_16px_rgba(255,181,167,0.2)] z-20 top-[60%] left-[10%] animate-pulse-custom highlight-3">3</div>
             </div>
         </div>
     </section>
     
-    <section id="testimonials"  class="testimonials">
-        <div class="subtle-pattern"></div>
-        <div class="container">
-            <div class="section-title">
-                <h3 class="logo-font">Co mówią rodzice?</h3>
-                <p>Doświadczenia pierwszych testerów aplikacji DawnoTemu</p>
+    <section id="testimonials" class="py-32 bg-bg-light relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2760%27%20height%3D%2760%27%20viewBox%3D%270%200%2060%2060%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cg%20fill%3D%27none%27%20fill-rule%3D%27evenodd%27%3E%3Cg%20fill%3D%27%23D4C1EC%27%20fill-opacity%3D%270.05%27%3E%3Cpath%20d%3D%27M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%27%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-50"></div>
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="text-center mb-20 relative z-10">
+                <h3 class="text-4xl mb-4 tracking-tight font-comfortaa font-bold">Co mówią rodzice?</h3>
+                <p class="text-text-medium max-w-2xl mx-auto text-lg">Doświadczenia pierwszych testerów aplikacji DawnoTemu</p>
             </div>
             
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+                <div class="bg-white rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-mint/30">
+                    <div class="text-6xl leading-none text-lavender font-serif h-10 sm:h-12 flex items-center">"</div>
+                    <div class="text-lg leading-relaxed mb-8 relative italic before:content-['\"'] before:absolute before:top-[-1rem] before:left-[-0.5rem] before:text-8xl before:text-lavender/20 before:font-serif before:leading-none">
                         Kiedy muszę pracować do późna, moja córka nadal zasypia słuchając bajki czytanej moim głosem. To niesamowite, jak technologia może pomóc w utrzymaniu naszej więzi mimo napięć czasowych.
                     </div>
-                    <div class="testimonial-author">
-                        <img src="/images/avatar2.jpg" alt="Anna K." loading="lazy">
-                        <div class="testimonial-author-info">
-                            <strong>Anna K.</strong>
-                            <span>Mama 5-latki, Kraków</span>
+                    <div class="flex items-center">
+                        <img src="/images/avatar2.jpg" alt="Anna K." class="w-14 h-14 rounded-full object-cover mr-4 border-3 border-white shadow-sm-custom" loading="lazy">
+                        <div class="leading-tight">
+                            <strong class="block text-lg font-semibold text-text-dark">Anna K.</strong>
+                            <span class="text-text-medium text-sm">Mama 5-latki, Kraków</span>
                         </div>
                     </div>
                 </div>
                 
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
+                <div class="bg-white rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-mint/30">
+                    <div class="text-6xl leading-none text-lavender font-serif h-10 sm:h-12 flex items-center">"</div>
+                    <div class="text-lg leading-relaxed mb-8 relative italic before:content-['\"'] before:absolute before:top-[-1rem] before:left-[-0.5rem] before:text-8xl before:text-lavender/20 before:font-serif before:leading-none">
                         Jako tata, który często wyjeżdża służbowo, czułem się winny, że nie czytam dzieciom na dobranoc. Teraz, dzięki DawnoTemu, moje dzieci słyszą mój głos każdego wieczoru. To zrewolucjonizowało nasz wieczorny rytuał.
                     </div>
-                    <div class="testimonial-author">
-                        <img src="/images/avatar3.jpg" alt="Tomek S." loading="lazy">
-                        <div class="testimonial-author-info">
-                            <strong>Tomek S.</strong>
-                            <span>Tata dwójki dzieci, Gdańsk</span>
+                    <div class="flex items-center">
+                        <img src="/images/avatar3.jpg" alt="Tomek S." class="w-14 h-14 rounded-full object-cover mr-4 border-3 border-white shadow-sm-custom" loading="lazy">
+                        <div class="leading-tight">
+                            <strong class="block text-lg font-semibold text-text-dark">Tomek S.</strong>
+                            <span class="text-text-medium text-sm">Tata dwójki dzieci, Gdańsk</span>
                         </div>
                     </div>
                 </div>
                 
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
+                <div class="bg-white rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-mint/30">
+                    <div class="text-6xl leading-none text-lavender font-serif h-10 sm:h-12 flex items-center">"</div>
+                    <div class="text-lg leading-relaxed mb-8 relative  italic before:content-['\"'] before:absolute before:top-[-1rem] before:left-[-0.5rem] before:text-8xl before:text-lavender/20 before:font-serif before:leading-none">
                         Czasami po długim dniu z trójką dzieci brakuje mi energii na ekspresyjne czytanie. DawnoTemu pozwala mi odpocząć, a jednocześnie dziecko słyszy moją wersję ulubionej bajki. To jak mieć supermoc bycia w dwóch miejscach naraz.
                     </div>
-                    <div class="testimonial-author">
-                        <img src="/images/avatar4.jpg" alt="Marta W." loading="lazy">
-                        <div class="testimonial-author-info">
-                            <strong>Marta W.</strong>
-                            <span>Mama trojaczków, Wrocław</span>
+                    <div class="flex items-center">
+                        <img src="/images/avatar4.jpg" alt="Marta W." class="w-14 h-14 rounded-full object-cover mr-4 border-3 border-white shadow-sm-custom" loading="lazy">
+                        <div class="leading-tight">
+                            <strong class="block text-lg font-semibold text-text-dark">Marta W.</strong>
+                            <span class="text-text-medium text-sm">Mama trojaczków, Wrocław</span>
                         </div>
                     </div>
                 </div>
@@ -1956,207 +488,224 @@
         </div>
     </section>
 
-
-    <section id="research" class="research">
-        <div class="subtle-pattern"></div>
-        <div class="container">
-            <div class="section-title">
-                <h3 class="logo-font">Głos rodzica – fundament rozwoju dziecka</h3>
-                <p>Odkryj, dlaczego głos rodzica jest kluczowy dla rozwoju języka i emocji Twojego dziecka</p>
+    <section id="research" class="py-32 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2760%27%20height%3D%2760%27%20viewBox%3D%270%200%2060%2060%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cg%20fill%3D%27none%27%20fill-rule%3D%27evenodd%27%3E%3Cg%20fill%3D%27%23D4C1EC%27%20fill-opacity%3D%270.05%27%3E%3Cpath%20d%3D%27M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%27%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-50"></div>
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="text-center mb-20 relative z-10">
+                <h3 class="text-4xl mb-4 tracking-tight font-comfortaa font-bold">Głos rodzica – fundament rozwoju dziecka</h3>
+                <p class="text-text-medium max-w-2xl mx-auto text-lg">Odkryj, dlaczego głos rodzica jest kluczowy dla rozwoju języka i emocji Twojego dziecka</p>
             </div>
             
-            <div class="narrative-container">
-                <div class="research-image">
-                    <img src="/images/img5.png" alt="Dr Joanna Kowalska, psycholog dziecięcy" loading="lazy">
+            <div class="flex flex-col md:flex-row items-center gap-20 relative z-10">
+                <div class="flex-1">
+                    <img src="/images/img5.png" alt="Dr Joanna Kowalska, psycholog dziecięcy" class="w-full max-w-lg mx-auto" loading="lazy">
                 </div>
                 
-                <div class="narrative-content">
-                    <div class="quote-marks">"</div>
-                    <p class="narrative-text">
-                        Głos rodzica to <span class="highlight-text">pierwszy i najważniejszy instrument</span>, który kształtuje rozwój mózgu dziecka. Badania neuroobrazowe jednoznacznie wykazują, że głos matki aktywuje znacznie więcej obszarów mózgu dziecka niż głosy innych osób - nie tylko rejony odpowiedzialne za przetwarzanie dźwięków, ale również struktury związane z emocjami i tworzeniem więzi.
+                <div class="flex-1">
+                    <div class="text-6xl sm:text-7xl md:text-8xl leading-none mb-8 text-lavender font-serif h-12 flex items-center">"</div>
+                    <p class="text-lg text-text-medium mb-8 leading-relaxed">
+                        Głos rodzica to <span class="underline decoration-solid decoration-peach/30 decoration-4 underline-offset-4">pierwszy i najważniejszy instrument</span>, który kształtuje rozwój mózgu dziecka. Badania neuroobrazowe jednoznacznie wykazują, że głos matki aktywuje znacznie więcej obszarów mózgu dziecka niż głosy innych osób - nie tylko rejony odpowiedzialne za przetwarzanie dźwięków, ale również struktury związane z emocjami i tworzeniem więzi.
                     </p>
-                    <p class="narrative-text">
+                    <p class="text-lg text-text-medium mb-8 leading-relaxed">
                         Nawet gdy rodzice nie mogą być fizycznie obecni, ich głos nadal stanowi kotwicę emocjonalną i źródło poczucia bezpieczeństwa dla dziecka. Dlatego aplikacja, która wiernie odtwarza głos rodzica, może być cennym narzędziem wspierającym rozwój poznawczy i emocjonalny dziecka w czasach, gdy trudno o stałą obecność.
                     </p>
                     
-                    <div class="narrative-author">
-                        <img src="/images/avatar5.jpg" alt="Dr Joanna Kowalska" loading="lazy">
-                        <div class="narrative-author-info">
-                            <strong>Dr Joanna Kowalska</strong>
-                            <span>Psycholog dziecięcy, wykładowca UAM</span>
+                    <div class="flex items-center mt-8">
+                        <img src="/images/avatar5.jpg" alt="Dr Joanna Kowalska" class="w-14 h-14 rounded-full object-cover mr-4 border-3 border-white shadow-sm-custom" loading="lazy">
+                        <div class="leading-tight">
+                            <strong class="block text-lg font-semibold text-text-dark">Dr Joanna Kowalska</strong>
+                            <span class="text-text-medium text-sm">Psycholog dziecięcy, wykładowca UAM</span>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="research-highlights">
-                <h4 class="research-title">Jak głos rodzica kształtuje rozwój dziecka</h4>
+            <div class="mt-20">
+                <h4 class="text-2xl text-center mb-10 text-text-dark font-bold">Jak głos rodzica kształtuje rozwój dziecka</h4>
                 
-                <div class="benefits-grid">
-                    <div class="benefit-card">
-                        <div class="benefit-icon">🧠</div>
-                        <h4>Aktywacja obszarów mózgu</h4>
-                        <p>Badania uniwersytetu Stanford wykazują, że głos matki aktywuje znacznie więcej obszarów mózgu dziecka, w tym rejony odpowiedzialne za emocje i funkcje społeczne.</p>
-                        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4610950/" class="research-link" target="_blank">Czytaj więcej <i class="fas fa-external-link-alt"></i></a>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-bg-light rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full items-start border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                        <div class="text-4xl mb-6 relative z-10 after:content-[''] after:absolute after:w-12 after:h-12 after:bg-lavender/15 after:rounded-full after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:-z-10">🧠</div>
+                        <h4 class="text-xl mb-4 font-bold tracking-tight">Aktywacja obszarów mózgu</h4>
+                        <p class="text-text-medium">Badania uniwersytetu Stanford wykazują, że głos matki aktywuje znacznie więcej obszarów mózgu dziecka, w tym rejony odpowiedzialne za emocje i funkcje społeczne.</p>
+                        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4610950/" class="inline-flex items-center mt-4 text-lavender-dark font-semibold text-sm transition duration-300 hover:text-peach" target="_blank">Czytaj więcej <i class="fas fa-external-link-alt text-xs ml-1"></i></a>
                     </div>
                     
-                    <div class="benefit-card">
-                        <div class="benefit-icon">👶</div>
-                        <h4>Wrodzona preferencja głosu</h4>
-                        <p>Noworodki już od pierwszych chwil życia wykazują wyraźną preferencję do głosu swojej matki, co jest ewolucyjnie zaprogramowanym mechanizmem wspierającym tworzenie więzi.</p>
-                        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4222191/" class="research-link" target="_blank">Czytaj więcej <i class="fas fa-external-link-alt"></i></a>
+                    <div class="bg-bg-light rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full items-start border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                        <div class="text-4xl mb-6 relative z-10 after:content-[''] after:absolute after:w-12 after:h-12 after:bg-lavender/15 after:rounded-full after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:-z-10">👶</div>
+                        <h4 class="text-xl mb-4 font-bold tracking-tight">Wrodzona preferencja głosu</h4>
+                        <p class="text-text-medium">Noworodki już od pierwszych chwil życia wykazują wyraźną preferencję do głosu swojej matki, co jest ewolucyjnie zaprogramowanym mechanizmem wspierającym tworzenie więzi.</p>
+                        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4222191/" class="inline-flex items-center mt-4 text-lavender-dark font-semibold text-sm transition duration-300 hover:text-peach" target="_blank">Czytaj więcej <i class="fas fa-external-link-alt text-xs ml-1"></i></a>
                     </div>
             
-                    <div class="benefit-card">
-                        <div class="benefit-icon">❤️</div>
-                        <h4>Emocjonalne aspekty kontaktu wokalnego</h4>
-                        <p>Wczesny kontakt wokalny z rodzicami oferuje odżywcze środowisko dla rozwoju dziecka i promuje bezpośrednią interakcję wokalną, umożliwiającą wymianę sygnałów emocjonalnych.</p>
-                        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11473331/" class="research-link" target="_blank">Czytaj więcej <i class="fas fa-external-link-alt"></i></a>
+                    <div class="bg-bg-light rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full items-start border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                        <div class="text-4xl mb-6 relative z-10 after:content-[''] after:absolute after:w-12 after:h-12 after:bg-lavender/15 after:rounded-full after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:-z-10">❤️</div>
+                        <h4 class="text-xl mb-4 font-bold tracking-tight">Emocjonalne aspekty kontaktu wokalnego</h4>
+                        <p class="text-text-medium">Wczesny kontakt wokalny z rodzicami oferuje odżywcze środowisko dla rozwoju dziecka i promuje bezpośrednią interakcję wokalną, umożliwiającą wymianę sygnałów emocjonalnych.</p>
+                        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11473331/" class="inline-flex items-center mt-4 text-lavender-dark font-semibold text-sm transition duration-300 hover:text-peach" target="_blank">Czytaj więcej <i class="fas fa-external-link-alt text-xs ml-1"></i></a>
                     </div>
                 </div>
                 
-                <div class="research-disclaimer">
+                <div class="bg-peach text-white p-6 rounded-md-custom mt-12 text-center text-base max-w-4xl mx-auto">
                     <p>Aplikacja Dawno Temu została zaprojektowana jako uzupełnienie, a nie zastępstwo bezpośredniej interakcji z rodzicami. Zalecamy, aby regularnie rozmawiać z dzieckiem o wysłuchanych bajkach.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="final-cta" class="final-cta">
-        <div class="wave-pattern"></div>
-        <div class="container">
-            <div class="final-cta-content">
-                <h3 class="logo-font">Dołącz do rodzin, które już odkryły magię DawnoTemu</h3>
-                <p>Zapisz się na listę oczekujących i otrzymuj wyjątkowe porady dotyczące wychowania i rozwoju dziecka w naszym newsletterze.</p>
+    <section id="final-cta" class="py-16 sm:py-20 md:py-32 text-center bg-gradient-to-br from-lavender to-mint text-white relative overflow-hidden">
+        <div class="absolute bottom-0 left-0 w-full h-[10%] bg-[url('data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%201200%20120%27%20preserveAspectRatio=%27none%27%3E%3Cpath%20d=%27M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z%27%20opacity=%27.1%27%20fill=%27%23FFFFFF%27%3E%3C/path%3E%3C/svg%3E')] bg-cover z-0"></div>
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-8">
+            <div class="relative z-10">
+                <h3 class="text-2xl sm:text-3xl md:text-4xl mb-4 sm:mb-6 font-bold tracking-tight font-comfortaa">Dołącz do rodzin, które już odkryły magię DawnoTemu</h3>
+                <p class="max-w-2xl mx-auto mb-8 sm:mb-12 text-lg sm:text-xl opacity-90">Zapisz się na listę oczekujących i otrzymuj wyjątkowe porady dotyczące wychowania i rozwoju dziecka w naszym newsletterze.</p>
                 
-                <form class="final-cta-form">
-                    <input type="email" placeholder="Twój adres e-mail" required>
-                    <button type="submit" class="cta-button">Zapisz się teraz</button>
+                <form class="relative max-w-lg mt-10 mx-auto" class="waitlist">
+                    <input type="email" placeholder="Twój adres e-mail" required class="w-full py-5 px-6 border border-gray-200 rounded-full text-base outline-none bg-white shadow-sm-custom transition duration-300 focus:border-lavender focus:shadow-[0_0_0_3px_rgba(212,193,236,0.2)]">
+                    <button type="submit" class="static mt-2 w-full right-1.5 top-1.5 bottom-1.5 bg-peach text-white py-5 md:py-0 px-6 rounded-full font-semibold transition duration-300 hover:bg-peach-dark hover:transform  hover:shadow-lg md:absolute md:mt-auto md:w-auto">Dołącz do listy oczekujących</button>
                 </form>
             </div>
         </div>
     </section>
     
-    <section id="faq" class="faq">
-        <div class="container">
-            <div class="section-title">
-                <h3 class="logo-font">Najczęściej zadawane pytania</h3>
-                <p>Wszystko, co chcesz wiedzieć o aplikacji DawnoTemu</p>
+    <section id="faq" class="py-32 bg-bg-light relative">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="text-center mb-20">
+                <h3 class="text-4xl mb-4 tracking-tight font-comfortaa font-bold">Najczęściej zadawane pytania</h3>
+                <p class="text-text-medium max-w-2xl mx-auto text-lg">Wszystko, co chcesz wiedzieć o aplikacji DawnoTemu</p>
             </div>
             
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">Czy to naprawdę będzie brzmiało jak mój głos?</div>
-                    <div class="faq-answer">
-                        <p>Tak! Używamy zaawansowanej technologii AI do klonowania Twojego głosu. Większość dzieci nie zauważa różnicy - dla nich to po prostu głos mamy czy taty opowiadający bajkę. Nasza technologia zapewnia naturalne brzmienie, intonację i ekspresję charakterystyczną dla Twojego głosu.</p>
+            <div class="max-w-3xl mx-auto relative z-10">
+                <div class="mb-6 bg-white rounded-md-custom overflow-hidden transition duration-300 border border-gray-200/50 hover:shadow-sm-custom faq-item">
+                    <div class="py-6 px-8 font-semibold text-lg flex justify-between items-center cursor-pointer select-none text-text-dark faq-question">
+                        Czy to naprawdę będzie brzmiało jak mój głos?
+                        <span class="text-2xl text-lavender transition duration-300">+</span>
+                    </div>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 faq-answer">
+                        <p class="text-text-medium leading-relaxed px-8 pb-6">Tak! Używamy zaawansowanej technologii AI do klonowania Twojego głosu. Większość dzieci nie zauważa różnicy - dla nich to po prostu głos mamy czy taty opowiadający bajkę. Nasza technologia zapewnia naturalne brzmienie, intonację i ekspresję charakterystyczną dla Twojego głosu.</p>
                     </div>
                 </div>
                 
-                <div class="faq-item">
-                    <div class="faq-question">Czy moje nagranie głosu jest bezpieczne?</div>
-                    <div class="faq-answer">
-                        <p>Bezpieczeństwo Twoich danych jest naszym priorytetem. Twój model głosu jest przechowywany w zaszyfrowanej formie i używany wyłącznie do generowania bajek w aplikacji. Nigdy nie udostępniamy Twoich nagrań osobom trzecim, a Twoje dane są chronione zgodnie z najwyższymi standardami bezpieczeństwa i RODO.</p>
+                <div class="mb-6 bg-white rounded-md-custom overflow-hidden transition duration-300 border border-gray-200/50 hover:shadow-sm-custom faq-item">
+                    <div class="py-6 px-8 font-semibold text-lg flex justify-between items-center cursor-pointer select-none text-text-dark faq-question">
+                        Czy moje nagranie głosu jest bezpieczne?
+                        <span class="text-2xl text-lavender transition duration-300">+</span>
+                    </div>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 faq-answer">
+                        <p class="text-text-medium leading-relaxed px-8 pb-6">Bezpieczeństwo Twoich danych jest naszym priorytetem. Twój model głosu jest przechowywany w zaszyfrowanej formie i używany wyłącznie do generowania bajek w aplikacji. Nigdy nie udostępniamy Twoich nagrań osobom trzecim, a Twoje dane są chronione zgodnie z najwyższymi standardami bezpieczeństwa i RODO.</p>
                     </div>
                 </div>
                 
-                <div class="faq-item">
-                    <div class="faq-question">Ile czasu zajmuje nagranie próbki głosu?</div>
-                    <div class="faq-answer">
-                        <p>Wystarczy około 3 minuty czytania przygotowanego tekstu. To jednorazowy proces - potem możesz korzystać z aplikacji bez ograniczeń. Nagranie możesz wykonać w dowolnym, spokojnym miejscu, używając smartfona. Nasz system poprowadzi Cię przez cały proces krok po kroku.</p>
+                <div class="mb-6 bg-white rounded-md-custom overflow-hidden transition duration-300 border border-gray-200/50 hover:shadow-sm-custom faq-item">
+                    <div class="py-6 px-8 font-semibold text-lg flex justify-between items-center cursor-pointer select-none text-text-dark faq-question">
+                        Ile czasu zajmuje nagranie próbki głosu?
+                        <span class="text-2xl text-lavender transition duration-300">+</span>
+                    </div>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 faq-answer">
+                        <p class="text-text-medium leading-relaxed px-8 pb-6">Wystarczy około 3 minuty czytania przygotowanego tekstu. To jednorazowy proces - potem możesz korzystać z aplikacji bez ograniczeń. Nagranie możesz wykonać w dowolnym, spokojnym miejscu, używając smartfona. Nasz system poprowadzi Cię przez cały proces krok po kroku.</p>
                     </div>
                 </div>
                 
-                <div class="faq-item">
-                    <div class="faq-question">Jakie bajki są dostępne w aplikacji?</div>
-                    <div class="faq-answer">
-                        <p>Nasza biblioteka zawiera klasyczne polskie baśnie (np. o Smoku Wawelskim, Panu Twardowskim), popularne bajki z całego świata oraz nowoczesne opowiadania o tematyce edukacyjnej. Regularnie dodajemy nowe treści. Możesz też skorzystać z generatora bajek, aby stworzyć unikalną historię dostosowaną do zainteresowań Twojego dziecka.</p>
+                <div class="mb-6 bg-white rounded-md-custom overflow-hidden transition duration-300 border border-gray-200/50 hover:shadow-sm-custom faq-item">
+                    <div class="py-6 px-8 font-semibold text-lg flex justify-between items-center cursor-pointer select-none text-text-dark faq-question">
+                        Jakie bajki są dostępne w aplikacji?
+                        <span class="text-2xl text-lavender transition duration-300">+</span>
+                    </div>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 faq-answer">
+                        <p class="text-text-medium leading-relaxed px-8 pb-6">Nasza biblioteka zawiera klasyczne polskie baśnie (np. o Smoku Wawelskim, Panu Twardowskim), popularne bajki z całego świata oraz nowoczesne opowiadania o tematyce edukacyjnej. Regularnie dodajemy nowe treści. Możesz też skorzystać z generatora bajek, aby stworzyć unikalną historię dostosowaną do zainteresowań Twojego dziecka.</p>
                     </div>
                 </div>
                 
-                <div class="faq-item">
-                    <div class="faq-question">Czy mogę używać aplikacji bez internetu?</div>
-                    <div class="faq-answer">
-                        <p>Tak, możesz pobrać bajki na urządzenie i odtwarzać je offline - idealne rozwiązanie na podróże czy miejsca z słabym zasięgiem. Generowanie nowych bajek wymaga połączenia z internetem, ale wszystkie pobrane historie są dostępne w trybie offline.</p>
+                <div class="mb-6 bg-white rounded-md-custom overflow-hidden transition duration-300 border border-gray-200/50 hover:shadow-sm-custom faq-item">
+                    <div class="py-6 px-8 font-semibold text-lg flex justify-between items-center cursor-pointer select-none text-text-dark faq-question">
+                        Czy mogę używać aplikacji bez internetu?
+                        <span class="text-2xl text-lavender transition duration-300">+</span>
+                    </div>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 faq-answer">
+                        <p class="text-text-medium leading-relaxed px-8 pb-6">Tak, możesz pobrać bajki na urządzenie i odtwarzać je offline - idealne rozwiązanie na podróże czy miejsca z słabym zasięgiem. Generowanie nowych bajek wymaga połączenia z internetem, ale wszystkie pobrane historie są dostępne w trybie offline.</p>
                     </div>
                 </div>
                 
-                <div class="faq-item">
-                    <div class="faq-question">Czy aplikacja zastępuje czytanie przez rodzica?</div>
-                    <div class="faq-answer">
-                        <p>Absolutnie nie! DawnoTemu to narzędzie, które wspiera rodziców, gdy nie mogą być obecni lub potrzebują odpoczynku. Zachęcamy do regularnego, osobistego czytania dzieciom, gdy tylko jest to możliwe - nic nie zastąpi prawdziwej interakcji rodzic-dziecko. Nasza aplikacja jest pomostem, gdy tradycyjne czytanie jest niemożliwe.</p>
+                <div class="mb-6 bg-white rounded-md-custom overflow-hidden transition duration-300 border border-gray-200/50 hover:shadow-sm-custom faq-item">
+                    <div class="py-6 px-8 font-semibold text-lg flex justify-between items-center cursor-pointer select-none text-text-dark faq-question">
+                        Czy aplikacja zastępuje czytanie przez rodzica?
+                        <span class="text-2xl text-lavender transition duration-300">+</span>
+                    </div>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 faq-answer">
+                        <p class="text-text-medium leading-relaxed px-8 pb-6">Absolutnie nie! DawnoTemu to narzędzie, które wspiera rodziców, gdy nie mogą być obecni lub potrzebują odpoczynku. Zachęcamy do regularnego, osobistego czytania dzieciom, gdy tylko jest to możliwe - nic nie zastąpi prawdziwej interakcji rodzic-dziecko. Nasza aplikacja jest pomostem, gdy tradycyjne czytanie jest niemożliwe.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo-column">
-                    <div class="footer-logo">
-                        <img src="/logo.png" alt="DawnoTemu Logo" loading="lazy">
-                        <h3 class="logo-font">DawnoTemu</h3>
+    <footer class="bg-text-dark text-white pt-20 pb-8 relative">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div class="flex flex-col">
+                    <div class="flex items-center mb-6">
+                        <img src="/logo.png" alt="DawnoTemu Logo" class="h-10 mr-3" loading="lazy">
+                        <h3 class="text-2xl text-white font-comfortaa">DawnoTemu</h3>
                     </div>
-                    <p class="footer-description">
+                    <p class="text-white/70 text-sm mb-6">
                         Innowacyjna aplikacja, która pomaga rodzicom utrzymać magię wieczornych bajek, nawet gdy życie staje się zbyt intensywne.
                     </p>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon">
+                    <div class="flex gap-4">
+                        <a href="#" class="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition duration-300 hover:bg-peach hover:transform hover:-translate-y-1">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" class="social-icon">
+                        <a href="#" class="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition duration-300 hover:bg-peach hover:transform hover:-translate-y-1">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="social-icon">
+                        <a href="#" class="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition duration-300 hover:bg-peach hover:transform hover:-translate-y-1">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="#" class="social-icon">
+                        <a href="#" class="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition duration-300 hover:bg-peach hover:transform hover:-translate-y-1">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
                     </div>
                 </div>
                 
-                <div class="footer-column">
-                    <h5>Aplikacja</h5>
-                    <ul class="footer-links">
-                        <li><a href="#">Funkcje</a></li>
-                        <li><a href="#">Jak to działa</a></li>
-                        <li><a href="#">Biblioteka bajek</a></li>
-                        <li><a href="#">Wsparcie</a></li>
+                <div>
+                    <h5 class="text-xl mb-6 font-semibold">Aplikacja</h5>
+                    <ul class="list-none">
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Funkcje</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Jak to działa</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Biblioteka bajek</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Wsparcie</a></li>
                     </ul>
                 </div>
                 
-                <div class="footer-column">
-                    <h5>Firma</h5>
-                    <ul class="footer-links">
-                        <li><a href="#">O nas</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Kariera</a></li>
-                        <li><a href="#">Kontakt</a></li>
+                <div>
+                    <h5 class="text-xl mb-6 font-semibold">Firma</h5>
+                    <ul class="list-none">
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">O nas</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Blog</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Kariera</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Kontakt</a></li>
                     </ul>
                 </div>
                 
-                <div class="footer-column">
-                    <h5>Informacje</h5>
-                    <ul class="footer-links">
-                        <li><a href="#">Prywatność</a></li>
-                        <li><a href="#">Warunki</a></li>
-                        <li><a href="#">Bezpieczeństwo</a></li>
-                        <li><a href="#">FAQ</a></li>
+                <div>
+                    <h5 class="text-xl mb-6 font-semibold">Informacje</h5>
+                    <ul class="list-none">
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Prywatność</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Warunki</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Bezpieczeństwo</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">FAQ</a></li>
                     </ul>
                 </div>
             </div>
             
-            <div class="bottom-footer">
-                <div class="copyright">
-                    <img src="/logo.png" alt="DawnoTemu Logo" loading="lazy">
+            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 text-white/50 text-sm">
+                <div class="flex items-center">
+                    <img src="/logo.png" alt="DawnoTemu Logo" class="h-5 mr-2" loading="lazy">
                     © 2025 DawnoTemu. Wszelkie prawa zastrzeżone.
                 </div>
-                <div class="bottom-links">
-                    <a href="#">Prywatność</a>
-                    <a href="#">Warunki</a>
-                    <a href="#">Mapa strony</a>
+                <div class="flex flex-wrap justify-center gap-4 mt-4 md:mt-0">
+                    <a href="#" class="text-white/50 transition duration-300 hover:text-white">Prywatność</a>
+                    <a href="#" class="text-white/50 transition duration-300 hover:text-white">Warunki</a>
+                    <a href="#" class="text-white/50 transition duration-300 hover:text-white">Mapa strony</a>
                 </div>
             </div>
         </div>
@@ -2168,12 +717,14 @@
             question.addEventListener('click', () => {
                 const item = question.parentNode;
                 const isActive = item.classList.contains('active');
+                const toggleIcon = question.querySelector('span');
                 
                 // Close all others
                 document.querySelectorAll('.faq-item').forEach(faqItem => {
                     faqItem.classList.remove('active');
                     const answer = faqItem.querySelector('.faq-answer');
                     answer.style.maxHeight = null;
+                    faqItem.querySelector('span').textContent = '+';
                 });
                 
                 // Toggle current item
@@ -2181,6 +732,8 @@
                     item.classList.add('active');
                     const answer = item.querySelector('.faq-answer');
                     answer.style.maxHeight = answer.scrollHeight + 'px';
+                    toggleIcon.textContent = '−';
+                    item.classList.add('shadow-sm-custom', 'border-lavender/30');
                 }
             });
         });
@@ -2191,16 +744,9 @@
                 e.preventDefault();
                 const email = form.querySelector('input[type="email"]').value;
                 
-                // Display success message (in a real implementation, you'd send data to your server)
+                // Display success message
                 const successMessage = document.createElement('div');
-                successMessage.style.background = '#B8E0D2';
-                successMessage.style.color = '#2D3047';
-                successMessage.style.padding = '1rem';
-                successMessage.style.borderRadius = '0.5rem';
-                successMessage.style.marginTop = '1rem';
-                successMessage.style.fontSize = '0.9375rem';
-                successMessage.style.fontWeight = '500';
-                successMessage.style.animation = 'fadeIn 0.5s ease-in-out';
+                successMessage.className = 'bg-mint text-text-dark p-4 rounded-lg mt-4 text-sm font-medium animate-fade-in';
                 successMessage.textContent = `Dziękujemy! Na adres ${email} wyślemy informacje o dostępie do aplikacji.`;
                 
                 form.appendChild(successMessage);
@@ -2208,7 +754,7 @@
                 
                 // Remove message after 5 seconds
                 setTimeout(() => {
-                    successMessage.style.animation = 'fadeOut 0.5s ease-in-out';
+                    successMessage.className += ' animate-fade-out';
                     setTimeout(() => {
                         form.removeChild(successMessage);
                     }, 500);
@@ -2226,7 +772,7 @@
             });
         });
         
-        // Add fadeIn and fadeOut animations
+        // Append fade animations
         const style = document.createElement('style');
         style.textContent = `
             @keyframes fadeIn {
@@ -2237,131 +783,85 @@
                 from { opacity: 1; transform: translateY(0); }
                 to { opacity: 0; transform: translateY(-10px); }
             }
+            .animate-fade-in {
+                animation: fadeIn 0.5s ease-in-out;
+            }
+            .animate-fade-out {
+                animation: fadeOut 0.5s ease-in-out;
+            }
         `;
         document.head.appendChild(style);
 
-        // Mobile Navigation Implementation
-
-document.addEventListener('DOMContentLoaded', function() {
-    // 1. Insert mobile menu toggle and container into the DOM
-    const headerContent = document.querySelector('.header-content');
-    
-    // Create mobile menu toggle button
-    const mobileMenuToggle = document.createElement('div');
-    mobileMenuToggle.className = 'mobile-menu-toggle';
-    mobileMenuToggle.innerHTML = `
-        <span></span>
-        <span></span>
-        <span></span>
-    `;
-    
-    // Add toggle button to header
-    headerContent.appendChild(mobileMenuToggle);
-    
-    // Create mobile navigation
-    const mobileNav = document.createElement('div');
-    mobileNav.className = 'mobile-nav';
-    mobileNav.innerHTML = `
-        <div class="mobile-nav-links">
-            <a href="#about">O DawnoTemu</a>
-            <a href="#benefits">Korzyści</a>
-            <a href="#how-it-works">Jak to działa</a>
-            <a href="#features">Funkcje</a>
-            <a href="#testimonials">Opinie</a>
-            <a href="#research">Badania</a>
-            <a href="#faq">FAQ</a>
-        </div>
-        <a href="#waitlist" class="cta-button">Dołącz do listy</a>
-    `;
-    
-    // Add mobile nav to document
-    document.body.appendChild(mobileNav);
-    
-    // 2. Toggle mobile menu functionality
-    mobileMenuToggle.addEventListener('click', function() {
-        this.classList.toggle('active');
-        mobileNav.classList.toggle('active');
+        // Mobile Navigation
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
         
-        // Toggle body scroll when menu is open
-        if (mobileNav.classList.contains('active')) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-        
-        // Animate hamburger to X
-        const spans = this.querySelectorAll('span');
-        if (this.classList.contains('active')) {
-            spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
-            spans[1].style.opacity = '0';
-            spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
-        } else {
-            spans[0].style.transform = '';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = '';
-        }
-    });
-    
-    // 3. Close mobile menu when clicking a link
-    const mobileNavLinks = mobileNav.querySelectorAll('a');
-    mobileNavLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            mobileNav.classList.remove('active');
-            mobileMenuToggle.classList.remove('active');
-            document.body.style.overflow = '';
+        mobileMenuToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileNav.classList.toggle('hidden');
+            mobileNav.classList.toggle('flex');
             
-            // Reset hamburger icon
-            const spans = mobileMenuToggle.querySelectorAll('span');
-            spans[0].style.transform = '';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = '';
-        });
-    });
-    
-    // 4. Handle resize events (close menu if window is resized larger)
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 768 && mobileNav.classList.contains('active')) {
-            mobileNav.classList.remove('active');
-            mobileMenuToggle.classList.remove('active');
-            document.body.style.overflow = '';
+            // Toggle transform for slide effect
+            if (mobileNav.classList.contains('translate-x-full')) {
+                mobileNav.classList.remove('translate-x-full');
+            } else {
+                mobileNav.classList.add('translate-x-full');
+            }
             
-            // Reset hamburger icon
-            const spans = mobileMenuToggle.querySelectorAll('span');
-            spans[0].style.transform = '';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = '';
-        }
-    });
-    
-    // 5. Improve FAQ functionality for mobile
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        const answer = item.querySelector('.faq-answer');
-        
-        // Set initial height for animation
-        if (item.classList.contains('active')) {
-            answer.style.maxHeight = answer.scrollHeight + 'px';
-        }
-        
-        // Expand answer with better touch response
-        question.addEventListener('click', function() {
-            const isActive = item.classList.contains('active');
+            // Toggle body scroll
+            if (!mobileNav.classList.contains('hidden')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
             
-            // Close all items
-            faqItems.forEach(faqItem => {
-                faqItem.classList.remove('active');
-                faqItem.querySelector('.faq-answer').style.maxHeight = null;
-            });
-            
-            // Toggle current item
-            if (!isActive) {
-                item.classList.add('active');
-                answer.style.maxHeight = answer.scrollHeight + 'px';
+            // Animate hamburger to X
+            const spans = this.querySelectorAll('span');
+            if (this.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+            } else {
+                spans[0].style.transform = '';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = '';
             }
         });
-    });
-});
+        
+        // Close mobile menu when clicking a link
+        const mobileNavLinks = mobileNav.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileNav.classList.add('hidden');
+                mobileNav.classList.remove('flex');
+                mobileNav.classList.add('translate-x-full');
+                mobileMenuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                // Reset hamburger icon
+                const spans = mobileMenuToggle.querySelectorAll('span');
+                spans[0].style.transform = '';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = '';
+            });
+        });
+        
+        // Handle resize events
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768 && !mobileNav.classList.contains('hidden')) {
+                mobileNav.classList.add('hidden');
+                mobileNav.classList.remove('flex');
+                mobileNav.classList.add('translate-x-full');
+                mobileMenuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                // Reset hamburger icon
+                const spans = mobileMenuToggle.querySelectorAll('span');
+                spans[0].style.transform = '';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = '';
+            }
+        });
     </script>
 </body>
 </html>
