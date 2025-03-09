@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>DawnoTemu | Twój głos, ich ulubione bajki</title>
+    <meta name="description" content="Pozwól dziecku słuchać bajek opowiadanych Twoim głosem, nawet gdy nie możesz być przy nim. Personalizowane baśnie na dobranoc z DawnoTemu.">
+    
+    <!-- Primary Meta Tags -->
+    <meta name="description" content="Twórz spersonalizowane bajki na dobranoc swoim głosem. DawnoTemu to idealne miejsce dla rodziców i dzieci, by wspólnie odkrywać magiczne historie przed snem.">
+
+    <!-- Favicon Suite -->
+    <link rel="icon" href="/icons/favicon.ico" sizes="any">
+    <link rel="icon" href="/icons/favicon.svg" type="image/svg+xml">
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/icons/favicon.svg" color="#D4C1EC">
+
+    <!-- PWA/Safari Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="DawnoTemu">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="/icons/web-app-manifest-192x192.png">
+    <meta name="theme-color" content="#D4C1EC">
+    <meta name="msapplication-TileColor" content="#D4C1EC">
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Quicksand:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Preconnect to External Domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Font Loading with Fallback -->
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Quicksand:wght@400;600&display=swap&display=swap">
+    </noscript>
+
+    <!-- Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="DawnoTemu | Twój głos, ich ulubione bajki">
+    <meta property="og:description" content="Pozwól dziecku słuchać bajek opowiadanych Twoim głosem, nawet gdy nie możesz być przy nim. Personalizowane baśnie na dobranoc z DawnoTemu.">
+    <meta property="og:image" content="/images/social-preview.jpg">
+    <meta property="og:url" content="https://dawnotemu.example.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@DawnoTemu">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              peach: '#FFB5A7',
+              'peach-dark': '#FF9A8A',
+              lavender: '#D4C1EC',
+              'lavender-dark': '#B8A2DC',
+              mint: '#B8E0D2',
+              'soft-yellow': '#FAE8B0',
+              'text-dark': '#2D3047',
+              'text-medium': '#6C6F93',
+              'text-light': '#9CA3AF',
+              'bg-light': '#F9FAFC',
+            },
+            fontFamily: {
+              'comfortaa': ['Comfortaa', 'cursive'],
+              'sans': ['Plus Jakarta Sans', 'sans-serif'],
+            },
+            boxShadow: {
+              'sm-custom': '0 4px 6px rgba(45, 48, 71, 0.05)',
+              'md-custom': '0 10px 20px rgba(45, 48, 71, 0.08)',
+              'lg-custom': '0 20px 25px -5px rgba(45, 48, 71, 0.1)',
+            },
+            borderRadius: {
+              'sm-custom': '8px',
+              'md-custom': '16px',
+              'lg-custom': '24px',
+            },
+          }
+        }
+      }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(255, 181, 167, 0.4);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 15px rgba(255, 181, 167, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(255, 181, 167, 0);
+            }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-pulse-custom {
+            animation: pulse 2s infinite;
+        }
+        
+        .bubble-1 {
+            animation-delay: 0s;
+        }
+        
+        .bubble-2 {
+            animation-delay: 1.5s;
+        }
+        
+        .bubble-3 {
+            animation-delay: 3s;
+        }
+        
+        .highlight-1 {
+            animation-delay: 0s;
+        }
+        
+        .highlight-2 {
+            animation-delay: 0.5s;
+        }
+        
+        .highlight-3 {
+            animation-delay: 1s;
+        }
+    </style>
+</head>
+<body class="bg-bg-light text-text-dark leading-relaxed font-sans font-normal overflow-x-hidden">
+    <header class="bg-white py-5 fixed top-0 left-0 w-full z-100 shadow-sm-custom backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-8 relative">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <img src="/logo.png" alt="DawnoTemu Logo" class="h-10 mr-3" loading="lazy">
+                    <h1 class="text-2xl text-text-dark tracking-tight font-comfortaa font-bold">DawnoTemu</h1>
+                </div>
+                <a href="#waitlist" class="bg-peach text-white py-3.5 px-7 rounded-full font-semibold transition duration-300 ease-in-out border-none cursor-pointer text-base shadow-md hover:bg-peach-dark hover:transform hover:-translate-y-0.5 hover:shadow-lg inline-flex items-center justify-center tracking-wide">Dołącz do listy</a>
+                
+                <!-- Mobile menu toggle -->
+                <div class="flex flex-col justify-between w-[30px] h-[21px] cursor-pointer md:hidden" id="mobile-menu-toggle">
+                    <span class="w-full h-[3px] bg-text-dark rounded transition duration-300"></span>
+                    <span class="w-full h-[3px] bg-text-dark rounded transition duration-300"></span>
+                    <span class="w-full h-[3px] bg-text-dark rounded transition duration-300"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile Navigation -->
+    <div class="fixed top-[71px] left-0 w-full h-[calc(100vh-71px)] bg-white z-50 p-8 flex-col hidden transform translate-x-full transition-transform duration-300 ease-in-out" id="mobile-nav">
+        <div class="flex flex-col gap-6 mb-8">
+            <a href="#about-section" class="text-text-dark text-xl font-semibold no-underline">O DawnoTemu</a>
+            <a href="#benefits" class="text-text-dark text-xl font-semibold no-underline">Korzyści</a>
+            <a href="#how-it-works" class="text-text-dark text-xl font-semibold no-underline">Jak to działa</a>
+            <a href="#features" class="text-text-dark text-xl font-semibold no-underline">Funkcje</a>
+            <a href="#testimonials" class="text-text-dark text-xl font-semibold no-underline">Opinie</a>
+            <a href="#research" class="text-text-dark text-xl font-semibold no-underline">Badania</a>
+            <a href="#faq" class="text-text-dark text-xl font-semibold no-underline">FAQ</a>
+        </div>
+        <a href="#waitlist" class="bg-peach text-white py-3.5 px-7 rounded-full font-semibold transition duration-300 ease-in-out border-none cursor-pointer text-base shadow-md w-full text-center">Dołącz do listy</a>
+    </div>
+    
+    <section id="hero" class="pt-40 pb-24 relative overflow-hidden">
+        <div class="absolute top-[-20%] right-[-10%] w-4/5 h-4/5 rounded-full bg-gradient-radial from-lavender/30 to-lavender/0 -z-10"></div>
+        <div class="absolute bottom-[-20%] left-[-10%] w-[70%] h-[70%] rounded-full bg-gradient-radial from-mint/25 to-mint/0 -z-10"></div>
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row items-center gap-16">
+                <div class="flex-1">
+                    <div class="inline-flex items-center px-4 py-2 bg-lavender/15 text-lavender-dark rounded-full text-sm font-semibold mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 mr-2">
+                            <path d="M15.98 1.804a1 1 0 00-1.96 0l-.24 1.192a1 1 0 01-.784.785l-1.192.238a1 1 0 000 1.962l1.192.238a1 1 0 01.785.785l.238 1.192a1 1 0 001.962 0l.238-1.192a1 1 0 01.785-.785l1.192-.238a1 1 0 000-1.962l-1.192-.238a1 1 0 01-.785-.785l-.238-1.192z" />
+                            <path d="M1.804 4.02a1 1 0 011.962 0l.238 1.192a1 1 0 00.785.785l1.192.238a1 1 0 010 1.962l-1.192.238a1 1 0 00-.785.785l-.238 1.192a1 1 0 01-1.962 0l-.238-1.192a1 1 0 00-.785-.785L.83 9.192a1 1 0 010-1.962l1.192-.238a1 1 0 00.785-.785L3.02 5.02a1 1 0 011.962 0l.238 1.192a1 1 0 00.785.785l1.192.238a1 1 0 010 1.962l-1.192.238a1 1 0 00-.785.785l-.238 1.192a1 1 0 01-1.962 0l-.238-1.192a1 1 0 00-.785-.785L.83 10.192a1 1 0 010-1.962l1.192-.238a1 1 0 00.785-.785L3.02 6.02a1 1 0 010-1.962l1.192-.238a1 1 0 00.785-.785L5.02 2.02a1 1 0 011.962 0l.238 1.192a1 1 0 00.785.785l1.192.238a1 1 0 010 1.962l-1.192.238a1 1 0 00-.785.785l-.238 1.192a1 1 0 01-1.962 0l-.238-1.192a1 1 0 00-.785-.785L3.02 7.192a1 1 0 010-1.962l1.192-.238a1 1 0 00.785-.785L5.02 3.02z" />
+                        </svg>
+                        Innowacja dla rodziców
+                    </div>
+                    <h2 class="text-5xl md:text-6xl leading-tight mb-6 tracking-tight font-comfortaa font-bold">Twój głos opowiada baśnie, zawsze gdy potrzebujesz</h2>
+                    <p class="text-xl text-text-medium mb-10 font-normal max-w-2xl">DawnoTemu to aplikacja, która tworzy perfekcyjną kopię Twojego głosu, aby Twoje dziecko mogło słuchać bajek opowiadanych przez Ciebie w każdej chwili - nawet gdy jesteś zajęty lub daleko.</p>
+                    
+                    <form class="relative max-w-lg mt-10" id="waitlist">
+                        <input type="email" placeholder="Twój adres e-mail" required class="w-full py-5 px-6 border border-gray-200 rounded-full text-base outline-none bg-white shadow-sm-custom transition duration-300 focus:border-lavender focus:shadow-[0_0_0_3px_rgba(212,193,236,0.2)]">
+                        <button type="submit" class="absolute right-1.5 top-1.5 bottom-1.5 bg-peach text-white px-6 rounded-full font-semibold transition duration-300 hover:bg-peach-dark hover:transform hover:-translate-y-0.5 hover:shadow-lg md:static md:mt-2 md:w-full">Dołącz do listy oczekujących</button>
+                    </form>
+                    
+                    <div class="flex justify-center md:justify-start gap-12 mt-10">
+                        <div class="text-center">
+                            <div class="text-4xl font-bold mb-2 bg-gradient-to-r from-lavender to-mint bg-clip-text text-transparent inline-block">2500+</div>
+                            <div class="text-text-medium text-base">Rodziców na liście</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold mb-2 bg-gradient-to-r from-lavender to-mint bg-clip-text text-transparent inline-block">92%</div>
+                            <div class="text-text-medium text-base">Pozytywnych opinii</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex-1 relative">
+                    <div class="relative z-10">
+                        <video class="w-full max-w-md rounded-lg-custom shadow-lg-custom mx-auto" autoplay muted playsinline loop>
+                            <source src="/videos/vid1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute w-[120px] h-[120px] bg-lavender/20 rounded-full top-[-30px] right-[20%] z-0 animate-float bubble-1"></div>
+                        <div class="absolute w-[80px] h-[80px] bg-mint/20 rounded-full bottom-[10%] left-[10%] z-0 animate-float bubble-2"></div>
+                        <div class="absolute w-[60px] h-[60px] bg-peach/20 rounded-full bottom-[30%] right-[5%] z-0 animate-float bubble-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About/Narrative Section -->
+    <section id="about-section" class="py-24 bg-gradient-to-b from-white to-bg-light relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row items-center gap-20 relative z-10">
+                <div class="flex-1">
+                    <img src="/images/img1.jpg" alt="Rodzic czytający dziecku przed snem" class="w-full max-w-lg rounded-lg-custom shadow-lg-custom mx-auto" loading="lazy">
+                </div>
+                
+                <div class="flex-1">
+                    <div class="text-8xl leading-none mb-8 text-lavender font-serif h-12 flex items-center">"</div>
+                    <h3 class="text-4xl mb-6 font-bold tracking-tight leading-tight">Wieczór, kiedy nie mogłam przeczytać bajki na dobranoc</h3>
+                    <p class="text-lg text-text-medium mb-8 leading-relaxed">
+                        Pamiętam dokładnie ten wieczór, gdy musiałam zostać dłużej w pracy. Moja córka Julia zawsze przed snem czeka na naszą <span class="relative z-10 inline-block after:content-[''] after:absolute after:bottom-[0.2em] after:left-0 after:w-full after:h-[0.3em] after:bg-peach/30 after:-z-10">wspólną bajkę</span>. To nasz rytuał, nasza chwila bliskości. 
+                    </p>
+                    <p class="text-lg text-text-medium mb-8 leading-relaxed">
+                        Gdy zadzwoniłam do domu, usłyszałam jej zapłakany głos: <em>"Mamo, kto mi dzisiaj przeczyta bajkę?"</em> Poczułam ukłucie w sercu. My, rodzice, doskonale wiemy, jak ważne są te małe rytuały. Jak budują poczucie bezpieczeństwa i spokoju naszych dzieci.
+                    </p>
+                    <p class="text-lg text-text-medium mb-8 leading-relaxed">
+                        Tego wieczoru narodził się pomysł na DawnoTemu - aplikację, która pozwala na to, by Twój głos był zawsze przy dziecku, nawet gdy Ty nie możesz. Bo <span class="relative z-10 inline-block after:content-[''] after:absolute after:bottom-[0.2em] after:left-0 after:w-full after:h-[0.3em] after:bg-peach/30 after:-z-10">żadne dziecko nie powinno zasypiać bez ukochanej bajki</span> opowiedzianej znajomym głosem.
+                    </p>
+                    
+                    <div class="flex items-center mt-8">
+                        <img src="/images/avatar1.jpg" alt="Katarzyna N." class="w-14 h-14 rounded-full object-cover mr-4 border-3 border-white shadow-sm-custom" loading="lazy">
+                        <div class="leading-tight">
+                            <strong class="block text-lg font-semibold text-text-dark">Katarzyna Nowak</strong>
+                            <span class="text-text-medium text-sm">Założycielka DawnoTemu, mama Julii</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="benefits" class="py-32 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2760%27%20height%3D%2760%27%20viewBox%3D%270%200%2060%2060%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cg%20fill%3D%27none%27%20fill-rule%3D%27evenodd%27%3E%3Cg%20fill%3D%27%23D4C1EC%27%20fill-opacity%3D%270.05%27%3E%3Cpath%20d%3D%27M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%27%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-50"></div>
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="text-center mb-20 relative z-10">
+                <h3 class="text-4xl mb-4 tracking-tight font-comfortaa font-bold">Dlaczego rodzice pokochają DawnoTemu</h3>
+                <p class="text-text-medium max-w-2xl mx-auto text-lg">Odkryj, jak nasza aplikacja rozwiązuje codzienne wyzwania związane z wieczornym czytaniem bajek</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+                <div class="bg-bg-light rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full items-start border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="text-4xl mb-6 relative z-10 after:content-[''] after:absolute after:w-12 after:h-12 after:bg-lavender/15 after:rounded-full after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:-z-10">👔</div>
+                    <h4 class="text-xl mb-4 font-bold tracking-tight">Gdy nie możesz być przy dziecku</h4>
+                    <p class="text-text-medium">Pracujesz do późna? Wyjeżdżasz służbowo? Twój głos zawsze będzie przy dziecku o porze snu, zapewniając poczucie bezpieczeństwa i rutynę.</p>
+                </div>
+                
+                <div class="bg-bg-light rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full items-start border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="text-4xl mb-6 relative z-10 after:content-[''] after:absolute after:w-12 after:h-12 after:bg-lavender/15 after:rounded-full after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:-z-10">😴</div>
+                    <h4 class="text-xl mb-4 font-bold tracking-tight">Gdy jesteś zmęczony</h4>
+                    <p class="text-text-medium">Po ciężkim dniu trudno czytać z energią. Teraz możesz odpocząć, podczas gdy Twój głos opowiada bajkę z entuzjazmem i ekspresją.</p>
+                </div>
+                
+                <div class="bg-bg-light rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full items-start border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="text-4xl mb-6 relative z-10 after:content-[''] after:absolute after:w-12 after:h-12 after:bg-lavender/15 after:rounded-full after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:-z-10">💡</div>
+                    <h4 class="text-xl mb-4 font-bold tracking-tight">Rozwój języka i wyobraźni</h4>
+                    <p class="text-text-medium">Regularne słuchanie bajek wspiera rozwój słownictwa i kreatywnego myślenia Twojego dziecka, co potwierdzają badania psychologiczne.</p>
+                </div>
+                
+                <div class="bg-bg-light rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full items-start border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="text-4xl mb-6 relative z-10 after:content-[''] after:absolute after:w-12 after:h-12 after:bg-lavender/15 after:rounded-full after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:-z-10">🔄</div>
+                    <h4 class="text-xl mb-4 font-bold tracking-tight">Zawsze nowe historie</h4>
+                    <p class="text-text-medium">Bogata biblioteka klasycznych polskich baśni i nowoczesnych opowieści edukacyjnych - nigdy nie zabraknie Ci pomysłów na nową historię.</p>
+                </div>
+                
+                <div class="bg-bg-light rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full items-start border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="text-4xl mb-6 relative z-10 after:content-[''] after:absolute after:w-12 after:h-12 after:bg-lavender/15 after:rounded-full after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:-z-10">🌙</div>
+                    <h4 class="text-xl mb-4 font-bold tracking-tight">Spokojniejszy sen</h4>
+                    <p class="text-text-medium">Znajomy głos rodzica uspokaja dziecko i pomaga mu zasnąć szybciej i spokojniej, redukując stres i budując poczucie bezpieczeństwa.</p>
+                </div>
+                
+                <div class="bg-bg-light rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full items-start border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="text-4xl mb-6 relative z-10 after:content-[''] after:absolute after:w-12 after:h-12 after:bg-lavender/15 after:rounded-full after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:-z-10">📱</div>
+                    <h4 class="text-xl mb-4 font-bold tracking-tight">Bez ekranu przed snem</h4>
+                    <p class="text-text-medium">Tylko dźwięk - bez szkodliwego niebieskiego światła, które zaburza rytm snu. Idealne rozwiązanie na dobry, zdrowy sen Twojego dziecka.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="app-preview" class="pt-24 text-center relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="inline-block relative">
+                <img src="/images/img3.jpg" alt="Aplikacja DawnoTemu w akcji" class="w-full rounded-lg-custom shadow-lg-custom relative z-10 after:content-[''] after:absolute after:bottom-[-20px] after:left-[5%] after:w-[90%] after:h-[30px] after:bg-text-dark/10 after:blur-xl after:rounded-full after:z-0" loading="lazy">
+            </div>
+        </div>
+    </section>
+    
+    <section id="how-it-works" class="py-32 pt-12 bg-bg-light relative">
+        <div class="max-w-3xl mx-auto px-8">
+            <div class="text-center mb-20">
+                <h3 class="text-4xl mb-4 tracking-tight font-comfortaa font-bold">Jak to działa?</h3>
+                <p class="text-text-medium text-lg">Prosto i magicznie - stwórz swój cyfrowy głos w kilka minut</p>
+            </div>
+            
+            <div class="relative z-10">
+                <div class="flex flex-col md:flex-row mb-20 relative">
+                    <div class="relative bg-gradient-to-r from-lavender to-mint text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold flex-shrink-0 md:mr-8 mx-auto md:mx-0 mb-6 md:mb-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">1</div>
+                    <div class="absolute top-16 left-8 w-0.5 h-[calc(100%-2rem)] bg-lavender/30 -z-10 hidden md:block"></div>
+                    <div class="md:pt-2 text-center md:text-left">
+                        <h4 class="text-2xl mb-4 font-bold tracking-tight">Nagraj próbkę swojego głosu</h4>
+                        <p class="text-text-medium text-lg max-w-2xl">Wystarczy, że przeczytasz krótki fragment tekstu. To zajmie około 30 sekund! Nasza zaawansowana technologia AI analizuje charakterystykę Twojego głosu, aby stworzyć jego cyfrowy klon.</p>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col md:flex-row mb-20 relative">
+                    <div class="relative bg-gradient-to-r from-lavender to-mint text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold flex-shrink-0 md:mr-8 mx-auto md:mx-0 mb-6 md:mb-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">2</div>
+                    <div class="absolute top-16 left-8 w-0.5 h-[calc(100%-2rem)] bg-lavender/30 -z-10 hidden md:block"></div>
+                    <div class="md:pt-2 text-center md:text-left">
+                        <h4 class="text-2xl mb-4 font-bold tracking-tight">Wybierz bajkę z biblioteki</h4>
+                        <p class="text-text-medium text-lg max-w-2xl">Znajdziesz klasyczne polskie baśnie, popularne opowieści i edukacyjne historie. Możesz też stworzyć własną bajkę, wpisując temat lub imię dziecka - nasza AI wygeneruje spersonalizowaną opowieść.</p>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col md:flex-row relative">
+                    <div class="relative bg-gradient-to-r from-lavender to-mint text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold flex-shrink-0 md:mr-8 mx-auto md:mx-0 mb-6 md:mb-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">3</div>
+                    <div class="md:pt-2 text-center md:text-left">
+                        <h4 class="text-2xl mb-4 font-bold tracking-tight">Słuchaj bajki swoim głosem</h4>
+                        <p class="text-text-medium text-lg max-w-2xl">Twoje dziecko usłyszy bajkę opowiadaną Twoim głosem - idealnie na czas snu lub podróży. Możesz słuchać razem z dzieckiem lub włączyć aplikację, gdy nie możesz być obecny. Aplikacja działa offline, więc jest idealna w każdej sytuacji.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section id="features" class="py-32 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2760%27%20height%3D%2760%27%20viewBox%3D%270%200%2060%2060%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cg%20fill%3D%27none%27%20fill-rule%3D%27evenodd%27%3E%3Cg%20fill%3D%27%23D4C1EC%27%20fill-opacity%3D%270.05%27%3E%3Cpath%20d%3D%27M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%27%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-50"></div>
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="text-center mb-20 relative z-10">
+                <h3 class="text-4xl mb-4 tracking-tight font-comfortaa font-bold">Funkcje, które pokochasz</h3>
+                <p class="text-text-medium max-w-2xl mx-auto text-lg">DawnoTemu to więcej niż tylko bajki - to kompletne rozwiązanie dla współczesnych rodziców</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                <div class="flex items-start gap-6 p-8 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="w-14 h-14 flex items-center justify-center bg-gradient-to-r from-lavender to-mint rounded-md-custom text-white text-2xl flex-shrink-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-3 tracking-tight">Doskonałe klonowanie głosu</h4>
+                        <p class="text-text-medium leading-relaxed">Zaawansowana technologia AI perfekcyjnie odwzorowuje barwę, akcent i sposób mówienia. Twoje dziecko nie zauważy różnicy - usłyszy bajkę dokładnie Twoim głosem.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-6 p-8 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="w-14 h-14 flex items-center justify-center bg-gradient-to-r from-lavender to-mint rounded-md-custom text-white text-2xl flex-shrink-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-3 tracking-tight">Biblioteka polskich bajek</h4>
+                        <p class="text-text-medium leading-relaxed">Bogata kolekcja klasycznych polskich bajek i baśni, dostosowanych do różnych grup wiekowych. Od Smoka Wawelskiego po współczesne opowieści edukacyjne.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-6 p-8 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="w-14 h-14 flex items-center justify-center bg-gradient-to-r from-lavender to-mint rounded-md-custom text-white text-2xl flex-shrink-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-3 tracking-tight">Generator spersonalizowanych historii</h4>
+                        <p class="text-text-medium leading-relaxed">Utwórz własną, unikalną bajkę dopasowaną do zainteresowań Twojego dziecka. Wystarczy, że wpiszesz imię dziecka i temat - AI stworzy wciągającą opowieść.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-6 p-8 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="w-14 h-14 flex items-center justify-center bg-gradient-to-r from-lavender to-mint rounded-md-custom text-white text-2xl flex-shrink-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">
+                        <i class="fas fa-volume-up"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-3 tracking-tight">Efekty dźwiękowe i muzyka</h4>
+                        <p class="text-text-medium leading-relaxed">Delikatna muzyka w tle i subtelne efekty dźwiękowe wzbogacają opowieść, tworząc magiczny klimat bez rozpraszania uwagi dziecka.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-6 p-8 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="w-14 h-14 flex items-center justify-center bg-gradient-to-r from-lavender to-mint rounded-md-custom text-white text-2xl flex-shrink-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-3 tracking-tight">Timer usypiania</h4>
+                        <p class="text-text-medium leading-relaxed">Ustaw automatyczne wyciszanie po zakończeniu bajki lub po określonym czasie. Aplikacja sama się wyłączy, gdy dziecko zaśnie.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-6 p-8 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                    <div class="w-14 h-14 flex items-center justify-center bg-gradient-to-r from-lavender to-mint rounded-md-custom text-white text-2xl flex-shrink-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-3 tracking-tight">Tryb offline</h4>
+                        <p class="text-text-medium leading-relaxed">Pobierz bajki na urządzenie i słuchaj ich bez dostępu do internetu. Idealne rozwiązanie w podróży lub miejscach z słabym zasięgiem.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="relative flex justify-center items-center mt-20">
+                <img src="/images/img4.png" alt="Interfejs aplikacji DawnoTemu" class="max-w-full relative z-10" loading="lazy">
+                <div class="absolute w-[70px] h-[70px] rounded-full bg-peach/25 flex items-center justify-center text-xl font-semibold text-peach-dark shadow-[0_8px_16px_rgba(255,181,167,0.2)] z-20 top-[15%] left-[20%] animate-pulse-custom highlight-1">1</div>
+                <div class="absolute w-[70px] h-[70px] rounded-full bg-peach/25 flex items-center justify-center text-xl font-semibold text-peach-dark shadow-[0_8px_16px_rgba(255,181,167,0.2)] z-20 bottom-[25%] right-[15%] animate-pulse-custom highlight-2">2</div>
+                <div class="absolute w-[70px] h-[70px] rounded-full bg-peach/25 flex items-center justify-center text-xl font-semibold text-peach-dark shadow-[0_8px_16px_rgba(255,181,167,0.2)] z-20 top-[60%] left-[10%] animate-pulse-custom highlight-3">3</div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="testimonials" class="py-32 bg-bg-light relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2760%27%20height%3D%2760%27%20viewBox%3D%270%200%2060%2060%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cg%20fill%3D%27none%27%20fill-rule%3D%27evenodd%27%3E%3Cg%20fill%3D%27%23D4C1EC%27%20fill-opacity%3D%270.05%27%3E%3Cpath%20d%3D%27M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%27%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-50"></div>
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="text-center mb-20 relative z-10">
+                <h3 class="text-4xl mb-4 tracking-tight font-comfortaa font-bold">Co mówią rodzice?</h3>
+                <p class="text-text-medium max-w-2xl mx-auto text-lg">Doświadczenia pierwszych testerów aplikacji DawnoTemu</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+                <div class="bg-white rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-mint/30">
+                    <div class="text-lg leading-relaxed mb-8 relative pt-8 italic before:content-['\"'] before:absolute before:top-[-1rem] before:left-[-0.5rem] before:text-8xl before:text-lavender/20 before:font-serif before:leading-none">
+                        Kiedy muszę pracować do późna, moja córka nadal zasypia słuchając bajki czytanej moim głosem. To niesamowite, jak technologia może pomóc w utrzymaniu naszej więzi mimo napięć czasowych.
+                    </div>
+                    <div class="flex items-center">
+                        <img src="/images/avatar2.jpg" alt="Anna K." class="w-14 h-14 rounded-full object-cover mr-4 border-3 border-white shadow-sm-custom" loading="lazy">
+                        <div class="leading-tight">
+                            <strong class="block text-lg font-semibold text-text-dark">Anna K.</strong>
+                            <span class="text-text-medium text-sm">Mama 5-latki, Kraków</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-mint/30">
+                    <div class="text-lg leading-relaxed mb-8 relative pt-8 italic before:content-['\"'] before:absolute before:top-[-1rem] before:left-[-0.5rem] before:text-8xl before:text-lavender/20 before:font-serif before:leading-none">
+                        Jako tata, który często wyjeżdża służbowo, czułem się winny, że nie czytam dzieciom na dobranoc. Teraz, dzięki DawnoTemu, moje dzieci słyszą mój głos każdego wieczoru. To zrewolucjonizowało nasz wieczorny rytuał.
+                    </div>
+                    <div class="flex items-center">
+                        <img src="/images/avatar3.jpg" alt="Tomek S." class="w-14 h-14 rounded-full object-cover mr-4 border-3 border-white shadow-sm-custom" loading="lazy">
+                        <div class="leading-tight">
+                            <strong class="block text-lg font-semibold text-text-dark">Tomek S.</strong>
+                            <span class="text-text-medium text-sm">Tata dwójki dzieci, Gdańsk</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-mint/30">
+                    <div class="text-lg leading-relaxed mb-8 relative pt-8 italic before:content-['\"'] before:absolute before:top-[-1rem] before:left-[-0.5rem] before:text-8xl before:text-lavender/20 before:font-serif before:leading-none">
+                        Czasami po długim dniu z trójką dzieci brakuje mi energii na ekspresyjne czytanie. DawnoTemu pozwala mi odpocząć, a jednocześnie dziecko słyszy moją wersję ulubionej bajki. To jak mieć supermoc bycia w dwóch miejscach naraz.
+                    </div>
+                    <div class="flex items-center">
+                        <img src="/images/avatar4.jpg" alt="Marta W." class="w-14 h-14 rounded-full object-cover mr-4 border-3 border-white shadow-sm-custom" loading="lazy">
+                        <div class="leading-tight">
+                            <strong class="block text-lg font-semibold text-text-dark">Marta W.</strong>
+                            <span class="text-text-medium text-sm">Mama trojaczków, Wrocław</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="research" class="py-32 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2760%27%20height%3D%2760%27%20viewBox%3D%270%200%2060%2060%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cg%20fill%3D%27none%27%20fill-rule%3D%27evenodd%27%3E%3Cg%20fill%3D%27%23D4C1EC%27%20fill-opacity%3D%270.05%27%3E%3Cpath%20d%3D%27M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%27%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-50"></div>
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="text-center mb-20 relative z-10">
+                <h3 class="text-4xl mb-4 tracking-tight font-comfortaa font-bold">Głos rodzica – fundament rozwoju dziecka</h3>
+                <p class="text-text-medium max-w-2xl mx-auto text-lg">Odkryj, dlaczego głos rodzica jest kluczowy dla rozwoju języka i emocji Twojego dziecka</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center gap-20 relative z-10">
+                <div class="flex-1">
+                    <img src="/images/img5.png" alt="Dr Joanna Kowalska, psycholog dziecięcy" class="w-full max-w-lg mx-auto" loading="lazy">
+                </div>
+                
+                <div class="flex-1">
+                    <div class="text-8xl leading-none mb-8 text-lavender font-serif h-12 flex items-center">"</div>
+                    <p class="text-lg text-text-medium mb-8 leading-relaxed">
+                        Głos rodzica to <span class="relative z-10 inline-block after:content-[''] after:absolute after:bottom-[0.2em] after:left-0 after:w-full after:h-[0.3em] after:bg-peach/30 after:-z-10">pierwszy i najważniejszy instrument</span>, który kształtuje rozwój mózgu dziecka. Badania neuroobrazowe jednoznacznie wykazują, że głos matki aktywuje znacznie więcej obszarów mózgu dziecka niż głosy innych osób - nie tylko rejony odpowiedzialne za przetwarzanie dźwięków, ale również struktury związane z emocjami i tworzeniem więzi.
+                    </p>
+                    <p class="text-lg text-text-medium mb-8 leading-relaxed">
+                        Nawet gdy rodzice nie mogą być fizycznie obecni, ich głos nadal stanowi kotwicę emocjonalną i źródło poczucia bezpieczeństwa dla dziecka. Dlatego aplikacja, która wiernie odtwarza głos rodzica, może być cennym narzędziem wspierającym rozwój poznawczy i emocjonalny dziecka w czasach, gdy trudno o stałą obecność.
+                    </p>
+                    
+                    <div class="flex items-center mt-8">
+                        <img src="/images/avatar5.jpg" alt="Dr Joanna Kowalska" class="w-14 h-14 rounded-full object-cover mr-4 border-3 border-white shadow-sm-custom" loading="lazy">
+                        <div class="leading-tight">
+                            <strong class="block text-lg font-semibold text-text-dark">Dr Joanna Kowalska</strong>
+                            <span class="text-text-medium text-sm">Psycholog dziecięcy, wykładowca UAM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-20">
+                <h4 class="text-2xl text-center mb-10 text-text-dark font-bold">Jak głos rodzica kształtuje rozwój dziecka</h4>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-bg-light rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full items-start border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                        <div class="text-4xl mb-6 relative z-10 after:content-[''] after:absolute after:w-12 after:h-12 after:bg-lavender/15 after:rounded-full after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:-z-10">🧠</div>
+                        <h4 class="text-xl mb-4 font-bold tracking-tight">Aktywacja obszarów mózgu</h4>
+                        <p class="text-text-medium">Badania uniwersytetu Stanford wykazują, że głos matki aktywuje znacznie więcej obszarów mózgu dziecka, w tym rejony odpowiedzialne za emocje i funkcje społeczne.</p>
+                        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4610950/" class="inline-flex items-center mt-4 text-lavender-dark font-semibold text-sm transition duration-300 hover:text-peach" target="_blank">Czytaj więcej <i class="fas fa-external-link-alt text-xs ml-1"></i></a>
+                    </div>
+                    
+                    <div class="bg-bg-light rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full items-start border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                        <div class="text-4xl mb-6 relative z-10 after:content-[''] after:absolute after:w-12 after:h-12 after:bg-lavender/15 after:rounded-full after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:-z-10">👶</div>
+                        <h4 class="text-xl mb-4 font-bold tracking-tight">Wrodzona preferencja głosu</h4>
+                        <p class="text-text-medium">Noworodki już od pierwszych chwil życia wykazują wyraźną preferencję do głosu swojej matki, co jest ewolucyjnie zaprogramowanym mechanizmem wspierającym tworzenie więzi.</p>
+                        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4222191/" class="inline-flex items-center mt-4 text-lavender-dark font-semibold text-sm transition duration-300 hover:text-peach" target="_blank">Czytaj więcej <i class="fas fa-external-link-alt text-xs ml-1"></i></a>
+                    </div>
+            
+                    <div class="bg-bg-light rounded-md-custom p-10 relative transition duration-300 flex flex-col justify-between h-full items-start border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                        <div class="text-4xl mb-6 relative z-10 after:content-[''] after:absolute after:w-12 after:h-12 after:bg-lavender/15 after:rounded-full after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:-z-10">❤️</div>
+                        <h4 class="text-xl mb-4 font-bold tracking-tight">Emocjonalne aspekty kontaktu wokalnego</h4>
+                        <p class="text-text-medium">Wczesny kontakt wokalny z rodzicami oferuje odżywcze środowisko dla rozwoju dziecka i promuje bezpośrednią interakcję wokalną, umożliwiającą wymianę sygnałów emocjonalnych.</p>
+                        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11473331/" class="inline-flex items-center mt-4 text-lavender-dark font-semibold text-sm transition duration-300 hover:text-peach" target="_blank">Czytaj więcej <i class="fas fa-external-link-alt text-xs ml-1"></i></a>
+                    </div>
+                </div>
+                
+                <div class="bg-peach text-white p-6 rounded-md-custom mt-12 text-center text-base max-w-4xl mx-auto">
+                    <p>Aplikacja Dawno Temu została zaprojektowana jako uzupełnienie, a nie zastępstwo bezpośredniej interakcji z rodzicami. Zalecamy, aby regularnie rozmawiać z dzieckiem o wysłuchanych bajkach.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="final-cta" class="py-32 text-center bg-gradient-to-r from-lavender to-mint text-white relative overflow-hidden">
+        <div class="absolute bottom-0 left-0 w-full h-[10%] bg-[url('data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%201200%20120%27%20preserveAspectRatio=%27none%27%3E%3Cpath%20d=%27M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z%27%20opacity=%27.1%27%20fill=%27%23FFFFFF%27%3E%3C/path%3E%3C/svg%3E')] bg-cover z-0"></div>
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="relative z-10">
+                <h3 class="text-4xl mb-6 font-bold tracking-tight font-comfortaa">Dołącz do rodzin, które już odkryły magię DawnoTemu</h3>
+                <p class="max-w-2xl mx-auto mb-12 text-xl opacity-90">Zapisz się na listę oczekujących i otrzymuj wyjątkowe porady dotyczące wychowania i rozwoju dziecka w naszym newsletterze.</p>
+                
+                <form class="max-w-md mx-auto relative">
+                    <input type="email" placeholder="Twój adres e-mail" required class="w-full py-5 px-6 border-none rounded-full text-base outline-none bg-white shadow-[0_4px_14px_rgba(0,0,0,0.1)] text-text-dark">
+                    <button type="submit" class="absolute right-1.5 top-1.5 bottom-1.5 bg-peach px-6 rounded-full font-semibold transition duration-300 hover:bg-peach-dark shadow-[0_4px_14px_rgba(255,181,167,0.5)] md:static md:mt-2 md:w-full">Zapisz się teraz</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <section id="faq" class="py-32 bg-bg-light relative">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="text-center mb-20">
+                <h3 class="text-4xl mb-4 tracking-tight font-comfortaa font-bold">Najczęściej zadawane pytania</h3>
+                <p class="text-text-medium max-w-2xl mx-auto text-lg">Wszystko, co chcesz wiedzieć o aplikacji DawnoTemu</p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto relative z-10">
+                <div class="mb-6 bg-white rounded-md-custom overflow-hidden transition duration-300 border border-gray-200/50 hover:shadow-sm-custom faq-item">
+                    <div class="py-6 px-8 font-semibold text-lg flex justify-between items-center cursor-pointer select-none text-text-dark faq-question">
+                        Czy to naprawdę będzie brzmiało jak mój głos?
+                        <span class="text-2xl text-lavender transition duration-300">+</span>
+                    </div>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 faq-answer">
+                        <p class="text-text-medium leading-relaxed px-8 pb-6">Tak! Używamy zaawansowanej technologii AI do klonowania Twojego głosu. Większość dzieci nie zauważa różnicy - dla nich to po prostu głos mamy czy taty opowiadający bajkę. Nasza technologia zapewnia naturalne brzmienie, intonację i ekspresję charakterystyczną dla Twojego głosu.</p>
+                    </div>
+                </div>
+                
+                <div class="mb-6 bg-white rounded-md-custom overflow-hidden transition duration-300 border border-gray-200/50 hover:shadow-sm-custom faq-item">
+                    <div class="py-6 px-8 font-semibold text-lg flex justify-between items-center cursor-pointer select-none text-text-dark faq-question">
+                        Czy moje nagranie głosu jest bezpieczne?
+                        <span class="text-2xl text-lavender transition duration-300">+</span>
+                    </div>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 faq-answer">
+                        <p class="text-text-medium leading-relaxed px-8 pb-6">Bezpieczeństwo Twoich danych jest naszym priorytetem. Twój model głosu jest przechowywany w zaszyfrowanej formie i używany wyłącznie do generowania bajek w aplikacji. Nigdy nie udostępniamy Twoich nagrań osobom trzecim, a Twoje dane są chronione zgodnie z najwyższymi standardami bezpieczeństwa i RODO.</p>
+                    </div>
+                </div>
+                
+                <div class="mb-6 bg-white rounded-md-custom overflow-hidden transition duration-300 border border-gray-200/50 hover:shadow-sm-custom faq-item">
+                    <div class="py-6 px-8 font-semibold text-lg flex justify-between items-center cursor-pointer select-none text-text-dark faq-question">
+                        Ile czasu zajmuje nagranie próbki głosu?
+                        <span class="text-2xl text-lavender transition duration-300">+</span>
+                    </div>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 faq-answer">
+                        <p class="text-text-medium leading-relaxed px-8 pb-6">Wystarczy około 3 minuty czytania przygotowanego tekstu. To jednorazowy proces - potem możesz korzystać z aplikacji bez ograniczeń. Nagranie możesz wykonać w dowolnym, spokojnym miejscu, używając smartfona. Nasz system poprowadzi Cię przez cały proces krok po kroku.</p>
+                    </div>
+                </div>
+                
+                <div class="mb-6 bg-white rounded-md-custom overflow-hidden transition duration-300 border border-gray-200/50 hover:shadow-sm-custom faq-item">
+                    <div class="py-6 px-8 font-semibold text-lg flex justify-between items-center cursor-pointer select-none text-text-dark faq-question">
+                        Jakie bajki są dostępne w aplikacji?
+                        <span class="text-2xl text-lavender transition duration-300">+</span>
+                    </div>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 faq-answer">
+                        <p class="text-text-medium leading-relaxed px-8 pb-6">Nasza biblioteka zawiera klasyczne polskie baśnie (np. o Smoku Wawelskim, Panu Twardowskim), popularne bajki z całego świata oraz nowoczesne opowiadania o tematyce edukacyjnej. Regularnie dodajemy nowe treści. Możesz też skorzystać z generatora bajek, aby stworzyć unikalną historię dostosowaną do zainteresowań Twojego dziecka.</p>
+                    </div>
+                </div>
+                
+                <div class="mb-6 bg-white rounded-md-custom overflow-hidden transition duration-300 border border-gray-200/50 hover:shadow-sm-custom faq-item">
+                    <div class="py-6 px-8 font-semibold text-lg flex justify-between items-center cursor-pointer select-none text-text-dark faq-question">
+                        Czy mogę używać aplikacji bez internetu?
+                        <span class="text-2xl text-lavender transition duration-300">+</span>
+                    </div>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 faq-answer">
+                        <p class="text-text-medium leading-relaxed px-8 pb-6">Tak, możesz pobrać bajki na urządzenie i odtwarzać je offline - idealne rozwiązanie na podróże czy miejsca z słabym zasięgiem. Generowanie nowych bajek wymaga połączenia z internetem, ale wszystkie pobrane historie są dostępne w trybie offline.</p>
+                    </div>
+                </div>
+                
+                <div class="mb-6 bg-white rounded-md-custom overflow-hidden transition duration-300 border border-gray-200/50 hover:shadow-sm-custom faq-item">
+                    <div class="py-6 px-8 font-semibold text-lg flex justify-between items-center cursor-pointer select-none text-text-dark faq-question">
+                        Czy aplikacja zastępuje czytanie przez rodzica?
+                        <span class="text-2xl text-lavender transition duration-300">+</span>
+                    </div>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 faq-answer">
+                        <p class="text-text-medium leading-relaxed px-8 pb-6">Absolutnie nie! DawnoTemu to narzędzie, które wspiera rodziców, gdy nie mogą być obecni lub potrzebują odpoczynku. Zachęcamy do regularnego, osobistego czytania dzieciom, gdy tylko jest to możliwe - nic nie zastąpi prawdziwej interakcji rodzic-dziecko. Nasza aplikacja jest pomostem, gdy tradycyjne czytanie jest niemożliwe.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="bg-text-dark text-white pt-20 pb-8 relative">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div class="flex flex-col">
+                    <div class="flex items-center mb-6">
+                        <img src="/logo.png" alt="DawnoTemu Logo" class="h-10 mr-3" loading="lazy">
+                        <h3 class="text-2xl text-white font-comfortaa">DawnoTemu</h3>
+                    </div>
+                    <p class="text-white/70 text-sm mb-6">
+                        Innowacyjna aplikacja, która pomaga rodzicom utrzymać magię wieczornych bajek, nawet gdy życie staje się zbyt intensywne.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition duration-300 hover:bg-peach hover:transform hover:-translate-y-1">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition duration-300 hover:bg-peach hover:transform hover:-translate-y-1">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition duration-300 hover:bg-peach hover:transform hover:-translate-y-1">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition duration-300 hover:bg-peach hover:transform hover:-translate-y-1">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h5 class="text-xl mb-6 font-semibold">Aplikacja</h5>
+                    <ul class="list-none">
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Funkcje</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Jak to działa</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Biblioteka bajek</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Wsparcie</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="text-xl mb-6 font-semibold">Firma</h5>
+                    <ul class="list-none">
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">O nas</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Blog</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Kariera</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Kontakt</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="text-xl mb-6 font-semibold">Informacje</h5>
+                    <ul class="list-none">
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Prywatność</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Warunki</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Bezpieczeństwo</a></li>
+                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 text-white/50 text-sm">
+                <div class="flex items-center">
+                    <img src="/logo.png" alt="DawnoTemu Logo" class="h-5 mr-2" loading="lazy">
+                    © 2025 DawnoTemu. Wszelkie prawa zastrzeżone.
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 mt-4 md:mt-0">
+                    <a href="#" class="text-white/50 transition duration-300 hover:text-white">Prywatność</a>
+                    <a href="#" class="text-white/50 transition duration-300 hover:text-white">Warunki</a>
+                    <a href="#" class="text-white/50 transition duration-300 hover:text-white">Mapa strony</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentNode;
+                const isActive = item.classList.contains('active');
+                const toggleIcon = question.querySelector('span');
+                
+                // Close all others
+                document.querySelectorAll('.faq-item').forEach(faqItem => {
+                    faqItem.classList.remove('active');
+                    const answer = faqItem.querySelector('.faq-answer');
+                    answer.style.maxHeight = null;
+                    faqItem.querySelector('span').textContent = '+';
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    item.classList.add('active');
+                    const answer = item.querySelector('.faq-answer');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    toggleIcon.textContent = '−';
+                    item.classList.add('shadow-sm-custom', 'border-lavender/30');
+                }
+            });
+        });
+        
+        // Form submission
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = form.querySelector('input[type="email"]').value;
+                
+                // Display success message
+                const successMessage = document.createElement('div');
+                successMessage.className = 'bg-mint text-text-dark p-4 rounded-lg mt-4 text-sm font-medium animate-fade-in';
+                successMessage.textContent = `Dziękujemy! Na adres ${email} wyślemy informacje o dostępie do aplikacji.`;
+                
+                form.appendChild(successMessage);
+                form.reset();
+                
+                // Remove message after 5 seconds
+                setTimeout(() => {
+                    successMessage.className += ' animate-fade-out';
+                    setTimeout(() => {
+                        form.removeChild(successMessage);
+                    }, 500);
+                }, 5000);
+            });
+        });
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Append fade animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            @keyframes fadeOut {
+                from { opacity: 1; transform: translateY(0); }
+                to { opacity: 0; transform: translateY(-10px); }
+            }
+            .animate-fade-in {
+                animation: fadeIn 0.5s ease-in-out;
+            }
+            .animate-fade-out {
+                animation: fadeOut 0.5s ease-in-out;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Mobile Navigation
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        
+        mobileMenuToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileNav.classList.toggle('hidden');
+            mobileNav.classList.toggle('flex');
+            
+            // Toggle transform for slide effect
+            if (mobileNav.classList.contains('translate-x-full')) {
+                mobileNav.classList.remove('translate-x-full');
+            } else {
+                mobileNav.classList.add('translate-x-full');
+            }
+            
+            // Toggle body scroll
+            if (!mobileNav.classList.contains('hidden')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+            
+            // Animate hamburger to X
+            const spans = this.querySelectorAll('span');
+            if (this.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+            } else {
+                spans[0].style.transform = '';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = '';
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        const mobileNavLinks = mobileNav.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileNav.classList.add('hidden');
+                mobileNav.classList.remove('flex');
+                mobileNav.classList.add('translate-x-full');
+                mobileMenuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                // Reset hamburger icon
+                const spans = mobileMenuToggle.querySelectorAll('span');
+                spans[0].style.transform = '';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = '';
+            });
+        });
+        
+        // Handle resize events
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768 && !mobileNav.classList.contains('hidden')) {
+                mobileNav.classList.add('hidden');
+                mobileNav.classList.remove('flex');
+                mobileNav.classList.add('translate-x-full');
+                mobileMenuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                // Reset hamburger icon
+                const spans = mobileMenuToggle.querySelectorAll('span');
+                spans[0].style.transform = '';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = '';
+            }
+        });
+    </script>
+</body>
+</html>
