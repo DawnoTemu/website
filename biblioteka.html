@@ -411,8 +411,9 @@
         let stories = [];
 
         // API Endpoint - in production, this would be a real API endpoint
-        const apiHost = 'http://localhost:8000';
-        const apiPath = '/api/stories';
+        // const apiHost = 'http://localhost:8000'; // DEV
+        const apiHost = 'https://api.dawnotemu.app'; // PROD
+        const apiPath = '/stories';
         const apiUrl = apiHost + apiPath;
         
         // DOM Elements
