@@ -82,3 +82,96 @@
     background-color: #D4C1EC;
     color: white;
 }
+
+/* Mobile menu enhancements */
+.mobile-nav-container {
+    z-index: 40;
+    transition: transform 0.3s ease-in-out;
+}
+
+.mobile-nav-overlay {
+    transition: opacity 0.3s ease-in-out;
+    backdrop-filter: blur(4px);
+}
+
+.mobile-menu-toggle span {
+    transform-origin: center;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.active-nav {
+    color: #DA8FFF !important; /* lavender color */
+    font-weight: 600;
+}
+
+.mobile-nav-divider {
+    height: 1px;
+    background: rgba(108, 111, 147, 0.1);
+    margin: 0.75rem 0;
+}
+
+.mobile-nav-link {
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.mobile-nav-link:active {
+    transform: scale(0.98);
+}
+
+.mobile-menu-sublabel {
+    display: block;
+    font-size: 0.75rem;
+    color: rgba(108, 111, 147, 0.7);
+    margin-top: 0.25rem;
+}
+
+.mobile-nav-social {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.mobile-nav-social a {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: rgba(218, 143, 255, 0.1);
+    color: #DA8FFF;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav-social a:hover {
+    background: #DA8FFF;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Submenu transition */
+.submenu {
+    overflow: hidden;
+    transition: height 0.3s ease;
+}
+
+.submenu-toggle i {
+    transition: transform 0.3s ease;
+}
+
+/* Mobile nav footer */
+.mobile-nav-footer {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    font-size: 0.75rem;
+    color: rgba(108, 111, 147, 0.5);
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .mobile-nav-container {
+        width: 85%;
+        max-width: 360px;
+    }
+}

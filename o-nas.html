@@ -84,8 +84,8 @@
                     <a href="#waitlist" class="bg-peach text-white py-2.5 px-5 rounded-full font-semibold transition duration-300 ease-in-out border-none cursor-pointer text-sm shadow-md hover:bg-peach-dark hover:transform hover:shadow-lg">Dołącz do listy</a>
                 </div>
                 
-                <!-- Mobile menu toggle -->
-                <div class="flex flex-col justify-between w-[24px] sm:w-[30px] h-[18px] sm:h-[21px] cursor-pointer md:hidden" id="mobile-menu-toggle">
+                <!-- Mobile menu toggle button -->
+                <div class="mobile-menu-toggle flex flex-col justify-between w-[24px] sm:w-[30px] h-[18px] sm:h-[21px] cursor-pointer md:hidden" id="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
                     <span class="w-full h-[2px] sm:h-[3px] bg-text-dark rounded transition duration-300"></span>
                     <span class="w-full h-[2px] sm:h-[3px] bg-text-dark rounded transition duration-300"></span>
                     <span class="w-full h-[2px] sm:h-[3px] bg-text-dark rounded transition duration-300"></span>
@@ -94,18 +94,88 @@
         </div>
     </header>
     
+    <!-- Mobile menu overlay -->
+    <div id="mobile-nav-overlay" class="fixed inset-0 bg-text-dark/50 z-30 hidden opacity-0 transition-opacity duration-300"></div>
+
     <!-- Mobile Navigation -->
-    <div class="fixed top-[57px] sm:top-[71px] left-0 w-full h-[calc(100vh-57px)] sm:h-[calc(100vh-71px)] bg-white z-40 p-5 sm:p-8 flex-col hidden transform translate-x-full transition-transform duration-300 ease-in-out" id="mobile-nav">
-        <div class="flex flex-col gap-4 sm:gap-6 mb-6 sm:mb-8">
-            <a href="/" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">Strona główna</a>
-            <a href="/o-nas" class="text-lavender text-lg sm:text-xl font-semibold no-underline">O nas</a>
-            <a href="/biblioteka" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">Biblioteka bajek</a>
-            <a href="#team" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">Zespół</a>
-            <a href="#mission" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">Misja</a>
-            <a href="#story" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">Historia</a>
-            <a href="#tech" class="text-text-dark text-lg sm:text-xl font-semibold no-underline">Technologia</a>
+    <div class="mobile-nav-container fixed top-[57px] sm:top-[71px] right-0 h-[calc(100vh-57px)] sm:h-[calc(100vh-71px)] bg-white z-40 p-5 sm:p-8 flex-col hidden transform translate-x-full transition-transform duration-300 ease-in-out shadow-xl" id="mobile-nav">
+        <div class="flex flex-col h-full overflow-y-auto">
+            <!-- Branding in mobile menu -->
+            <div class="flex items-center mb-6 sm:mb-8">
+                <img src="/logo.png" alt="DawnoTemu Logo" class="h-8 mr-2" loading="lazy">
+            </div>
+            
+            <!-- Navigation Links -->
+            <nav class="flex flex-col gap-4 sm:gap-5">
+                <a href="/" id="nav-home" class="mobile-nav-link nav-link text-text-dark text-lg font-medium py-1 flex items-center">
+                    <span class="mr-3 w-5 text-center opacity-70"><i class="fas fa-home"></i></span>
+                    Strona główna
+                </a>
+                
+                <a href="/o-nas" id="nav-about" class="mobile-nav-link nav-link text-text-dark text-lg font-medium py-1 flex items-center">
+                    <span class="mr-3 w-5 text-center opacity-70"><i class="fas fa-info-circle"></i></span>
+                    O nas
+                </a>
+                
+                <a href="/biblioteka" id="nav-library" class="mobile-nav-link nav-link text-text-dark text-lg font-medium py-1 flex items-center">
+                    <span class="mr-3 w-5 text-center opacity-70"><i class="fas fa-book"></i></span>
+                    Biblioteka bajek
+                </a>
+                
+                <a href="/kontakt" id="nav-contact" class="mobile-nav-link nav-link text-text-dark text-lg font-medium py-1 flex items-center">
+                    <span class="mr-3 w-5 text-center opacity-70"><i class="fas fa-envelope"></i></span>
+                    Kontakt
+                </a>
+                
+                <!-- Divider -->
+                <div class="mobile-nav-divider"></div>
+                
+                <!-- Secondary Navigation (Home page sections) -->
+                <button class="mobile-nav-link text-text-dark text-lg font-medium py-1 flex items-center justify-between submenu-toggle" aria-expanded="false">
+                    <div class="flex items-center">
+                        <span class="mr-3 w-5 text-center opacity-70"><i class="fas fa-star"></i></span>
+                        Odkryj więcej
+                    </div>
+                    <i class="fas fa-chevron-down text-xs text-text-medium transition-transform"></i>
+                </button>
+                
+                <div class="submenu hidden pl-8 pt-2 space-y-3">
+                    <a href="/#about-section" class="mobile-nav-link text-text-medium text-base py-1 block">O DawnoTemu</a>
+                    <a href="/#benefits" class="mobile-nav-link text-text-medium text-base py-1 block">Korzyści</a>
+                    <a href="/#how-it-works" class="mobile-nav-link text-text-medium text-base py-1 block">Jak to działa</a>
+                    <a href="/#features" class="mobile-nav-link text-text-medium text-base py-1 block">Funkcje</a>
+                    <a href="/#testimonials" class="mobile-nav-link text-text-medium text-base py-1 block">Opinie</a>
+                    <a href="/#research" class="mobile-nav-link text-text-medium text-base py-1 block">Badania</a>
+                    <a href="/#faq" class="mobile-nav-link text-text-medium text-base py-1 block">FAQ</a>
+                </div>
+            </nav>
+            
+            <!-- Mobile menu call to action -->
+            <a href="#waitlist" class="mt-8 bg-peach text-white py-3 sm:py-4 px-6 rounded-full font-semibold transition duration-300 ease-in-out border-none cursor-pointer text-base sm:text-base shadow-md text-center hover:bg-peach-dark">
+                Dołącz do listy
+            </a>
+            
+            <!-- Social links in mobile menu -->
+            <div class="mobile-nav-social">
+                <a href="#" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+            
+            <!-- Mobile menu footer -->
+            <div class="mobile-nav-footer">
+                © 2025 DawnoTemu. Wszelkie prawa zastrzeżone.
+            </div>
         </div>
-        <a href="#waitlist" class="bg-peach text-white py-3 sm:py-3.5 px-6 sm:px-7 rounded-full font-semibold transition duration-300 ease-in-out border-none cursor-pointer text-sm sm:text-base shadow-md w-full text-center">Dołącz do listy</a>
     </div>
     
     <!-- Hero Section -->

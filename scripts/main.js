@@ -2,75 +2,153 @@
 function initMobileNav() {
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const mobileNav = document.getElementById('mobile-nav');
+    const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
     
     if (!mobileMenuToggle || !mobileNav) return;
     
-    mobileMenuToggle.addEventListener('click', function() {
-        this.classList.toggle('active');
-        mobileNav.classList.toggle('hidden');
-        mobileNav.classList.toggle('flex');
+    // Toggle mobile menu function
+    function toggleMobileMenu(show) {
+        const spans = mobileMenuToggle.querySelectorAll('span');
         
-        // Toggle transform for slide effect
-        if (mobileNav.classList.contains('translate-x-full')) {
-            mobileNav.classList.remove('translate-x-full');
-        } else {
-            mobileNav.classList.add('translate-x-full');
-        }
-        
-        // Toggle body scroll
-        if (!mobileNav.classList.contains('hidden')) {
+        if (show) {
+            // Show menu
+            mobileMenuToggle.classList.add('active');
+            mobileNav.classList.remove('hidden');
+            mobileNav.classList.add('flex');
+            
+            // Delay the transform to ensure the display change happens first
+            setTimeout(() => {
+                mobileNav.classList.remove('translate-x-full');
+            }, 10);
+            
+            // Show overlay with a slight delay for a nice effect
+            if (mobileNavOverlay) {
+                mobileNavOverlay.classList.remove('hidden', 'opacity-0');
+                setTimeout(() => {
+                    mobileNavOverlay.classList.add('opacity-100');
+                }, 50);
+            }
+            
+            // Prevent body scroll
             document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-        
-        // Animate hamburger to X
-        const spans = this.querySelectorAll('span');
-        if (this.classList.contains('active')) {
+            
+            // Animate hamburger to X
             spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
             spans[1].style.opacity = '0';
             spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
         } else {
+            // Hide menu
+            mobileMenuToggle.classList.remove('active');
+            mobileNav.classList.add('translate-x-full');
+            
+            // Hide overlay with animation
+            if (mobileNavOverlay) {
+                mobileNavOverlay.classList.remove('opacity-100');
+                mobileNavOverlay.classList.add('opacity-0');
+            }
+            
+            // Reset body scroll
+            document.body.style.overflow = '';
+            
+            // Reset hamburger icon
             spans[0].style.transform = '';
             spans[1].style.opacity = '1';
             spans[2].style.transform = '';
+            
+            // Delay the hiding to allow for animation
+            setTimeout(() => {
+                if (mobileNav.classList.contains('translate-x-full')) {
+                    mobileNav.classList.remove('flex');
+                    mobileNav.classList.add('hidden');
+                    
+                    if (mobileNavOverlay) {
+                        mobileNavOverlay.classList.add('hidden');
+                    }
+                }
+            }, 300); // Match this with the CSS transition duration
         }
+    }
+    
+    // Toggle menu on hamburger click
+    mobileMenuToggle.addEventListener('click', function() {
+        const isCurrentlyHidden = mobileNav.classList.contains('hidden') || mobileNav.classList.contains('translate-x-full');
+        toggleMobileMenu(isCurrentlyHidden);
     });
+    
+    // Close menu when overlay is clicked
+    if (mobileNavOverlay) {
+        mobileNavOverlay.addEventListener('click', () => {
+            toggleMobileMenu(false);
+        });
+    }
     
     // Close mobile menu when clicking a link
     const mobileNavLinks = mobileNav.querySelectorAll('a');
     mobileNavLinks.forEach(link => {
         link.addEventListener('click', function() {
-            mobileNav.classList.add('hidden');
-            mobileNav.classList.remove('flex');
-            mobileNav.classList.add('translate-x-full');
-            mobileMenuToggle.classList.remove('active');
-            document.body.style.overflow = '';
+            toggleMobileMenu(false);
+        });
+    });
+    
+    // Handle accordion submenus if present
+    const subMenuToggles = document.querySelectorAll('.submenu-toggle');
+    subMenuToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            const submenu = this.nextElementSibling;
+            const icon = this.querySelector('i');
             
-            // Reset hamburger icon
-            const spans = mobileMenuToggle.querySelectorAll('span');
-            spans[0].style.transform = '';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = '';
+            // Toggle submenu visibility
+            if (submenu) {
+                if (submenu.classList.contains('hidden')) {
+                    // Open submenu
+                    submenu.classList.remove('hidden');
+                    this.setAttribute('aria-expanded', 'true');
+                    
+                    // Animate height from 0 to auto
+                    submenu.style.height = '0';
+                    const height = submenu.scrollHeight;
+                    submenu.style.height = height + 'px';
+                    
+                    // Rotate icon
+                    if (icon) {
+                        icon.style.transform = 'rotate(180deg)';
+                    }
+                } else {
+                    // Close submenu
+                    submenu.style.height = '0';
+                    this.setAttribute('aria-expanded', 'false');
+                    
+                    // Reset icon
+                    if (icon) {
+                        icon.style.transform = 'rotate(0)';
+                    }
+                    
+                    // After animation completes, hide the element
+                    setTimeout(() => {
+                        submenu.classList.add('hidden');
+                    }, 300);
+                }
+            }
         });
     });
     
     // Handle resize events
     window.addEventListener('resize', function() {
-        if (window.innerWidth > 768 && !mobileNav.classList.contains('hidden')) {
-            mobileNav.classList.add('hidden');
-            mobileNav.classList.remove('flex');
-            mobileNav.classList.add('translate-x-full');
-            mobileMenuToggle.classList.remove('active');
-            document.body.style.overflow = '';
-            
-            // Reset hamburger icon
-            const spans = mobileMenuToggle.querySelectorAll('span');
-            spans[0].style.transform = '';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = '';
+        if (window.innerWidth > 768 && (!mobileNav.classList.contains('hidden') || !mobileNav.classList.contains('translate-x-full'))) {
+            toggleMobileMenu(false);
         }
     });
+    
+    // Handle escape key to close menu
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && (!mobileNav.classList.contains('hidden') || !mobileNav.classList.contains('translate-x-full'))) {
+            toggleMobileMenu(false);
+        }
+    });
+    
+    // Highlight current page in mobile menu
+    highlightCurrentPage();
 }
 
 // Form submission handler
@@ -145,6 +223,40 @@ function initFaqToggle() {
             }
         });
     });
+}
+
+// Function to highlight current page in navigation
+function highlightCurrentPage() {
+    const currentPath = window.location.pathname;
+    
+    // Map of paths to their respective nav IDs
+    const pathToNavMap = {
+        '/': 'nav-home',
+        '/index.html': 'nav-home',
+        '/o-nas': 'nav-about',
+        '/o-nas.html': 'nav-about',
+        '/biblioteka': 'nav-library',
+        '/biblioteka.html': 'nav-library',
+        '/kontakt': 'nav-contact',
+        '/kontakt.html': 'nav-contact'
+    };
+    
+    // Get all navigation links in desktop and mobile menu
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    // Remove active class from all links
+    navLinks.forEach(link => {
+        link.classList.remove('active-nav');
+    });
+    
+    // Add active class to current page link
+    const currentNavId = pathToNavMap[currentPath];
+    if (currentNavId) {
+        const activeLinks = document.querySelectorAll(`#${currentNavId}`);
+        activeLinks.forEach(link => {
+            link.classList.add('active-nav');
+        });
+    }
 }
 
 // Initialize all components on DOMContentLoaded
