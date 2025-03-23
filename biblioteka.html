@@ -187,7 +187,7 @@
                         <i class="icon-danwotemu"></i>
                         Kolekcja bajek
                     </div>
-                    <h2 class="text-4xl md:text-5xl leading-tight mb-6 tracking-tight font-comfortaa font-bold">Biblioteka najpiękniejszych bajek dla dzieci</h2>
+                    <h2 class="text-4xl md:text-5xl leading-tight mb-6 tracking-tight  font-bold">Biblioteka najpiękniejszych bajek dla dzieci</h2>
                     <p class="text-xl text-text-medium mb-10 font-normal max-w-2xl mx-auto md:mx-0">Odkryj kolekcję klasycznych i współczesnych bajek, które możesz czytać swoim głosem - nawet gdy nie możesz być przy dziecku. Od braci Grimm po współczesne opowieści edukacyjne.</p>
                     
                     <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
@@ -213,7 +213,7 @@
     <section id="stories" class="py-16 sm:py-20 bg-white relative">
         <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-8 relative">
             <div class="text-center mb-12">
-                <h3 class="text-3xl md:text-4xl mb-4 tracking-tight font-comfortaa font-bold">Nasze bajki</h3>
+                <h3 class="text-3xl md:text-4xl mb-4 tracking-tight  font-bold">Nasze bajki</h3>
                 <p class="text-text-medium max-w-2xl mx-auto text-lg">Zbiór starannie wyselekcjonowanych bajek dla dzieci w różnym wieku</p>
             </div>
             
@@ -255,7 +255,7 @@
     <div id="story-modal" class="fixed inset-0 bg-text-dark/50 z-50 flex items-center justify-center hidden backdrop-blur-sm">
         <div class="bg-white w-full max-w-4xl rounded-lg-custom shadow-lg-custom max-h-[90vh] overflow-hidden flex flex-col">
             <div class="flex justify-between items-start p-6 border-b border-gray-100">
-                <h3 id="modal-title" class="text-2xl font-bold font-comfortaa"></h3>
+                <h3 id="modal-title" class="text-2xl font-bold "></h3>
                 <button id="close-modal" class="w-8 h-8 flex items-center justify-center rounded-full text-text-medium hover:bg-gray-100 transition-colors">
                     <i class="fas fa-times"></i>
                 </button>
@@ -292,7 +292,7 @@
         <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2760%27%20height%3D%2760%27%20viewBox%3D%270%200%2060%2060%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cg%20fill%3D%27none%27%20fill-rule%3D%27evenodd%27%3E%3Cg%20fill%3D%27%23D4C1EC%27%20fill-opacity%3D%270.05%27%3E%3Cpath%20d%3D%27M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%27%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-50"></div>
         <div class="max-w-7xl mx-auto px-8">
             <div class="text-center mb-16 relative z-10">
-                <h3 class="text-3xl md:text-4xl mb-4 tracking-tight font-comfortaa font-bold">Jak czytać bajki swoim głosem?</h3>
+                <h3 class="text-3xl md:text-4xl mb-4 tracking-tight  font-bold">Jak czytać bajki swoim głosem?</h3>
                 <p class="text-text-medium max-w-2xl mx-auto text-lg">Wystarczą 3 proste kroki, aby Twoje dziecko usłyszało bajkę czytaną Twoim głosem</p>
             </div>
             
@@ -322,7 +322,7 @@
         <div class="absolute bottom-0 left-0 w-full h-[10%] bg-[url('data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%201200%20120%27%20preserveAspectRatio=%27none%27%3E%3Cpath%20d=%27M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z%27%20opacity=%27.1%27%20fill=%27%23FFFFFF%27%3E%3C/path%3E%3C/svg%3E')] bg-cover z-0"></div>
         <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-8">
             <div class="relative z-10">
-                <h3 class="text-2xl sm:text-3xl md:text-4xl mb-4 sm:mb-6 font-bold tracking-tight font-comfortaa">Chcesz czytać bajki swoim głosem?</h3>
+                <h3 class="text-2xl sm:text-3xl md:text-4xl mb-4 sm:mb-6 font-bold tracking-tight ">Chcesz czytać bajki swoim głosem?</h3>
                 <p class="max-w-2xl mx-auto mb-8 sm:mb-12 text-lg sm:text-xl opacity-90">Zapisz się do listy oczekujących i uzyskaj wcześniejszy dostęp do aplikacji DawnoTemu. Otrzymasz również kody dla znajomych i rodziny!</p>
                 
                 <form class="relative max-w-lg mt-10 mx-auto" class="waitlist">
@@ -419,8 +419,8 @@
         let stories = [];
 
         // API Endpoint - in production, this would be a real API endpoint
-        //const apiHost = 'http://localhost:8000'; // DEV
-        const apiHost = 'https://api.dawnotemu.app'; // PROD
+        const apiHost = 'http://localhost:8000'; // DEV
+        //const apiHost = 'https://api.dawnotemu.app'; // PROD
         const apiPath = '/stories';
         const apiUrl = apiHost + apiPath;
         
