@@ -1,0 +1,84 @@
+/* Animation keyframes */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(255, 181, 167, 0.4);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 15px rgba(255, 181, 167, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(255, 181, 167, 0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-10px); }
+}
+
+/* Animation utility classes */
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-custom {
+    animation: pulse 2s infinite;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-fade-out {
+    animation: fadeOut 0.5s ease-in-out;
+}
+
+/* Delay variations */
+.bubble-1 { animation-delay: 0s; }
+.bubble-2 { animation-delay: 1.5s; }
+.bubble-3 { animation-delay: 3s; }
+.highlight-1 { animation-delay: 0s; }
+.highlight-2 { animation-delay: 0.5s; }
+.highlight-3 { animation-delay: 1s; }
+
+/* Timeline specific styles */
+.timeline-container {
+    position: relative;
+}
+
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background-color: rgba(212, 193, 236, 0.3);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@media (max-width: 768px) {
+    .timeline-container::before {
+        left: 30px;
+    }
+}
+
+/* Other utilities */
+.filter-button.active {
+    background-color: #D4C1EC;
+    color: white;
+}
