@@ -309,72 +309,131 @@
         </div>
     </section>
     
-    <footer class="bg-text-dark text-white pt-20 pb-8 relative">
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-text-dark to-text-dark/95 text-white pt-20 pb-8 relative">
+        <!-- Wave SVG at the top of the footer -->
+        <div class="absolute top-0 left-0 w-full overflow-hidden" style="transform: translateY(-99%)">
+            <svg preserveAspectRatio="none" width="100%" height="50" viewBox="0 0 1440 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,37.7L48,42.5C96,47.3,192,57,288,56C384,55,480,43.3,576,49.7C672,56,768,80.3,864,84.8C960,89.3,1056,74,1152,58C1248,42,1344,25.3,1392,17L1440,8.7L1440,37.7L1392,37.7C1344,37.7,1248,37.7,1152,37.7C1056,37.7,960,37.7,864,37.7C768,37.7,672,37.7,576,37.7C480,37.7,384,37.7,288,37.7C192,37.7,96,37.7,48,37.7L0,37.7Z" fill="#FFFFFF"/>
+            </svg>
+        </div>
+
+        <!-- Main Footer Content -->
         <div class="max-w-7xl mx-auto px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-                <div class="flex flex-col">
+            <!-- Top Footer Section -->
+            <div class="grid grid-cols-1 md:grid-cols-7 gap-12 mb-12">
+                <!-- Logo and Description Column (spans 2 columns on larger screens) -->
+                <div class="md:col-span-2 flex flex-col">
                     <div class="flex items-center mb-6">
-                        <h3>
-                            <img src="/logo-light.png" alt="DawnoTemu Logo" class="h-10 mr-3" loading="lazy">
-                        </h3>
+                        <img src="/logo-light.png" alt="DawnoTemu Logo" class="h-10 mr-3" loading="lazy">
                     </div>
-                    <p class="text-white/70 text-sm mb-6">
-                        Innowacyjna aplikacja, która pomaga rodzicom utrzymać magię wieczornych bajek, nawet gdy życie staje się zbyt intensywne.
+                    <p class="text-white/70 text-sm mb-6 leading-relaxed">
+                        Innowacyjna aplikacja, która pomaga rodzicom utrzymać magię wieczornych bajek, nawet gdy życie staje się zbyt intensywne. Twój głos, ich ulubione bajki.
                     </p>
-                    <div class="flex gap-4">
-                        <a href="#" class="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition duration-300 hover:bg-peach hover:transform hover:-translate-y-1">
-                            <i class="fab fa-facebook-f"></i>
+                    <div class="flex gap-4 mb-8">
+                        <a href="#" class="group flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition-all duration-300 hover:bg-peach hover:scale-110 hover:shadow-[0_0_15px_rgba(251,190,159,0.5)]">
+                            <i class="fab fa-facebook-f group-hover:animate-bounce-mini"></i>
                         </a>
-                        <a href="#" class="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition duration-300 hover:bg-peach hover:transform hover:-translate-y-1">
-                            <i class="fab fa-instagram"></i>
+                        <a href="#" class="group flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition-all duration-300 hover:bg-peach hover:scale-110 hover:shadow-[0_0_15px_rgba(251,190,159,0.5)]">
+                            <i class="fab fa-instagram group-hover:animate-bounce-mini"></i>
                         </a>
-                        <a href="#" class="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition duration-300 hover:bg-peach hover:transform hover:-translate-y-1">
-                            <i class="fab fa-twitter"></i>
+                        <a href="#" class="group flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition-all duration-300 hover:bg-peach hover:scale-110 hover:shadow-[0_0_15px_rgba(251,190,159,0.5)]">
+                            <i class="fab fa-twitter group-hover:animate-bounce-mini"></i>
                         </a>
-                        <a href="#" class="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition duration-300 hover:bg-peach hover:transform hover:-translate-y-1">
-                            <i class="fab fa-linkedin-in"></i>
+                        <a href="#" class="group flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition-all duration-300 hover:bg-peach hover:scale-110 hover:shadow-[0_0_15px_rgba(251,190,159,0.5)]">
+                            <i class="fab fa-linkedin-in group-hover:animate-bounce-mini"></i>
                         </a>
                     </div>
                 </div>
                 
-                <div>
-                    <h5 class="text-xl mb-6 font-semibold">Aplikacja</h5>
-                    <ul class="list-none">
-                        <li class="mb-3"><a href="/#features" class="text-white/70 no-underline transition duration-300 hover:text-white">Funkcje</a></li>
-                        <li class="mb-3"><a href="/#how-it-works" class="text-white/70 no-underline transition duration-300 hover:text-white">Jak to działa</a></li>
-                        <li class="mb-3"><a href="/biblioteka" class="text-white/70 no-underline transition duration-300 hover:text-white">Biblioteka bajek</a></li>
-                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Wsparcie</a></li>
+                <!-- Quick Links Column -->
+                <div class="md:col-span-1">
+                    <h5 class="text-xl mb-6 font-semibold text-white relative inline-block">
+                        Aplikacja
+                        <span class="absolute left-0 bottom-0 w-1/2 h-0.5 bg-gradient-to-r from-peach to-lavender"></span>
+                    </h5>
+                    <ul class="list-none space-y-3">
+                        <li><a href="/#features" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Funkcje</a></li>
+                        <li><a href="/#how-it-works" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Jak to działa</a></li>
+                        <li><a href="/biblioteka" class="text-white/70 hover:text-white transition-colors duration-300  inline-lock">Biblioteka bajek</a></li>
+                        <li><a href="/#faq" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">FAQ</a></li>
                     </ul>
                 </div>
                 
-                <div>
-                    <h5 class="text-xl mb-6 font-semibold">Firma</h5>
-                    <ul class="list-none">
-                        <li class="mb-3"><a href="/o-nas" class="text-white/70 no-underline transition duration-300 hover:text-white">O nas</a></li>
-                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Blog</a></li>
-                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Kariera</a></li>
-                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Kontakt</a></li>
+                <!-- Company Column -->
+                <div class="md:col-span-1">
+                    <h5 class="text-xl mb-6 font-semibold text-white relative inline-block">
+                        Firma
+                        <span class="absolute left-0 bottom-0 w-1/2 h-0.5 bg-gradient-to-r from-peach to-lavender"></span>
+                    </h5>
+                    <ul class="list-none space-y-3">
+                        <li><a href="/o-nas" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">O nas</a></li>
+                        <li><a href="/blog" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Blog</a></li>
+                        <li><a href="/kariera" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Kariera</a></li>
+                        <li><a href="/kontakt" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Kontakt</a></li>
                     </ul>
                 </div>
                 
-                <div>
-                    <h5 class="text-xl mb-6 font-semibold">Informacje</h5>
-                    <ul class="list-none">
-                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Prywatność</a></li>
-                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Warunki</a></li>
-                        <li class="mb-3"><a href="#" class="text-white/70 no-underline transition duration-300 hover:text-white">Bezpieczeństwo</a></li>
-                        <li class="mb-3"><a href="/#faq" class="text-white/70 no-underline transition duration-300 hover:text-white">FAQ</a></li>
+                <!-- Legal Column -->
+                <div class="md:col-span-1">
+                    <h5 class="text-xl mb-6 font-semibold text-white relative inline-block">
+                        Informacje
+                        <span class="absolute left-0 bottom-0 w-1/2 h-0.5 bg-gradient-to-r from-peach to-lavender"></span>
+                    </h5>
+                    <ul class="list-none space-y-3">
+                        <li><a href="/polityka-prywatnosci" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Prywatność</a></li>
+                        <li><a href="/warunki" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Warunki</a></li>
+                        <li><a href="/bezpieczenstwo" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Bezpieczeństwo</a></li>
+                        <li><a href="/mapa-strony" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Mapa strony</a></li>
                     </ul>
+                </div>
+                
+                <!-- Newsletter/Contact Column (spans 2 columns on larger screens) -->
+                <div class="md:col-span-2">
+                    <h5 class="text-xl mb-6 font-semibold text-white relative inline-block">
+                        Bądź na bieżąco
+                        <span class="absolute left-0 bottom-0 w-1/2 h-0.5 bg-gradient-to-r from-peach to-lavender"></span>
+                    </h5>
+                    <p class="text-white/70 text-sm mb-4">Zapisz się, aby otrzymywać najnowsze wiadomości, aktualizacje i oferty specjalne.</p>
+                    
+                    <form class="relative mb-6">
+                        <input type="email" placeholder="Twój adres e-mail" required 
+                            class="w-full py-3 px-4 bg-white/10 border border-white/20 rounded-lg text-white text-sm placeholder-white/50 outline-none transition duration-300 focus:border-peach focus:bg-white/15">
+                            <button type="submit" class="absolute right-1 top-1/2 transform -translate-y-1/2 bg-peach text-white py-2 px-4 rounded-md transition duration-300 hover:bg-peach-dark">
+                                <i class="fas fa-paper-plane text-sm"></i>
+                            </button>
+                    </form>
+                    
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 flex-shrink-0 bg-white/10 rounded-full flex items-center justify-center text-lavender-dark text-lg mr-3">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div>
+                            <div class="text-sm text-white/50">Potrzebujesz pomocy?</div>
+                            <a href="mailto:pomoc@dawnotemu.app" class="text-white hover:text-peach transition-colors duration-300">pomoc@dawnotemu.app</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             
+            <!-- Bottom Footer Section with Copyright and Mini Links -->
             <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 text-white/50 text-sm">
                 <div class="flex items-center">
-                    <img src="/logo-signet.png" alt="DawnoTemu Logo" class="h-5 mr-2" loading="lazy">
+                    <div class="relative mr-2 w-6 h-6 bg-white/5 rounded-full flex items-center justify-center">
+                        <i class="icon-danwotemu text-sm"></i>
+                        <span class="absolute -top-1 -right-1 w-2 h-2 bg-peach rounded-full"></span>
+                    </div>
                     © 2025 DawnoTemu. Wszelkie prawa zastrzeżone.
                 </div>
-                <div class="flex flex-wrap justify-center gap-4 mt-4 md:mt-0">
-                    <a href="#" class="text-white/50 transition duration-300 hover:text-white">Mapa strony</a>
+                <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-4 md:mt-0">
+                    <a href="/polityka-cookies" class="text-white/50 hover:text-white transition-colors duration-300 text-xs">Polityka cookies</a>
+                    <a href="/dostepnosc" class="text-white/50 hover:text-white transition-colors duration-300 text-xs">Dostępność</a>
+                    <span class="text-white/30">|</span>
+                    <div class="flex items-center">
+                        <span class="mr-2 text-white/50 text-xs">Made with</span>
+                        <i class="fas fa-heart text-peach text-xs animate-pulse-custom"></i>
+                        <span class="ml-2 text-white/50 text-xs">w Polsce</span>
+                    </div>
                 </div>
             </div>
         </div>

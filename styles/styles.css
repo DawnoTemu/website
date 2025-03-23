@@ -175,3 +175,57 @@
         max-width: 360px;
     }
 }
+
+/* Footer-specific animations */
+@keyframes bounce-mini {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+  }
+  
+  .animate-bounce-mini {
+    animation: bounce-mini 0.6s ease-in-out;
+  }
+
+  
+  /* Gradient overlay for footer */
+  .footer-gradient-overlay {
+    background: linear-gradient(to bottom, rgba(45, 48, 71, 0) 0%, rgba(45, 48, 71, 1) 100%);
+    height: 100px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -100px;
+    pointer-events: none;
+  }
+  
+  /* Enhanced focus styles for accessibility */
+  footer a:focus, 
+  footer button:focus, 
+  footer input:focus {
+    outline: 2px solid rgba(251, 190, 159, 0.7);
+    outline-offset: 2px;
+  }
+  
+  /* Footer responsive adjustments */
+  @media (max-width: 768px) {
+    footer h5 {
+      margin-top: 1.5rem;
+    }
+    
+    .footer-divider {
+      margin: 1.5rem 0;
+    }
+  }
+  
+  /* Footer newsletter input animation */
+  footer input:focus::placeholder {
+    transform: translateX(10px);
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+  
+  /* Decorative elements */
+  .footer-dot-pattern {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
