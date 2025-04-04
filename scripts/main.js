@@ -259,10 +259,99 @@ function highlightCurrentPage() {
     }
 }
 
+function initCookieConsent() {
+    const cookieConsent = document.getElementById('cookie-consent');
+    if (!cookieConsent) return; // Exit if banner doesn't exist
+
+    const cookieSettings = document.getElementById('cookie-settings');
+    const acceptAllBtn = document.getElementById('cookie-accept-all');
+    const advancedBtn = document.getElementById('cookie-advanced');
+    const saveBtn = document.getElementById('cookie-save');
+
+    // Cookie utility functions
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/; SameSite=Lax";
+    }
+
+    function getCookie(name) {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    // Hide the banner if consent was already given
+    if (getCookie('cookie-consent')) {
+        cookieConsent.style.display = 'none';
+    }
+
+    // Set up toggle switches
+    document.querySelectorAll('.toggle-container input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            this.nextElementSibling.classList.add('bg-lavender');
+            this.nextElementSibling.classList.remove('bg-lavender/30');
+            this.nextElementSibling.querySelector('.toggle-dot').style.transform = 'translateX(20px)';
+        } else {
+            this.nextElementSibling.classList.remove('bg-lavender');
+            this.nextElementSibling.classList.add('bg-lavender/30');
+            this.nextElementSibling.querySelector('.toggle-dot').style.transform = 'translateX(1px)';
+        }
+        });
+    });
+
+    // Accept all cookies
+    acceptAllBtn.addEventListener('click', function() {
+        setCookie('cookie-consent', 'all', 365);
+        setCookie('cookie-analytics', 'true', 365);
+        setCookie('cookie-marketing', 'true', 365);
+        setCookie('cookie-functional', 'true', 365);
+        
+        cookieConsent.style.display = 'none';
+    });
+
+    // Show advanced settings
+    advancedBtn.addEventListener('click', function() {
+        cookieSettings.classList.toggle('hidden');
+        
+        // Update toggle states based on cookie values or default to checked
+        document.getElementById('cookie-analytics').checked = getCookie('cookie-analytics') !== 'false';
+        document.getElementById('cookie-marketing').checked = getCookie('cookie-marketing') !== 'false';
+        document.getElementById('cookie-functional').checked = getCookie('cookie-functional') !== 'false';
+        
+        // Manually trigger change event for each checkbox to update visuals
+        document.querySelectorAll('.toggle-container input[type="checkbox"]').forEach(checkbox => {
+        const event = new Event('change');
+        checkbox.dispatchEvent(event);
+        });
+    });
+
+    // Save cookie preferences
+    saveBtn.addEventListener('click', function() {
+        setCookie('cookie-consent', 'custom', 365);
+        setCookie('cookie-analytics', document.getElementById('cookie-analytics').checked, 365);
+        setCookie('cookie-marketing', document.getElementById('cookie-marketing').checked, 365);
+        setCookie('cookie-functional', document.getElementById('cookie-functional').checked, 365);
+        
+        cookieConsent.style.display = 'none';
+    });
+}
+
 // Initialize all components on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', function() {
     initMobileNav();
     initForms();
     initSmoothScroll();
     initFaqToggle();
+    initCookieConsent();
 });
