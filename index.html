@@ -236,7 +236,7 @@
                     </div>
                 </div>
                 
-                <div class="flex-1 relative mt-10 md:mt-0">
+                <div class="flex-1 relative mt-10 md:mt-0 hidden md:flex">
                     <div class="relative z-10">
                         <!-- <video class="w-full  rounded-lg-custom shadow-lg-custom mx-auto" autoplay muted playsinline loop>
                             <source src="/videos/vid1.mp4" type="video/mp4">
@@ -385,7 +385,7 @@
     <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2760%27%20height%3D%2760%27%20viewBox%3D%270%200%2060%2060%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cg%20fill%3D%27none%27%20fill-rule%3D%27evenodd%27%3E%3Cg%20fill%3D%27%23D4C1EC%27%20fill-opacity%3D%270.05%27%3E%3Cpath%20d%3D%27M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%27%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-50"></div>
 
     <div class="max-w-7xl mx-auto px-8">
-        <div class="text-center mb-20 relative z-10">
+        <div class="text-center md:mb-20 relative z-10">
             <h3 class="text-4xl mb-4 tracking-tight font-bold">Funkcje, które pokochasz</h3>
             <p class="text-text-medium max-w-2xl mx-auto text-lg">DawnoTemu to więcej niż tylko bajki - to kompletne rozwiązanie dla współczesnych rodziców</p>
         </div>
@@ -393,9 +393,9 @@
         <!-- New layout with features surrounding the video -->
         <div class="relative grid grid-cols-1 md:grid-cols-3 gap-6 z-10">
             <!-- Left column features -->
-            <div class="flex flex-col gap-6">
+            <div class="flex flex-col gap-6 order-2 md:order-1">
                 <!-- Feature: Voice Cloning -->
-                <div class="flex items-start gap-6 p-6 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                <div class="feature-box flex items-start gap-6 p-6 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
                     <div class="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-lavender to-peach rounded-md-custom text-white text-xl flex-shrink-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">
                         <i class="fas fa-microphone-alt"></i>
                     </div>
@@ -406,7 +406,7 @@
                 </div>
 
                 <!-- Feature: Story Library -->
-                <div class="flex items-start gap-6 p-6 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                <div class="feature-box flex items-start gap-6 p-6 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
                     <div class="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-lavender to-peach rounded-md-custom text-white text-xl flex-shrink-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">
                         <i class="fas fa-book"></i>
                     </div>
@@ -417,7 +417,7 @@
                 </div>
 
                 <!-- Feature: Offline Mode -->
-                <div class="flex items-start gap-6 p-6 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                <div class="feature-box flex items-start gap-6 p-6 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
                     <div class="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-lavender to-peach rounded-md-custom text-white text-xl flex-shrink-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">
                         <i class="fas fa-wifi"></i>
                     </div>
@@ -429,7 +429,7 @@
             </div>
 
             <!-- Middle column with video -->
-            <div class="flex justify-center items-center">
+            <div class="flex justify-center items-center order-1 md:order-2 mb-0">
                 <div class="p-4 bg-white/70">
                     <video id="iphone-mockup" autoplay loop muted playsinline class="max-w-full rounded-md shadow-md">
                         <source src="/videos/mockup.MP4" type="video/mp4">
@@ -439,9 +439,9 @@
             </div>
 
             <!-- Right column features -->
-            <div class="flex flex-col gap-6">
+            <div class="flex flex-col gap-6 order-3 md:order-3">
                 <!-- Feature: Personalized Stories (Premium) -->
-                <div class="flex items-start gap-6 p-6 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                <div class="feature-box flex items-start gap-6 p-6 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
                     <div class="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-lavender to-peach rounded-md-custom text-white text-xl flex-shrink-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">
                         <i class="fas fa-magic"></i>
                     </div>
@@ -455,7 +455,7 @@
                 </div>
 
                 <!-- Feature: Lullabies (Premium) -->
-                <div class="flex items-start gap-6 p-6 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                <div class="feature-box flex items-start gap-6 p-6 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
                     <div class="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-lavender to-peach rounded-md-custom text-white text-xl flex-shrink-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">
                         <i class="fas fa-moon"></i>
                     </div>
@@ -469,7 +469,7 @@
                 </div>
 
                 <!-- Feature: Multiple Voices (Premium) -->
-                <div class="flex items-start gap-6 p-6 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
+                <div class="feature-box flex items-start gap-6 p-6 rounded-md-custom bg-bg-light transition duration-300 border border-gray-200/50 hover:transform hover:-translate-y-1 hover:shadow-md-custom hover:border-lavender/30">
                     <div class="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-lavender to-peach rounded-md-custom text-white text-xl flex-shrink-0 shadow-[0_8px_16px_rgba(212,193,236,0.3)]">
                         <i class="fas fa-users"></i>
                     </div>

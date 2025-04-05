@@ -347,6 +347,46 @@ function initCookieConsent() {
     });
 }
 
+function initFeatureHover(){
+          // Select all feature boxes 
+  const featureBoxes = document.querySelectorAll('#features .feature-box');
+  
+  // Disable normal hover effects with CSS
+  const style = document.createElement('style');
+  style.textContent = `
+    #features .flex.items-start.gap-6.p-6.rounded-md-custom {
+      pointer-events: none !important;
+    }
+  `;
+  document.head.appendChild(style);
+  
+  let currentIndex = 0;
+  
+  // Function to apply hover effect to one box at a time
+  function rotateHoverEffect() {
+    // Remove effect from all boxes
+    featureBoxes.forEach(box => {
+      box.style.transform = '';
+      box.style.boxShadow = '';
+      box.style.borderColor = '';
+    });
+    
+    // Apply hover effect to current box
+    const currentBox = featureBoxes[currentIndex];
+    currentBox.style.transform = 'translateY(-0.25rem)'; // hover:-translate-y-1
+    currentBox.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'; // hover:shadow-md-custom
+    currentBox.style.borderColor = 'rgba(212, 193, 236, 0.3)'; // hover:border-lavender/30
+    
+    // Move to next box for the next iteration
+    currentIndex = (currentIndex + 1) % featureBoxes.length;
+  }
+  
+  // Apply initial effect to first box
+  rotateHoverEffect();
+  
+  // Set up interval to cycle through boxes
+  setInterval(rotateHoverEffect, 3000); // Changes every 3 seconds
+}
 // Initialize all components on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', function() {
     initMobileNav();
@@ -354,4 +394,5 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScroll();
     initFaqToggle();
     initCookieConsent();
+    initFeatureHover();
 });
