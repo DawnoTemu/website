@@ -1,3 +1,18 @@
+/* Apply smooth scrolling to the entire document */
+html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Optional: For browsers that support it, you can add a custom scroll speed 
+     using scroll-timeline and animation-timeline (newer CSS features) */
+  
+  /* Optional: Disable smooth scrolling for users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  
 /* Animation keyframes */
 @keyframes float {
     0% { transform: translateY(0px); }

@@ -179,21 +179,6 @@ function initForms() {
     });
 }
 
-// Smooth scrolling
-function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-}
-
 // FAQ Toggle handler
 function initFaqToggle() {
     const faqQuestions = document.querySelectorAll('.faq-question');
@@ -387,11 +372,11 @@ function initFeatureHover(){
   // Set up interval to cycle through boxes
   setInterval(rotateHoverEffect, 3000); // Changes every 3 seconds
 }
+
 // Initialize all components on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', function() {
     initMobileNav();
     initForms();
-    initSmoothScroll();
     initFaqToggle();
     initCookieConsent();
     initFeatureHover();
