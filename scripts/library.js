@@ -67,7 +67,7 @@ function initLibraryPage() {
     // Generate HTML for a story card
     function createStoryCard(story) {
         return `
-            <div class="book-card bg-white rounded-md-custom overflow-hidden shadow-md-custom transition duration-300 border border-gray-200/50 hover:shadow-lg-custom hover:border-lavender/30" data-id="${story.id}" data-author="${story.author}">
+            <div class="book-card cursor-pointer bg-white rounded-md-custom overflow-hidden shadow-md-custom transition duration-300 border border-gray-200/50 hover:shadow-lg-custom hover:border-lavender/30" data-id="${story.id}" data-author="${story.author}">
                 <div class="relative overflow-hidden">
                     <img src="${apiHost}${story.cover_path}" alt="${story.title}" class="w-full h-56 object-cover book-cover" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-text-dark/70 to-transparent flex items-end">
