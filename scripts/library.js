@@ -16,6 +16,23 @@ function initLibraryPage() {
     let activeFilter = 'all';
     let searchTerm = '';
     
+    // Get search parameter from URL
+    function getSearchParamFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('search');
+    }
+    
+    // Update browser URL with search parameter
+    function updateUrlWithSearchParam(term) {
+        const url = new URL(window.location);
+        if (term) {
+            url.searchParams.set('search', term);
+        } else {
+            url.searchParams.delete('search');
+        }
+        window.history.replaceState({}, '', url);
+    }
+    
     // Modal Elements
     const storyModal = document.getElementById('story-modal');
     const modalTitle = document.getElementById('modal-title');
@@ -31,6 +48,15 @@ function initLibraryPage() {
           .then(response => response.json())
           .then(data => {
             stories = data;
+            
+            // Check if there's a search parameter in the URL
+            const urlSearchTerm = getSearchParamFromUrl();
+            if (urlSearchTerm && searchInput) {
+                // Set search input value and update searchTerm variable
+                searchInput.value = urlSearchTerm;
+                searchTerm = urlSearchTerm;
+            }
+            
             renderStories(data);
           })
           .catch(error => {
@@ -156,6 +182,7 @@ function initLibraryPage() {
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             searchTerm = e.target.value.trim();
+            updateUrlWithSearchParam(searchTerm); // Update URL with search term
             renderStories(stories);
         });
     }
