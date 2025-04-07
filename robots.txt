@@ -1,0 +1,30 @@
+# DawnoTemu - robots.txt
+
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /o-nas.html
+Allow: /kontakt.html
+Allow: /biblioteka.html
+Allow: /images/
+Allow: /icons/
+
+# Allow GPTBot to access the entire site
+User-agent: GPTBot
+Allow: /
+
+# Disallow access to internal scripts, styles, and fonts to reduce server load
+Disallow: /scripts/
+Disallow: /styles/
+Disallow: /fonts/
+
+# Disallow access to internal admin or development files if they exist
+Disallow: /admin/
+Disallow: /dev/
+Disallow: /files/
+
+# Point to sitemap for efficient crawling
+Sitemap: https://www.dawnotemu.app/sitemap.xml
+
+# Suggest a 10-second delay between requests for all crawlers
+Crawl-delay: 10
