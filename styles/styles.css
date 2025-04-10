@@ -271,3 +271,190 @@ footer input:focus::placeholder {
   input:not(:checked) + .toggle-switch .toggle-dot {
     transform: translateX(1px);
   }
+
+/* Form message styling */
+.form-message {
+    transition: all 0.3s ease;
+}
+
+/* Success and error message colors */
+.form-message.bg-mint {
+    background-color: rgb(99, 230, 226, 0.2);
+    border: 1px solid rgb(99, 230, 226, 0.5);
+}
+
+.form-message.bg-peach-dark {
+    background-color: rgba(255, 154, 138, 0.2);
+    border: 1px solid rgba(255, 154, 138, 0.5);
+}
+
+/* Fade animations for popup */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-10px); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-fade-out {
+    animation: fadeOut 0.5s ease-in-out;
+}
+
+/* Spinner animation for button loading state */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.fa-spin {
+    animation: spin 1s linear infinite;
+}
+
+/* Disabled button style */
+button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Z-index to ensure popup appears above all other content */
+.z-\[60\] {
+    z-index: 60;
+}
+
+/* Add these to your existing styles.css file */
+
+/* Toast notification container */
+.toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 350px;
+  }
+  
+  /* Toast notification styling */
+  .toast {
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1), 0 3px 3px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    pointer-events: auto;
+    overflow: hidden;
+    margin-top: 0.75rem;
+    color: #2D3047;
+    background: white;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+  }
+  
+  /* Toast success style */
+  .toast.success {
+    border-left-color: rgb(99, 230, 226);
+  }
+  
+  .toast.success .toast-icon {
+    color: rgb(99, 230, 226);
+  }
+  
+  /* Toast error style */
+  .toast.error {
+    border-left-color: #FF9A8A;
+  }
+  
+  .toast.error .toast-icon {
+    color: #FF9A8A;
+  }
+  
+  /* Toast icon */
+  .toast-icon {
+    margin-right: 0.75rem;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+  
+  /* Toast content */
+  .toast-content {
+    flex: 1;
+  }
+  
+  /* Toast title */
+  .toast-title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+  }
+  
+  /* Toast message */
+  .toast-message {
+    font-size: 0.875rem;
+    color: #6C6F93;
+  }
+  
+  /* Toast close button */
+  .toast-close {
+    font-size: 1rem;
+    color: #9CA3AF;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 0.5rem;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  
+  .toast-close:hover {
+    opacity: 1;
+  }
+  
+  /* Fade animations for popup */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-10px); }
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-fade-out {
+    animation: fadeOut 0.5s ease-in-out;
+  }
+  
+  /* Spinner animation for button loading state */
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .fa-spin {
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Disabled button style */
+  button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  /* Z-index to ensure popup appears above all other content */
+  .z-\[60\] {
+    z-index: 60;
+  }
