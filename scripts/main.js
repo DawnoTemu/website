@@ -305,9 +305,14 @@ function initCookieConsent() {
 }
 
 function initFeatureHover(){
-          // Select all feature boxes 
-  const featureBoxes = document.querySelectorAll('#features .feature-box');
-  
+    // First check if the features section exists on the page
+    const featuresSection = document.getElementById('features');
+    if (!featuresSection) return; // Exit early if features section doesn't exist
+
+    // Select all feature boxes 
+    const featureBoxes = document.querySelectorAll('#features .feature-box');
+    if (!featureBoxes.length) return; // Exit if no feature boxes found
+      
   // Disable normal hover effects with CSS
   const style = document.createElement('style');
   style.textContent = `
