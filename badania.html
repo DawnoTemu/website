@@ -368,20 +368,6 @@
                             Nagranie powinno trwać około 1-2 minut. Możesz przeczytać powyższy tekst kilka razy lub dodać własny fragment.
                         </p>
                     </div>
-                    
-                    <h4 class="text-2xl mb-6 font-bold tracking-tight">Wybierz bajkę dla swojego dziecka</h4>
-                    
-                    <div class="space-y-4 mb-8" id="story-list">
-                        <p class="text-text-medium">Poniżej znajdują się dostępne bajki. Wybierz jedną, którą chcesz otrzymać czytaną swoim głosem:</p>
-                        
-                        <!-- Lista bajek będzie dynamicznie pobierana z API -->
-                        <div class="animate-pulse">
-                            <div class="h-10 bg-gray-200 rounded-md mb-2"></div>
-                            <div class="h-10 bg-gray-200 rounded-md mb-2"></div>
-                            <div class="h-10 bg-gray-200 rounded-md mb-2"></div>
-                            <div class="h-10 bg-gray-200 rounded-md"></div>
-                        </div>
-                    </div>
                 </div>
                 
                 <div class="md:w-3/5">
@@ -426,6 +412,16 @@
                                         <option value="">Wybierz bajkę</option>
                                         <!-- Options will be populated dynamically from API -->
                                     </select>
+                                </div>
+                                
+                                <div class="mt-4" id="story-list">
+                                    <p class="text-text-medium mb-3">Dostępne bajki:</p>
+                                    <!-- Lista bajek będzie dynamicznie pobierana z API -->
+                                    <div class="animate-pulse">
+                                        <div class="h-10 bg-gray-200 rounded-md mb-2"></div>
+                                        <div class="h-10 bg-gray-200 rounded-md mb-2"></div>
+                                        <div class="h-10 bg-gray-200 rounded-md"></div>
+                                    </div>
                                 </div>
                                 
                                 <div>
@@ -768,35 +764,51 @@
     
     <script src="/scripts/main.js"></script>
     <script>
-        // FAQ Toggle functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        // Initialize FAQ Toggle functionality
+        function initFaqToggle() {
             const faqQuestions = document.querySelectorAll('.faq-question');
-            if (faqQuestions.length) {
-                faqQuestions.forEach(question => {
-                    question.addEventListener('click', () => {
-                        const item = question.parentNode;
-                        const isActive = item.classList.contains('active');
-                        const toggleIcon = question.querySelector('span');
+            
+            if (!faqQuestions.length) return;
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const item = question.parentNode;
+                    const isActive = item.classList.contains('active');
+                    const toggleIcon = question.querySelector('span');
+                    const answer = item.querySelector('.faq-answer');
+                    
+                    // Close all others
+                    document.querySelectorAll('.faq-item').forEach(faqItem => {
+                        const otherAnswer = faqItem.querySelector('.faq-answer');
+                        const otherIcon = faqItem.querySelector('.faq-question span');
                         
-                        // Close all others
-                        document.querySelectorAll('.faq-item').forEach(faqItem => {
+                        if (faqItem !== item) {
                             faqItem.classList.remove('active');
-                            const answer = faqItem.querySelector('.faq-answer');
-                            answer.style.maxHeight = null;
-                            faqItem.querySelector('span').textContent = '+';
-                        });
-                        
-                        // Toggle current item
-                        if (!isActive) {
-                            item.classList.add('active');
-                            const answer = item.querySelector('.faq-answer');
-                            answer.style.maxHeight = answer.scrollHeight + 'px';
-                            toggleIcon.textContent = '−';
-                            item.classList.add('shadow-sm-custom', 'border-lavender/30');
+                            faqItem.classList.remove('shadow-sm-custom', 'border-lavender/30');
+                            if (otherAnswer) otherAnswer.style.maxHeight = null;
+                            if (otherIcon) otherIcon.textContent = '+';
                         }
                     });
+                    
+                    // Toggle current item
+                    if (!isActive) {
+                        item.classList.add('active');
+                        item.classList.add('shadow-sm-custom', 'border-lavender/30');
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                        toggleIcon.textContent = '−';
+                    } else {
+                        item.classList.remove('active');
+                        item.classList.remove('shadow-sm-custom', 'border-lavender/30');
+                        answer.style.maxHeight = null;
+                        toggleIcon.textContent = '+';
+                    }
                 });
-            }
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize FAQ functionality
+            initFaqToggle();
             
             // File upload visualization
             const fileInput = document.getElementById('voice_sample');
@@ -832,8 +844,8 @@
                     if (storyList && stories.length > 0) {
                         // Replace loading animation with actual stories
                         storyList.innerHTML = `
-                            <p class="text-text-medium">Poniżej znajdują się dostępne bajki. Wybierz jedną, którą chcesz otrzymać czytaną swoim głosem:</p>
-                            <div class="space-y-2 mt-4">
+                            <p class="text-text-medium mb-3">Dostępne bajki:</p>
+                            <div class="space-y-2">
                                 ${stories.map(story => `
                                     <div class="flex items-center gap-3 p-3 bg-white rounded-md border border-gray-200 hover:border-lavender transition-colors">
                                         <input type="radio" id="story_${story.id}" name="story_selection" value="${story.id}" class="cursor-pointer">
@@ -881,8 +893,8 @@
                     const storyList = document.getElementById('story-list');
                     if (storyList) {
                         storyList.innerHTML = `
-                            <p class="text-text-medium">Poniżej znajdują się dostępne bajki. Wybierz jedną, którą chcesz otrzymać czytaną swoim głosem:</p>
-                            <div class="mt-4 p-4 bg-red-50 text-red-700 rounded-md">
+                            <p class="text-text-medium mb-3">Dostępne bajki:</p>
+                            <div class="p-4 bg-red-50 text-red-700 rounded-md">
                                 <p>Przepraszamy, nie udało się załadować listy bajek. Spróbuj odświeżyć stronę lub skontaktuj się z nami.</p>
                             </div>
                         `;
