@@ -371,11 +371,11 @@
                 </div>
                 
                 <div class="md:w-3/5">
+                    <!-- Research Form -->
                     <div class="bg-bg-light p-8 rounded-lg-custom shadow-md-custom">
                         <h4 class="text-2xl mb-6 font-bold tracking-tight">Formularz zgłoszeniowy</h4>
                         
-                        <form id="participation-form" action="https://api.dawnotemu.app/research/submit" method="POST" enctype="multipart/form-data">
-                            <input type="hidden">
+                        <form id="participation-form" data-form-type="research" enctype="multipart/form-data">
                             <div class="space-y-6">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                     <div>
@@ -414,9 +414,12 @@
                                             <span class="text-text-medium text-sm mt-1">lub przeciągnij i upuść plik</span>
                                             <span class="text-text-light text-xs mt-4 block">Akceptowane formaty: MP3, WAV, M4A</span>
                                         </label>
-                                        <div id="file-info" class="hidden mt-4 text-sm text-text-medium"></div>
+                                        <div id="file-info" class="file-info hidden mt-4 text-sm text-text-medium"></div>
                                     </div>
                                 </div>
+                                
+                                <!-- Hidden field for message -->
+                                <input type="hidden" name="message" value="">
                                 
                                 <div class="flex items-start">
                                     <input type="checkbox" id="consent" name="consent" required class="mt-1 mr-3">
@@ -611,12 +614,13 @@
                     </h5>
                     <p class="text-white/70 text-sm mb-4">Zapisz się, aby otrzymywać najnowsze wiadomości, aktualizacje i oferty specjalne.</p>
                     
-                    <form class="relative mb-6">
-                        <input type="email" placeholder="Twój adres e-mail" required 
+                    <!-- Footer Newsletter Form -->
+                    <form class="relative mb-6" data-form-type="newsletter">
+                        <input type="email" name="email" placeholder="Twój adres e-mail" required 
                             class="w-full py-3 px-4 bg-white/10 border border-white/20 rounded-lg text-white text-sm placeholder-white/50 outline-none transition duration-300 focus:border-peach focus:bg-white/15">
-                            <button type="submit" class="absolute right-1 top-1/2 transform -translate-y-1/2 bg-peach text-white py-2 px-4 rounded-md transition duration-300 hover:bg-peach-dark">
-                                <i class="fas fa-paper-plane text-sm"></i>
-                            </button>
+                        <button type="submit" class="absolute right-1 top-1/2 transform -translate-y-1/2 bg-peach text-white py-2 px-4 rounded-md transition duration-300 hover:bg-peach-dark">
+                            <i class="fas fa-paper-plane text-sm"></i>
+                        </button>
                     </form>
                     
                     <div class="flex items-center mb-4">
@@ -741,6 +745,7 @@
     </div>
     
     <script src="/scripts/main.js"></script>
+    <script src="/scripts/forms.js"></script>
     <script>
         // Initialize FAQ Toggle functionality
         function initFaqToggle() {
