@@ -412,17 +412,7 @@
                                         <option value="">Wybierz bajkę</option>
                                         <!-- Options will be populated dynamically from API -->
                                     </select>
-                                </div>
-                                
-                                <div class="mt-4" id="story-list">
-                                    <p class="text-text-medium mb-3">Dostępne bajki:</p>
-                                    <!-- Lista bajek będzie dynamicznie pobierana z API -->
-                                    <div class="animate-pulse">
-                                        <div class="h-10 bg-gray-200 rounded-md mb-2"></div>
-                                        <div class="h-10 bg-gray-200 rounded-md mb-2"></div>
-                                        <div class="h-10 bg-gray-200 rounded-md"></div>
-                                    </div>
-                                </div>
+                                </div> 
                                 
                                 <div>
                                     <label for="voice_sample" class="block text-text-medium font-medium mb-2">Próbka głosu (plik audio)</label>
@@ -838,35 +828,7 @@
                     const response = await fetch('https://api.dawnotemu.app/stories');
                     const stories = await response.json();
                     
-                    const storyList = document.getElementById('story-list');
                     const storySelect = document.getElementById('story_id');
-                    
-                    if (storyList && stories.length > 0) {
-                        // Replace loading animation with actual stories
-                        storyList.innerHTML = `
-                            <p class="text-text-medium mb-3">Dostępne bajki:</p>
-                            <div class="space-y-2">
-                                ${stories.map(story => `
-                                    <div class="flex items-center gap-3 p-3 bg-white rounded-md border border-gray-200 hover:border-lavender transition-colors">
-                                        <input type="radio" id="story_${story.id}" name="story_selection" value="${story.id}" class="cursor-pointer">
-                                        <label for="story_${story.id}" class="cursor-pointer flex-1">
-                                            <div class="font-medium">${story.title}</div>
-                                            <div class="text-sm text-text-medium">Autor: ${story.author}</div>
-                                        </label>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        `;
-                        
-                        // Add event listeners to sync radio buttons with select
-                        document.querySelectorAll('input[name="story_selection"]').forEach(radio => {
-                            radio.addEventListener('change', function() {
-                                if (storySelect) {
-                                    storySelect.value = this.value;
-                                }
-                            });
-                        });
-                    }
                     
                     if (storySelect && stories.length > 0) {
                         // Populate the select dropdown
@@ -889,16 +851,6 @@
                 } catch (error) {
                     console.error('Error fetching stories:', error);
                     
-                    // Show error message
-                    const storyList = document.getElementById('story-list');
-                    if (storyList) {
-                        storyList.innerHTML = `
-                            <p class="text-text-medium mb-3">Dostępne bajki:</p>
-                            <div class="p-4 bg-red-50 text-red-700 rounded-md">
-                                <p>Przepraszamy, nie udało się załadować listy bajek. Spróbuj odświeżyć stronę lub skontaktuj się z nami.</p>
-                            </div>
-                        `;
-                    }
                 }
             }
             
