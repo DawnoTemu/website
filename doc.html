@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>DawnoTemu Developer Portal | API & SDK Documentation</title>
+    <meta name="description" content="Developer resources, API documentation, and SDK information for the DawnoTemu voice cloning application.">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Quicksand:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Preconnect to External Domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Font Loading with Fallback -->
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Quicksand:wght@400;600&display=swap&display=swap">
+    </noscript>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        peach: 'rgb(251, 190, 159)',
+                        'peach-dark': '#FF9A8A',
+                        lavender: 'rgb(218, 143, 255)',
+                        'lavender-dark': '#B8A2DC',
+                        mint: 'rgb(99, 230, 226)',
+                        'soft-yellow': 'rgb(250, 232, 176)',
+                        'text-dark': '#2D3047',
+                        'text-medium': '#6C6F93',
+                        'text-light': '#9CA3AF',
+                        'bg-light': '#F9FAFC',
+                    },
+                    fontFamily: {
+                        'comfortaa': ['Comfortaa', 'cursive'],
+                        'sans': ['Quicksand', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* Apply smooth scrolling to the entire document */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Optional: For browsers that support it, you can add a custom scroll speed 
+          using scroll-timeline and animation-timeline (newer CSS features) */
+        
+        /* Optional: Disable smooth scrolling for users who prefer reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* Code block styles */
+        .code-block {
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+
+        /* Tab styles */
+        .tab-active {
+            border-bottom: 3px solid rgb(218, 143, 255);
+            color: rgb(218, 143, 255);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* API method badges */
+        .method-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .method-get {
+            background-color: #61affe;
+            color: white;
+        }
+
+        .method-post {
+            background-color: #49cc90;
+            color: white;
+        }
+
+        .method-put {
+            background-color: #fca130;
+            color: white;
+        }
+
+        .method-delete {
+            background-color: #f93e3e;
+            color: white;
+        }
+
+        .method-head {
+            background-color: #9012fe;
+            color: white;
+        }
+
+        /* Code tabs */
+        .code-tab {
+            cursor: pointer;
+            padding: 8px 16px;
+            background: #f1f1f1;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+        }
+
+        .code-tab.active {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-bottom: none;
+        }
+
+        .code-content {
+            display: none;
+            border: 1px solid #ddd;
+            padding: 12px;
+            border-radius: 0 4px 4px 4px;
+        }
+
+        .code-content.active {
+            display: block;
+        }
+
+        /* Sidebar */
+        @media (min-width: 768px) {
+            .sidebar {
+                position: sticky;
+                top: 100px;
+                max-height: calc(100vh - 100px);
+                overflow-y: auto;
+            }
+        }
+
+        /* Animation for API Explorer */
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+        
+        .loading-pulse {
+            animation: pulse 1.5s infinite;
+        }
+    </style>
+</head>
+<body class="bg-bg-light text-text-dark leading-relaxed font-sans font-normal overflow-x-hidden">
+    <header class="bg-white py-3 sm:py-5 fixed top-0 left-0 w-full z-50 shadow-sm border-b border-gray-200/20">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-8 relative">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="#" class="flex items-center">
+                        <img src="https://i.imgur.com/lHYZsur.png" alt="DawnoTemu Logo" class="h-8 sm:h-10 mr-2 sm:mr-3" loading="lazy">
+                        <span class="font-comfortaa font-bold text-text-dark">Dev Portal</span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#overview" class="text-text-medium hover:text-text-dark transition-colors">Overview</a>
+                    <a href="#api-docs" class="text-text-medium hover:text-text-dark transition-colors">API Reference</a>
+                    <a href="#app-docs" class="text-text-medium hover:text-text-dark transition-colors">App Architecture</a>
+                    <a href="#sdk" class="text-text-medium hover:text-text-dark transition-colors">SDK</a>
+                    <a href="https://www.dawnotemu.app" target="_blank" class="bg-peach text-white py-2.5 px-5 rounded-full font-semibold transition duration-300 ease-in-out border-none cursor-pointer text-sm shadow-md hover:bg-peach-dark hover:transform hover:shadow-lg">Main Website</a>
+                </div>
+                
+                <!-- Mobile menu toggle button -->
+                <div class="mobile-menu-toggle flex flex-col justify-between w-[24px] sm:w-[30px] h-[18px] sm:h-[21px] cursor-pointer md:hidden" id="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+                    <span class="w-full h-[2px] sm:h-[3px] bg-text-dark rounded transition duration-300"></span>
+                    <span class="w-full h-[2px] sm:h-[3px] bg-text-dark rounded transition duration-300"></span>
+                    <span class="w-full h-[2px] sm:h-[3px] bg-text-dark rounded transition duration-300"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+        
+    <!-- Mobile menu overlay -->
+    <div id="mobile-nav-overlay" class="fixed inset-0 bg-text-dark/50 z-30 hidden opacity-0 transition-opacity duration-300"></div>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav-container fixed top-[57px] sm:top-[71px] right-0 h-[calc(100vh-57px)] sm:h-[calc(100vh-71px)] bg-white z-40 p-5 sm:p-8 flex-col hidden transform translate-x-full transition-transform duration-300 ease-in-out shadow-xl" id="mobile-nav">
+        <div class="flex flex-col h-full overflow-y-auto">
+            <!-- Navigation Links -->
+            <nav class="flex flex-col gap-4 sm:gap-5">
+                <a href="#overview" class="mobile-nav-link nav-link text-text-dark text-lg font-medium py-1 flex items-center">
+                    <span class="mr-3 w-5 text-center opacity-70"><i class="fas fa-home"></i></span>
+                    Overview
+                </a>
+                
+                <a href="#api-docs" class="mobile-nav-link nav-link text-text-dark text-lg font-medium py-1 flex items-center">
+                    <span class="mr-3 w-5 text-center opacity-70"><i class="fas fa-server"></i></span>
+                    API Reference
+                </a>
+                
+                <a href="#app-docs" class="mobile-nav-link nav-link text-text-dark text-lg font-medium py-1 flex items-center">
+                    <span class="mr-3 w-5 text-center opacity-70"><i class="fas fa-mobile-alt"></i></span>
+                    App Architecture
+                </a>
+                
+                <a href="#sdk" class="mobile-nav-link nav-link text-text-dark text-lg font-medium py-1 flex items-center">
+                    <span class="mr-3 w-5 text-center opacity-70"><i class="fas fa-code"></i></span>
+                    SDK
+                </a>
+                
+                <!-- Mobile menu call to action -->
+                <a href="https://www.dawnotemu.app" class="mt-8 bg-peach text-white py-3 sm:py-4 px-6 rounded-full font-semibold transition duration-300 ease-in-out border-none cursor-pointer text-base sm:text-base shadow-md text-center hover:bg-peach-dark">
+                    Main Website
+                </a>
+            </nav>
+        </div>
+    </div>
+    
+    <section id="hero" class="pt-24 md:pt-32 pb-16 md:pb-24 relative overflow-hidden">
+        <div class="absolute top-[-20%] right-[-10%] w-[80%] h-[80%] md:rounded-[50%] bg-[radial-gradient(circle_at_center,_rgba(251,190,159,0.1)_0%,_rgba(251,190,159,0)_70%)] z-[-1]"></div>
+        <div class="absolute bottom-[-20%] left-[-10%] w-[70%] h-[70%] md:rounded-[50%] bg-[radial-gradient(circle_at_center,_rgba(218,143,255,0.1)_0%,_rgba(218,143,255,0)_70%)] z-[-1]"></div>
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="flex flex-col items-center">
+                <div class="inline-flex items-center px-4 py-2 bg-lavender/15 text-lavender-dark rounded-full text-sm font-semibold mb-6">
+                    <i class="fas fa-code-branch mr-2"></i>
+                    Developer Resources
+                </div>
+                <h1 class="text-4xl md:text-5xl text-center leading-tight mb-6 tracking-tight font-bold max-w-4xl">DawnoTemu Developer Portal & API Documentation</h1>
+                <p class="text-xl text-text-medium mb-10 font-normal text-center max-w-2xl">
+                    Everything you need to integrate and extend the DawnoTemu voice cloning platform
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 w-full max-w-4xl">
+                    <a href="#api-docs" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+                        <div class="mb-4 text-lavender">
+                            <i class="fas fa-server text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">API Reference</h3>
+                        <p class="text-text-medium">Comprehensive documentation of all available API endpoints</p>
+                    </a>
+                    
+                    <a href="#app-docs" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+                        <div class="mb-4 text-peach">
+                            <i class="fas fa-mobile-alt text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">App Architecture</h3>
+                        <p class="text-text-medium">Understand how the DawnoTemu application is built</p>
+                    </a>
+                    
+                    <a href="#sdk" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+                        <div class="mb-4 text-mint">
+                            <i class="fas fa-code text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">SDK & Libraries</h3>
+                        <p class="text-text-medium">Client libraries and tools for faster integration</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="overview" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-8">
+            <h2 class="text-3xl font-bold mb-8">Overview</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="bg-bg-light rounded-lg p-6 mb-8">
+                        <h3 class="text-xl font-semibold mb-4">What is DawnoTemu?</h3>
+                        <p class="mb-4">DawnoTemu is a mobile application that allows users to create AI-powered voice clones to read bedtime stories to children. The platform utilizes advanced speech synthesis technology to create a natural-sounding duplicate of a user's voice that can then read various stories.</p>
+                        <p>The application consists of a React Native mobile app frontend and a Flask-based Python backend, utilizing services like ElevenLabs for voice synthesis and AWS S3 for storage.</p>
+                    </div>
+                    
+                    <div class="bg-bg-light rounded-lg p-6">
+                        <h3 class="text-xl font-semibold mb-4">Key Technologies</h3>
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li><strong>Frontend:</strong> React Native with Expo</li>
+                            <li><strong>Backend:</strong> Flask (Python)</li>
+                            <li><strong>Authentication:</strong> JWT-based token system</li>
+                            <li><strong>Voice Cloning:</strong> ElevenLabs API integration</li>
+                            <li><strong>Storage:</strong> AWS S3 for file storage</li>
+                            <li><strong>Database:</strong> SQL database with SQLAlchemy ORM</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-span-1">
+                    <div class="bg-bg-light rounded-lg p-6">
+                        <h3 class="text-xl font-semibold mb-4">API Authentication</h3>
+                        <p class="mb-4">The DawnoTemu API uses JWT (JSON Web Token) authentication. All secured endpoints require an Authentication header with a valid access token.</p>
+                        <div class="bg-gray-100 rounded p-3 font-mono text-sm">
+                            Authorization: Bearer &lt;access_token&gt;
+                        </div>
+                        <p class="mt-4 mb-2">Tokens expire after:</p>
+                        <ul class="list-disc pl-6">
+                            <li>Access Token: 15 minutes</li>
+                            <li>Refresh Token: 7 days</li>
+                        </ul>
+                        <div class="mt-6">
+                            <a href="#authentication" class="text-lavender hover:underline">Learn more about authentication →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-bg-light rounded-lg p-6 mt-6">
+                        <h3 class="text-xl font-semibold mb-4">Base URL</h3>
+                        <p class="mb-2">Production API:</p>
+                        <div class="bg-gray-100 rounded p-3 font-mono text-sm break-all">
+                            https://api.dawnotemu.app
+                        </div>
+                        <p class="mt-4 mb-2">Staging API:</p>
+                        <div class="bg-gray-100 rounded p-3 font-mono text-sm break-all">
+                            https://staging-story-voice.herokuapp.com
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="api-docs" class="py-16 bg-bg-light">
+        <div class="max-w-7xl mx-auto px-8">
+            <h2 class="text-3xl font-bold mb-8">API Documentation</h2>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- API Navigation Sidebar -->
+                <div class="md:w-64 order-2 md:order-1">
+                    <div class="sidebar bg-white rounded-lg p-4 shadow-sm">
+                        <h3 class="text-lg font-semibold mb-4 px-2">API Endpoints</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#authentication" class="block px-2 py-1 hover:bg-lavender/10 hover:text-lavender rounded">Authentication</a></li>
+                            <li><a href="#voice-endpoints" class="block px-2 py-1 hover:bg-lavender/10 hover:text-lavender rounded">Voice Endpoints</a></li>
+                            <li><a href="#story-endpoints" class="block px-2 py-1 hover:bg-lavender/10 hover:text-lavender rounded">Story Endpoints</a></li>
+                            <li><a href="#audio-endpoints" class="block px-2 py-1 hover:bg-lavender/10 hover:text-lavender rounded">Audio Endpoints</a></li>
+                            <li><a href="#error-handling" class="block px-2 py-1 hover:bg-lavender/10 hover:text-lavender rounded">Error Handling</a></li>
+                            <li><a href="#rate-limits" class="block px-2 py-1 hover:bg-lavender/10 hover:text-lavender rounded">Rate Limits</a></li>
+                        </ul>
+                        
+                        <h3 class="text-lg font-semibold mt-6 mb-4 px-2">Resources</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#api-explorer" class="block px-2 py-1 hover:bg-lavender/10 hover:text-lavender rounded">API Explorer</a></li>
+                            <li><a href="#sdk-libraries" class="block px-2 py-1 hover:bg-lavender/10 hover:text-lavender rounded">Client Libraries</a></li>
+                            <li><a href="#postman-collection" class="block px-2 py-1 hover:bg-lavender/10 hover:text-lavender rounded">Postman Collection</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- API Content -->
+                <div class="md:flex-1 order-1 md:order-2">
+                    <!-- Authentication Section -->
+                    <div id="authentication" class="bg-white rounded-lg p-6 mb-8 shadow-sm">
+                        <h3 class="text-2xl font-bold mb-4">Authentication</h3>
+                        
+                        <p class="mb-6">DawnoTemu API uses JWT (JSON Web Token) based authentication. To access protected endpoints, you need to include an authorization header with a valid access token.</p>
+                        
+                        <div class="mb-8">
+                            <h4 class="text-lg font-semibold mb-3">Authentication Flow</h4>
+                            <ol class="list-decimal pl-6 space-y-2">
+                                <li>Register a new user or log in with existing credentials</li>
+                                <li>Receive access and refresh tokens</li>
+                                <li>Use the access token in the Authorization header</li>
+                                <li>When the access token expires, use the refresh token to get a new one</li>
+                            </ol>
+                        </div>
+                        
+                        <h4 class="text-lg font-semibold mb-3">Authentication Endpoints</h4>
+                        
+                        <!-- Register Endpoint -->
+                        <div class="mb-6 border-b pb-6">
+                            <div class="flex items-start mb-2">
+                                <span class="method-badge method-post mr-2">POST</span>
+                                <code class="font-mono text-sm">/auth/register</code>
+                            </div>
+                            <p class="mb-3">Register a new user account.</p>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Request Body:</h5>
+                                <pre class="code-block p-3 text-sm"><code>{
+  "email": "user@example.com",
+  "password": "secure_password",
+  "password_confirm": "secure_password"
+}</code></pre>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Response:</h5>
+                                <pre class="code-block p-3 text-sm"><code>{
+  "message": "Registration successful. Please check your email to confirm your account."
+}</code></pre>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Status Codes:</h5>
+                                <ul class="list-disc pl-6">
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">201</code> - User created successfully</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">400</code> - Invalid request (missing fields or passwords don't match)</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">409</code> - Email already registered</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Login Endpoint -->
+                        <div class="mb-6 border-b pb-6">
+                            <div class="flex items-start mb-2">
+                                <span class="method-badge method-post mr-2">POST</span>
+                                <code class="font-mono text-sm">/auth/login</code>
+                            </div>
+                            <p class="mb-3">Authenticate a user and receive JWT tokens.</p>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Request Body:</h5>
+                                <pre class="code-block p-3 text-sm"><code>{
+  "email": "user@example.com",
+  "password": "secure_password"
+}</code></pre>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Response:</h5>
+                                <pre class="code-block p-3 text-sm"><code>{
+  "access_token": "eyJhbGciOi...",
+  "refresh_token": "eyJhbGciOi...",
+  "user": {
+    "id": 1,
+    "email": "user@example.com",
+    "email_confirmed": true,
+    "created_at": "2025-03-19T14:22:35.982Z",
+    "last_login": "2025-03-23T14:30:15.651Z"
+  }
+}</code></pre>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Status Codes:</h5>
+                                <ul class="list-disc pl-6">
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">200</code> - Successfully authenticated</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">400</code> - Missing required fields</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">401</code> - Invalid credentials</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Refresh Token Endpoint -->
+                        <div class="mb-6 border-b pb-6">
+                            <div class="flex items-start mb-2">
+                                <span class="method-badge method-post mr-2">POST</span>
+                                <code class="font-mono text-sm">/auth/refresh</code>
+                            </div>
+                            <p class="mb-3">Get a new access token using a refresh token.</p>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Request Body:</h5>
+                                <pre class="code-block p-3 text-sm"><code>{
+  "refresh_token": "eyJhbGciOi..."
+}</code></pre>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Response:</h5>
+                                <pre class="code-block p-3 text-sm"><code>{
+  "access_token": "eyJhbGciOi..."
+}</code></pre>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Status Codes:</h5>
+                                <ul class="list-disc pl-6">
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">200</code> - New token generated successfully</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">400</code> - Missing refresh token</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">401</code> - Invalid or expired refresh token</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Other Authentication Endpoints (Summary) -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-bg-light p-4 rounded">
+                                <div class="flex items-start mb-2">
+                                    <span class="method-badge method-get mr-2">GET</span>
+                                    <code class="font-mono text-sm">/auth/me</code>
+                                </div>
+                                <p class="text-sm">Get the profile information of the currently authenticated user.</p>
+                            </div>
+                            
+                            <div class="bg-bg-light p-4 rounded">
+                                <div class="flex items-start mb-2">
+                                    <span class="method-badge method-get mr-2">GET</span>
+                                    <code class="font-mono text-sm">/auth/confirm-email/{token}</code>
+                                </div>
+                                <p class="text-sm">Confirm a user's email address using the token sent via email.</p>
+                            </div>
+                            
+                            <div class="bg-bg-light p-4 rounded">
+                                <div class="flex items-start mb-2">
+                                    <span class="method-badge method-post mr-2">POST</span>
+                                    <code class="font-mono text-sm">/auth/reset-password-request</code>
+                                </div>
+                                <p class="text-sm">Request a password reset email.</p>
+                            </div>
+                            
+                            <div class="bg-bg-light p-4 rounded">
+                                <div class="flex items-start mb-2">
+                                    <span class="method-badge method-post mr-2">POST</span>
+                                    <code class="font-mono text-sm">/auth/reset-password/{token}</code>
+                                </div>
+                                <p class="text-sm">Reset a user's password using a token received via email.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Voice Endpoints Section -->
+                    <div id="voice-endpoints" class="bg-white rounded-lg p-6 mb-8 shadow-sm">
+                        <h3 class="text-2xl font-bold mb-4">Voice Endpoints</h3>
+                        
+                        <p class="mb-6">These endpoints allow you to manage voice clones. All voice endpoints require authentication.</p>
+                        
+                        <!-- List Voices Endpoint -->
+                        <div class="mb-6 border-b pb-6">
+                            <div class="flex items-start mb-2">
+                                <span class="method-badge method-get mr-2">GET</span>
+                                <code class="font-mono text-sm">/voices</code>
+                            </div>
+                            <p class="mb-3">List all voices belonging to the authenticated user.</p>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Headers:</h5>
+                                <pre class="code-block p-3 text-sm"><code>Authorization: Bearer {access_token}</code></pre>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Response:</h5>
+                                <pre class="code-block p-3 text-sm"><code>[
+  {
+    "id": 1,
+    "name": "My Voice",
+    "elevenlabs_voice_id": "pNInz6obpgDQGcFmaJgB",
+    "user_id": 1,
+    "created_at": "2025-03-20T15:45:22Z",
+    "updated_at": "2025-03-20T15:45:22Z"
+  }
+]</code></pre>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Status Codes:</h5>
+                                <ul class="list-disc pl-6">
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">200</code> - Success</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">401</code> - Unauthorized</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Create Voice Clone Endpoint -->
+                        <div class="mb-6 border-b pb-6">
+                            <div class="flex items-start mb-2">
+                                <span class="method-badge method-post mr-2">POST</span>
+                                <code class="font-mono text-sm">/voices</code>
+                            </div>
+                            <p class="mb-3">Create a new voice clone from an audio sample.</p>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Headers:</h5>
+                                <pre class="code-block p-3 text-sm"><code>Authorization: Bearer {access_token}
+Content-Type: multipart/form-data</code></pre>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Form Data:</h5>
+                                <ul class="list-disc pl-6">
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">file</code> - Audio file (WAV or MP3, maximum 30 seconds)</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">name</code> - (Optional) Name for the voice</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Response:</h5>
+                                <pre class="code-block p-3 text-sm"><code>{
+  "id": 1,
+  "voice_id": "pNInz6obpgDQGcFmaJgB",
+  "name": "My Voice"
+}</code></pre>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Status Codes:</h5>
+                                <ul class="list-disc pl-6">
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">200</code> - Voice clone created successfully</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">400</code> - Invalid request (missing file or invalid file type)</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">401</code> - Unauthorized</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">500</code> - Voice cloning failed</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Other Voice Endpoints (Summary) -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-bg-light p-4 rounded">
+                                <div class="flex items-start mb-2">
+                                    <span class="method-badge method-get mr-2">GET</span>
+                                    <code class="font-mono text-sm">/voices/{voice_id}</code>
+                                </div>
+                                <p class="text-sm">Get details of a specific voice clone.</p>
+                            </div>
+                            
+                            <div class="bg-bg-light p-4 rounded">
+                                <div class="flex items-start mb-2">
+                                    <span class="method-badge method-delete mr-2">DELETE</span>
+                                    <code class="font-mono text-sm">/voices/{voice_id}</code>
+                                </div>
+                                <p class="text-sm">Delete a voice clone and all associated audio files.</p>
+                            </div>
+                            
+                            <div class="bg-bg-light p-4 rounded">
+                                <div class="flex items-start mb-2">
+                                    <span class="method-badge method-get mr-2">GET</span>
+                                    <code class="font-mono text-sm">/voices/{voice_id}/sample</code>
+                                </div>
+                                <p class="text-sm">Get the original voice sample used for cloning.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Story Endpoints Section -->
+                    <div id="story-endpoints" class="bg-white rounded-lg p-6 mb-8 shadow-sm">
+                        <h3 class="text-2xl font-bold mb-4">Story Endpoints</h3>
+                        
+                        <p class="mb-6">These endpoints provide access to the story library. Story endpoints are generally public and don't require authentication.</p>
+                        
+                        <!-- List Stories Endpoint -->
+                        <div class="mb-6 border-b pb-6">
+                            <div class="flex items-start mb-2">
+                                <span class="method-badge method-get mr-2">GET</span>
+                                <code class="font-mono text-sm">/stories</code>
+                            </div>
+                            <p class="mb-3">Get a list of all available stories.</p>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Response:</h5>
+                                <pre class="code-block p-3 text-sm"><code>[
+  {
+    "id": 1,
+    "title": "Hansel and Gretel",
+    "author": "Brothers Grimm",
+    "description": "A classic fairy tale about two children who discover a house made of candy...",
+    "cover_path": "/stories/1/cover",
+    "created_at": "2025-01-15T10:30:00Z",
+    "updated_at": "2025-01-15T10:30:00Z"
+  },
+  {
+    "id": 2,
+    "title": "Three Little Pigs",
+    "author": "Traditional",
+    "description": "The tale of three pigs who build houses of different materials...",
+    "cover_path": "/stories/2/cover",
+    "created_at": "2025-01-16T11:20:00Z",
+    "updated_at": "2025-01-16T11:20:00Z"
+  }
+]</code></pre>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Status Codes:</h5>
+                                <ul class="list-disc pl-6">
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">200</code> - Success</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">500</code> - Server error</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Get Story Details Endpoint -->
+                        <div class="mb-6 border-b pb-6">
+                            <div class="flex items-start mb-2">
+                                <span class="method-badge method-get mr-2">GET</span>
+                                <code class="font-mono text-sm">/stories/{story_id}</code>
+                            </div>
+                            <p class="mb-3">Get the details of a specific story.</p>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">URL Parameters:</h5>
+                                <ul class="list-disc pl-6">
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">story_id</code> - ID of the story</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Response:</h5>
+                                <pre class="code-block p-3 text-sm"><code>{
+  "id": 1,
+  "title": "Hansel and Gretel",
+  "author": "Brothers Grimm",
+  "description": "A classic fairy tale about two children who discover a house made of candy...",
+  "content": "Once upon a time...",
+  "cover_path": "/stories/1/cover",
+  "created_at": "2025-01-15T10:30:00Z",
+  "updated_at": "2025-01-15T10:30:00Z"
+}</code></pre>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Status Codes:</h5>
+                                <ul class="list-disc pl-6">
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">200</code> - Success</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">404</code> - Story not found</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Get Story Cover Image Endpoint -->
+                        <div class="mb-6">
+                            <div class="flex items-start mb-2">
+                                <span class="method-badge method-get mr-2">GET</span>
+                                <code class="font-mono text-sm">/stories/{story_id}/cover</code>
+                            </div>
+                            <p class="mb-3">Get the cover image for a story. This endpoint redirects to a pre-signed URL.</p>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">URL Parameters:</h5>
+                                <ul class="list-disc pl-6">
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">story_id</code> - ID of the story</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Response:</h5>
+                                <p>Redirects to the image URL or returns an error JSON if no cover exists.</p>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Status Codes:</h5>
+                                <ul class="list-disc pl-6">
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">302</code> - Redirected to image</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">404</code> - Cover image not found</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Audio Endpoints Section -->
+                    <div id="audio-endpoints" class="bg-white rounded-lg p-6 mb-8 shadow-sm">
+                        <h3 class="text-2xl font-bold mb-4">Audio Endpoints</h3>
+                        
+                        <p class="mb-6">These endpoints allow generation and retrieval of audio files with synthesized voices. All audio endpoints require authentication.</p>
+                        
+                        <!-- Check Audio Existence Endpoint -->
+                        <div class="mb-6 border-b pb-6">
+                            <div class="flex items-start mb-2">
+                                <span class="method-badge method-head mr-2">HEAD</span>
+                                <code class="font-mono text-sm">/voices/{elevenlabs_voice_id}/stories/{story_id}/audio</code>
+                            </div>
+                            <p class="mb-3">Check if audio has been generated for a specific voice and story.</p>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Headers:</h5>
+                                <pre class="code-block p-3 text-sm"><code>Authorization: Bearer {access_token}</code></pre>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">URL Parameters:</h5>
+                                <ul class="list-disc pl-6">
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">elevenlabs_voice_id</code> - ElevenLabs ID of the voice</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">story_id</code> - ID of the story</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Response:</h5>
+                                <p>No content is returned. Status code indicates existence.</p>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Status Codes:</h5>
+                                <ul class="list-disc pl-6">
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">200</code> - Audio exists</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">401</code> - Unauthorized</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">403</code> - Forbidden (voice belongs to a different user)</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">404</code> - Audio does not exist</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Generate Audio Endpoint -->
+                        <div class="mb-6 border-b pb-6">
+                            <div class="flex items-start mb-2">
+                                <span class="method-badge method-post mr-2">POST</span>
+                                <code class="font-mono text-sm">/voices/{elevenlabs_voice_id}/stories/{story_id}/audio</code>
+                            </div>
+                            <p class="mb-3">Generate audio for a story with a specific voice.</p>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Headers:</h5>
+                                <pre class="code-block p-3 text-sm"><code>Authorization: Bearer {access_token}</code></pre>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">URL Parameters:</h5>
+                                <ul class="list-disc pl-6">
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">elevenlabs_voice_id</code> - ElevenLabs ID of the voice</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">story_id</code> - ID of the story</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Response:</h5>
+                                <pre class="code-block p-3 text-sm"><code>{
+  "status": "success",
+  "url": "https://s3.amazonaws.com/storyvoice/audio/..."
+}</code></pre>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Status Codes:</h5>
+                                <ul class="list-disc pl-6">
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">200</code> - Audio generated successfully</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">401</code> - Unauthorized</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">403</code> - Forbidden (voice belongs to a different user)</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">404</code> - Voice or story not found</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">500</code> - Generation failed</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Get Audio File Endpoint -->
+                        <div class="mb-6">
+                            <div class="flex items-start mb-2">
+                                <span class="method-badge method-get mr-2">GET</span>
+                                <code class="font-mono text-sm">/voices/{elevenlabs_voice_id}/stories/{story_id}/audio</code>
+                            </div>
+                            <p class="mb-3">Stream or redirect to audio for a story read in a specific voice.</p>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Headers:</h5>
+                                <pre class="code-block p-3 text-sm"><code>Authorization: Bearer {access_token}
+Range: bytes=0-1024 (Optional, for partial content requests)</code></pre>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">URL Parameters:</h5>
+                                <ul class="list-disc pl-6">
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">elevenlabs_voice_id</code> - ElevenLabs ID of the voice</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">story_id</code> - ID of the story</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Query Parameters:</h5>
+                                <ul class="list-disc pl-6">
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">redirect</code> - (Optional) If "true", redirects to S3 URL instead of streaming</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">expires</code> - (Optional) Expiration time in seconds for the URL if redirecting (default: 3600)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Response:</h5>
+                                <p>If redirect=true, redirects to the audio URL. Otherwise, streams the audio file with appropriate headers for range requests.</p>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-semibold text-sm text-text-medium mb-2">Status Codes:</h5>
+                                <ul class="list-disc pl-6">
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">200</code> - Full content</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">206</code> - Partial content (when Range header is used)</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">302</code> - Redirect (when redirect=true)</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">401</code> - Unauthorized</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">403</code> - Forbidden (voice belongs to a different user)</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">404</code> - Audio not found</li>
+                                    <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">500</code> - Server error</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Error Handling Section -->
+                    <div id="error-handling" class="bg-white rounded-lg p-6 mb-8 shadow-sm">
+                        <h3 class="text-2xl font-bold mb-4">Error Handling</h3>
+                        
+                        <p class="mb-6">All error responses follow a consistent format:</p>
+                        
+                        <pre class="code-block p-3 text-sm mb-4"><code>{
+  "error": "Description of the error"
+}</code></pre>
+                        
+                        <p class="mb-6">Some responses may include additional details:</p>
+                        
+                        <pre class="code-block p-3 text-sm mb-4"><code>{
+  "error": "Failed to delete voice",
+  "details": "Error connecting to ElevenLabs API"
+}</code></pre>
+                        
+                        <h4 class="text-lg font-semibold mb-3">Common Error Codes</h4>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <h5 class="font-semibold mb-1">400 Bad Request</h5>
+                                <p class="text-sm text-text-medium">Invalid request parameters, missing required fields, or malformed request.</p>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-semibold mb-1">401 Unauthorized</h5>
+                                <p class="text-sm text-text-medium">Missing or invalid authentication credentials.</p>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-semibold mb-1">403 Forbidden</h5>
+                                <p class="text-sm text-text-medium">Authenticated but not authorized to access the resource.</p>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-semibold mb-1">404 Not Found</h5>
+                                <p class="text-sm text-text-medium">The requested resource does not exist.</p>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-semibold mb-1">409 Conflict</h5>
+                                <p class="text-sm text-text-medium">Request conflicts with the current state of the resource (e.g., email already registered).</p>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-semibold mb-1">500 Internal Server Error</h5>
+                                <p class="text-sm text-text-medium">An unexpected error occurred on the server.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Rate Limits Section -->
+                    <div id="rate-limits" class="bg-white rounded-lg p-6 mb-8 shadow-sm">
+                        <h3 class="text-2xl font-bold mb-4">Rate Limits</h3>
+                        
+                        <p class="mb-4">The DawnoTemu API implements rate limiting to ensure fair usage and service stability. Rate limits are applied per API key or IP address.</p>
+                        
+                        <div class="bg-bg-light p-4 rounded-lg mb-6">
+                            <h4 class="text-lg font-semibold mb-2">Standard Limits</h4>
+                            <ul class="list-disc pl-6 space-y-1">
+                                <li>Authentication endpoints: 10 requests per minute</li>
+                                <li>Voice creation: 5 requests per hour</li>
+                                <li>Audio generation: 20 requests per hour</li>
+                                <li>Story endpoints: 60 requests per minute</li>
+                                <li>Other endpoints: 120 requests per minute</li>
+                            </ul>
+                        </div>
+                        
+                        <h4 class="text-lg font-semibold mb-3">Rate Limit Headers</h4>
+                        
+                        <p class="mb-4">When a request is made, the following headers are included in the response:</p>
+                        
+                        <ul class="list-disc pl-6 space-y-1 mb-6">
+                            <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">X-RateLimit-Limit</code>: Maximum number of requests allowed in the current period</li>
+                            <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">X-RateLimit-Remaining</code>: Number of requests remaining in the current period</li>
+                            <li><code class="bg-gray-100 px-1 py-0.5 rounded text-sm">X-RateLimit-Reset</code>: Time (in seconds) until the rate limit resets</li>
+                        </ul>
+                        
+                        <h4 class="text-lg font-semibold mb-3">Rate Limit Exceeded</h4>
+                        
+                        <p class="mb-4">When a rate limit is exceeded, the API returns a 429 Too Many Requests response with an error message:</p>
+                        
+                        <pre class="code-block p-3 text-sm"><code>{
+  "error": "Rate limit exceeded",
+  "details": "Please try again after 45 seconds"
+}</code></pre>
+                    </div>
+                    
+                    <!-- API Explorer Section -->
+                    <div id="api-explorer" class="bg-white rounded-lg p-6 mb-8 shadow-sm">
+                        <h3 class="text-2xl font-bold mb-4">API Explorer</h3>
+                        
+                        <p class="mb-6">Use our interactive API Explorer to test endpoints directly from your browser. Enter your API credentials and make requests to see responses in real-time.</p>
+                        
+                        <div class="bg-bg-light p-6 rounded-lg">
+                            <h4 class="text-xl font-semibold mb-4">Coming Soon</h4>
+                            <p class="text-text-medium mb-4">Our interactive API Explorer is currently in development and will be available soon. In the meantime, you can use our Postman collection to test the API.</p>
+                            <div class="flex justify-center">
+                                <div class="p-4 bg-white rounded-lg shadow-sm w-full max-w-lg text-center">
+                                    <div class="loading-pulse inline-block">
+                                        <i class="fas fa-code text-lavender text-4xl mb-4"></i>
+                                        <p class="text-text-medium">API Explorer Coming Soon</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Postman Collection -->
+                    <div id="postman-collection" class="bg-white rounded-lg p-6 shadow-sm">
+                        <h3 class="text-2xl font-bold mb-4">Postman Collection</h3>
+                        
+                        <p class="mb-4">Download our Postman collection to quickly test the DawnoTemu API endpoints.</p>
+                        
+                        <div class="bg-bg-light p-6 rounded-lg flex flex-col md:flex-row items-center justify-between">
+                            <div class="mb-4 md:mb-0">
+                                <h4 class="text-lg font-semibold mb-2">DawnoTemu API Collection</h4>
+                                <p class="text-text-medium text-sm mb-2">Includes all endpoints with example requests and environment variables.</p>
+                                <span class="text-xs text-text-medium">Last updated: April 15, 2025</span>
+                            </div>
+                            <a href="#" class="bg-peach text-white py-2 px-4 rounded-full inline-flex items-center hover:bg-peach-dark transition-colors">
+                                <i class="fas fa-download mr-2"></i>
+                                Download Collection
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="app-docs" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-8">
+            <h2 class="text-3xl font-bold mb-8">App Architecture</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Sidebar Navigation -->
+                <div class="lg:col-span-1 order-2 lg:order-1">
+                    <div class="sidebar bg-bg-light rounded-lg p-4 shadow-sm">
+                        <h3 class="text-lg font-semibold mb-4 px-2">Quick Navigation</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#frontend-architecture" class="block px-2 py-1 hover:bg-lavender/10 hover:text-lavender rounded">Frontend Architecture</a></li>
+                            <li><a href="#backend-architecture" class="block px-2 py-1 hover:bg-lavender/10 hover:text-lavender rounded">Backend Architecture</a></li>
+                            <li><a href="#authentication-flow" class="block px-2 py-1 hover:bg-lavender/10 hover:text-lavender rounded">Authentication Flow</a></li>
+                            <li><a href="#voice-cloning-process" class="block px-2 py-1 hover:bg-lavender/10 hover:text-lavender rounded">Voice Cloning Process</a></li>
+                            <li><a href="#audio-generation-flow" class="block px-2 py-1 hover:bg-lavender/10 hover:text-lavender rounded">Audio Generation Flow</a></li>
+                            <li><a href="#offline-support" class="block px-2 py-1 hover:bg-lavender/10 hover:text-lavender rounded">Offline Support</a></li>
+                            <li><a href="#ui-components" class="block px-2 py-1 hover:bg-lavender/10 hover:text-lavender rounded">UI Components</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Main Content -->
+                <div class="lg:col-span-2 order-1 lg:order-2">
+                    <!-- Frontend Architecture -->
+                    <div id="frontend-architecture" class="mb-12">
+                        <h3 class="text-2xl font-bold mb-4">Frontend Architecture</h3>
+                        
+                        <p class="mb-4">The DawnoTemu app's frontend is developed using React Native with Expo, providing a cross-platform mobile experience.</p>
+                        
+                        <div class="bg-bg-light rounded-lg p-6 mb-6">
+                            <h4 class="text-lg font-semibold mb-4">Main Technologies</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <h5 class="font-semibold mb-2">Core Framework</h5>
+                                    <ul class="list-disc pl-6 space-y-1 text-sm">
+                                        <li>React Native</li>
+                                        <li>Expo SDK</li>
+                                        <li>React Navigation</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold mb-2">UI Components</h5>
+                                    <ul class="list-disc pl-6 space-y-1 text-sm">
+                                        <li>Custom modals</li>
+                                        <li>Status toasts</li>
+                                        <li>Audio controls</li>
+                                        <li>Progress indicators</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold mb-2">Audio Management</h5>
+                                    <ul class="list-disc pl-6 space-y-1 text-sm">
+                                        <li>Expo AV for playback</li>
+                                        <li>Custom hooks for recording</li>
+                                        <li>File system integration</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold mb-2">State Management</h5>
+                                    <ul class="list-disc pl-6 space-y-1 text-sm">
+                                        <li>React Context API</li>
+                                        <li>Custom hooks</li>
+                                        <li>AsyncStorage for persistence</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4 class="text-lg font-semibold mb-3">Code Organization</h4>
+                        
+                        <div class="code-block p-4 mb-6">
+                            <pre><code>├── assets/            # Images, fonts, etc.
+├── components/        # UI components
+│   ├── Modals/        # Modal components
+│   └── ...
+├── screens/           # Screen components
+├── services/          # API services
+├── hooks/             # Custom React hooks
+├── styles/            # Theme and style definitions
+├── utils/             # Utility functions
+└── navigation/        # Navigation configuration</code></pre>
+                        </div>
+                        
+                        <h4 class="text-lg font-semibold mb-3">Key Components</h4>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white border border-gray-200 text-sm">
+                                <thead>
+                                    <tr class="bg-bg-light">
+                                        <th class="p-3 text-left border-b">Component</th>
+                                        <th class="p-3 text-left border-b">Description</th>
+                                        <th class="p-3 text-left border-b">Usage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="p-3 border-b font-medium">AppNavigator</td>
+                                        <td class="p-3 border-b">Main navigation container</td>
+                                        <td class="p-3 border-b">Handles app navigation flow including auth</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border-b font-medium">AudioControls</td>
+                                        <td class="p-3 border-b">Audio player interface</td>
+                                        <td class="p-3 border-b">Playback controls for story audio</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border-b font-medium">ProgressModal</td>
+                                        <td class="p-3 border-b">Operation progress display</td>
+                                        <td class="p-3 border-b">Shows progress for long operations</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border-b font-medium">RecordingModal</td>
+                                        <td class="p-3 border-b">Voice recording interface</td>
+                                        <td class="p-3 border-b">Captures voice samples for cloning</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border-b font-medium">StatusToast</td>
+                                        <td class="p-3 border-b">Notification component</td>
+                                        <td class="p-3 border-b">Shows success/error messages</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Backend Architecture -->
+                    <div id="backend-architecture" class="mb-12">
+                        <h3 class="text-2xl font-bold mb-4">Backend Architecture</h3>
+                        
+                        <p class="mb-4">The backend is built with Flask (Python), following a structured MVC-like pattern with controllers, models, and routes.</p>
+                        
+                        <div class="bg-bg-light rounded-lg p-6 mb-6">
+                            <h4 class="text-lg font-semibold mb-4">Main Technologies</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <h5 class="font-semibold mb-2">Core Framework</h5>
+                                    <ul class="list-disc pl-6 space-y-1 text-sm">
+                                        <li>Flask</li>
+                                        <li>SQLAlchemy ORM</li>
+                                        <li>Flask-Mail</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold mb-2">Authentication</h5>
+                                    <ul class="list-disc pl-6 space-y-1 text-sm">
+                                        <li>JWT (PyJWT)</li>
+                                        <li>Password hashing</li>
+                                        <li>Token-based auth</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold mb-2">Storage</h5>
+                                    <ul class="list-disc pl-6 space-y-1 text-sm">
+                                        <li>AWS S3 (boto3)</li>
+                                        <li>Local file system</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold mb-2">External Services</h5>
+                                    <ul class="list-disc pl-6 space-y-1 text-sm">
+                                        <li>ElevenLabs API</li>
+                                        <li>Email service</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4 class="text-lg font-semibold mb-3">Code Organization</h4>
+                        
+                        <div class="code-block p-4 mb-6">
+                            <pre><code>├── app.py              # Application entry point
+├── config.py           # Configuration settings
+├── database.py         # Database connection
+├── routes/             # API route definitions
+│   ├── __init__.py
+│   ├── auth_routes.py
+│   ├── voice_routes.py
+│   ├── story_routes.py
+│   └── audio_routes.py
+├── controllers/        # Business logic
+│   ├── auth_controller.py
+│   ├── voice_controller.py
+│   ├── story_controller.py
+│   └── audio_controller.py
+├── models/             # Data models
+│   ├── user_model.py
+│   ├── voice_model.py
+│   ├── story_model.py
+│   └── audio_model.py
+└── utils/              # Utility functions
+    ├── auth_middleware.py
+    ├── s3_client.py
+    ├── email_service.py
+    └── audio_splitter.py</code></pre>
+                        </div>
+                        
+                        <h4 class="text-lg font-semibold mb-3">API Structure</h4>
+                        
+                        <div class="mb-6">
+                            <p class="mb-2">The backend follows a layered architecture:</p>
+                            <ol class="list-decimal pl-6 space-y-2">
+                                <li><strong>Routes</strong>: Define API endpoints and handle HTTP requests/responses</li>
+                                <li><strong>Controllers</strong>: Implement business logic and call services/models</li>
+                                <li><strong>Models</strong>: Handle data access and storage</li>
+                                <li><strong>Utils</strong>: Provide helper functions and integrations</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="bg-bg-light rounded-lg p-4">
+                            <h5 class="font-semibold mb-2">Request Flow Example:</h5>
+                            <p class="text-sm text-text-medium mb-4">How a voice cloning request flows through the system:</p>
+                            <ol class="list-decimal pl-6 space-y-1 text-sm">
+                                <li>Client makes POST request to <code>/voices</code> with audio file</li>
+                                <li><code>voice_routes.py</code> receives the request and calls <code>VoiceController.clone_voice()</code></li>
+                                <li><code>VoiceController</code> validates the request and calls <code>VoiceModel.clone_voice()</code></li>
+                                <li><code>VoiceModel</code> processes the audio, calls ElevenLabs API, and stores results</li>
+                                <li>Results flow back up the chain to the client</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <!-- Authentication Flow -->
+                    <div id="authentication-flow" class="mb-12">
+                        <h3 class="text-2xl font-bold mb-4">Authentication Flow</h3>
+                        
+                        <p class="mb-4">DawnoTemu uses a token-based authentication system with JWT (JSON Web Tokens).</p>
+                        
+                        <div class="bg-bg-light rounded-lg p-6 mb-6">
+                            <h4 class="text-lg font-semibold mb-4">Authentication Process</h4>
+                            
+                            <div class="flex flex-col md:flex-row gap-4 mb-4">
+                                <div class="flex-1 border border-gray-200 bg-white p-4 rounded-lg">
+                                    <h5 class="font-semibold mb-2 text-peach">Registration</h5>
+                                    <ol class="list-decimal pl-6 space-y-1 text-sm">
+                                        <li>User submits email and password</li>
+                                        <li>Server validates input</li>
+                                        <li>Password is hashed and stored</li>
+                                        <li>Confirmation email is sent</li>
+                                        <li>User confirms email via link</li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="flex-1 border border-gray-200 bg-white p-4 rounded-lg">
+                                    <h5 class="font-semibold mb-2 text-lavender">Login</h5>
+                                    <ol class="list-decimal pl-6 space-y-1 text-sm">
+                                        <li>User submits email and password</li>
+                                        <li>Server validates credentials</li>
+                                        <li>Server generates access & refresh tokens</li>
+                                        <li>Tokens returned to client</li>
+                                        <li>Client stores tokens securely</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            
+                            <div class="border border-gray-200 bg-white p-4 rounded-lg">
+                                <h5 class="font-semibold mb-2 text-mint">Token Usage & Refresh</h5>
+                                <ol class="list-decimal pl-6 space-y-1 text-sm">
+                                    <li>Client includes access token in API requests</li>
+                                    <li>Server validates token on protected endpoints</li>
+                                    <li>When access token expires (15 minutes), client uses refresh token</li>
+                                    <li>Server issues new access token if refresh token is valid</li>
+                                    <li>If refresh token expires (7 days), user must log in again</li>
+                                </ol>
+                            </div>
+                        </div>
+                        
+                        <h4 class="text-lg font-semibold mb-3">Token Structure</h4>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <h5 class="font-semibold mb-2">Access Token Payload</h5>
+                                <pre class="code-block p-3 text-sm"><code>{
+  "sub": "user_id",
+  "email": "user@example.com",
+  "type": "access",
+  "iat": 1614556800,
+  "exp": 1614557700
+}</code></pre>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-semibold mb-2">Refresh Token Payload</h5>
+                                <pre class="code-block p-3 text-sm"><code>{
+  "sub": "user_id",
+  "type": "refresh",
+  "iat": 1614556800,
+  "exp": 1615161600
+}</code></pre>
+                            </div>
+                        </div>
+                        
+                        <h4 class="text-lg font-semibold mb-3">Token Storage (Client)</h4>
+                        
+                        <p class="mb-2">The mobile app securely stores authentication tokens:</p>
+                        <ul class="list-disc pl-6 mb-4">
+                            <li>Access Token: Stored in Expo SecureStore</li>
+                            <li>Refresh Token: Stored in Expo SecureStore</li>
+                            <li>User Data: Stored in AsyncStorage for quick access</li>
+                        </ul>
+                        
+                        <div class="bg-bg-light p-4 rounded-lg">
+                            <h5 class="font-semibold mb-2">Security Considerations</h5>
+                            <ul class="list-disc pl-6 text-sm">
+                                <li>Tokens are never stored in local storage or cookies in web clients</li>
+                                <li>HTTPS is enforced for all API communication</li>
+                                <li>Tokens contain minimal user information</li>
+                                <li>Automatic token refresh is handled transparently by the client</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Voice Cloning Process -->
+                    <div id="voice-cloning-process" class="mb-12">
+                        <h3 class="text-2xl font-bold mb-4">Voice Cloning Process</h3>
+                        
+                        <p class="mb-4">DawnoTemu uses ElevenLabs' voice cloning technology to create personalized voice models for story narration.</p>
+                        
+                        <div class="mb-6">
+                            <img src="https://i.imgur.com/7ZQlQCi.png" alt="Voice Cloning Flow Diagram" class="w-full rounded-lg shadow-sm" />
+                        </div>
+                        
+                        <h4 class="text-lg font-semibold mb-3">Voice Recording Interface</h4>
+                        
+                        <p class="mb-4">The app provides a guided voice recording experience:</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                            <div class="bg-bg-light p-4 rounded-lg">
+                                <div class="text-lavender text-2xl mb-2">
+                                    <i class="fas fa-1"></i>
+                                </div>
+                                <h5 class="font-semibold mb-2">Instructions</h5>
+                                <p class="text-sm text-text-medium">User views instructions about optimal recording conditions and voice clarity.</p>
+                            </div>
+                            
+                            <div class="bg-bg-light p-4 rounded-lg">
+                                <div class="text-lavender text-2xl mb-2">
+                                    <i class="fas fa-2"></i>
+                                </div>
+                                <h5 class="font-semibold mb-2">Recording</h5>
+                                <p class="text-sm text-text-medium">User reads provided text for ~60 seconds while the app records their voice.</p>
+                            </div>
+                            
+                            <div class="bg-bg-light p-4 rounded-lg">
+                                <div class="text-lavender text-2xl mb-2">
+                                    <i class="fas fa-3"></i>
+                                </div>
+                                <h5 class="font-semibold mb-2">Review</h5>
+                                <p class="text-sm text-text-medium">User can listen to their recording and re-record if needed before submission.</p>
+                            </div>
+                        </div>
+                        
+                        <h4 class="text-lg font-semibold mb-3">Technical Flow</h4>
+                        
+                        <ol class="list-decimal pl-6 space-y-2 mb-6">
+                            <li>
+                                <strong>Audio Capturing</strong>
+                                <p class="text-sm text-text-medium">The app uses Expo's Audio API to record a voice sample. The recording is processed to ensure quality and proper format.</p>
+                            </li>
+                            <li>
+                                <strong>Audio Processing</strong>
+                                <p class="text-sm text-text-medium">The backend processes the audio file (format conversion if needed, splitting into chunks if too large).</p>
+                            </li>
+                            <li>
+                                <strong>ElevenLabs Integration</strong>
+                                <p class="text-sm text-text-medium">The processed audio is sent to ElevenLabs API, which analyzes voice characteristics and creates a voice model.</p>
+                            </li>
+                            <li>
+                                <strong>Voice Storage</strong>
+                                <p class="text-sm text-text-medium">The voice model ID is stored in the database and linked to the user account. The original sample is stored in S3 for reference.</p>
+                            </li>
+                        </ol>
+                        
+                        <div class="bg-bg-light p-6 rounded-lg">
+                            <h4 class="text-lg font-semibold mb-3">Audio Quality Requirements</h4>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <h5 class="font-semibold mb-2">Optimal Conditions</h5>
+                                    <ul class="list-disc pl-6 text-sm">
+                                        <li>Length: 30-60 seconds of speech</li>
+                                        <li>Environment: Quiet, minimal background noise</li>
+                                        <li>Speaking style: Natural pace and tone</li>
+                                        <li>Device: Built-in microphone is usually sufficient</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h5 class="font-semibold mb-2">Technical Requirements</h5>
+                                    <ul class="list-disc pl-6 text-sm">
+                                        <li>Format: WAV or MP3</li>
+                                        <li>Sample rate: 44.1kHz (16-bit)</li>
+                                        <li>Channels: Mono or stereo</li>
+                                        <li>File size: &lt;10MB (optimally)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Audio Generation Flow -->
+                    <div id="audio-generation-flow" class="mb-12">
+                        <h3 class="text-2xl font-bold mb-4">Audio Generation Flow</h3>
+                        
+                        <p class="mb-4">After a voice is cloned, it can be used to generate audio narrations of stories using text-to-speech.</p>
+                        
+                        <div class="bg-bg-light p-6 rounded-lg mb-6">
+                            <h4 class="text-lg font-semibold mb-3">Generation Process</h4>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div>
+                                    <ol class="list-decimal pl-6 space-y-2">
+                                        <li>
+                                            <strong>Story Selection</strong>
+                                            <p class="text-sm text-text-medium">User selects a story from the available library.</p>
+                                        </li>
+                                        <li>
+                                            <strong>Audio Availability Check</strong>
+                                            <p class="text-sm text-text-medium">App checks if audio already exists for this voice+story combination.</p>
+                                        </li>
+                                        <li>
+                                            <strong>Synthesis Request</strong>
+                                            <p class="text-sm text-text-medium">If not already generated, a request is sent to generate audio.</p>
+                                        </li>
+                                        <li>
+                                            <strong>ElevenLabs TTS</strong>
+                                            <p class="text-sm text-text-medium">Backend sends the story text to ElevenLabs with the voice ID.</p>
+                                        </li>
+                                        <li>
+                                            <strong>Storage & Caching</strong>
+                                            <p class="text-sm text-text-medium">Generated audio is stored in S3 and cached locally on the device.</p>
+                                        </li>
+                                        <li>
+                                            <strong>Playback</strong>
+                                            <p class="text-sm text-text-medium">Audio controls are displayed for the user to play, pause, and seek through the audio.</p>
+                                        </li>
+                                    </ol>
+                                </div>
+                                
+                                <div>
+                                    <img src="https://i.imgur.com/2dJ5CGp.png" alt="Audio Generation Flow Diagram" class="w-full rounded-lg shadow-sm" />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4 class="text-lg font-semibold mb-3">Technical Implementation</h4>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                            <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                <h5 class="font-semibold mb-2">Client-Side</h5>
+                                <ul class="list-disc pl-6 text-sm space-y-1">
+                                    <li>Checks for cached audio first</li>
+                                    <li>Shows progress indicators</li>
+                                    <li>Handles downloading for offline use</li>
+                                    <li>Manages audio playback state</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                <h5 class="font-semibold mb-2">Server-Side</h5>
+                                <ul class="list-disc pl-6 text-sm space-y-1">
+                                    <li>Fetches story content</li>
+                                    <li>Calls ElevenLabs API</li>
+                                    <li>Processes and stores audio files</li>
+                                    <li>Generates pre-signed URLs</li>
+                
