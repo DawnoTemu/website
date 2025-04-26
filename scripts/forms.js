@@ -12,7 +12,9 @@ const FORM_CONFIG = {
     types: {
       newsletter: {
         requiredFields: ['email'],
-        successMessage: 'Dziękujemy! Adres {email} został dodany do listy oczekujących rodziców!'
+        successMessage: 'Dziękujemy! Adres {email} został dodany do listy oczekujących rodziców!',
+        // New option to redirect after success
+        redirectToThankYou: true
       },
       contact: {
         requiredFields: ['email', 'message'],
@@ -213,6 +215,15 @@ const FORM_CONFIG = {
    * @param {string} formType - The type of form
    */
   function handleSuccess(form, formData, formType) {
+    // Check if this form type should redirect to thank you page
+    if (FORM_CONFIG.types[formType].redirectToThankYou) {
+      // We'll redirect to the thank you page
+      window.location.href = "/podziekowanie";
+      return;
+    }
+    
+    // For other form types, show toast message as before
+    
     // Get success message for this form type
     let successMessage = FORM_CONFIG.types[formType].successMessage;
     
