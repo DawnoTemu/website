@@ -354,6 +354,6 @@ function initFeatureHover(){
 document.addEventListener('DOMContentLoaded', function() {
     initMobileNav();
     initFaqToggle();
-    initCookieConsent();
+    // initCookieConsent();
     initFeatureHover();
 });
