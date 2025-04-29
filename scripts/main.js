@@ -217,90 +217,108 @@ function highlightCurrentPage() {
 }
 
 function initCookieConsent() {
-    const cookieConsent = document.getElementById('cookie-consent');
-    if (!cookieConsent) return; // Exit if banner doesn't exist
-
-    const cookieSettings = document.getElementById('cookie-settings');
-    const acceptAllBtn = document.getElementById('cookie-accept-all');
-    const advancedBtn = document.getElementById('cookie-advanced');
-    const saveBtn = document.getElementById('cookie-save');
-
-    // Cookie utility functions
-    function setCookie(name, value, days) {
-        let expires = "";
-        if (days) {
-        const date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toUTCString();
-        }
-        document.cookie = name + "=" + (value || "") + expires + "; path=/; SameSite=Lax";
+    const cookieConsent   = document.getElementById('cookie-consent');
+    if(!cookieConsent) return;
+    const cookieSettings  = document.getElementById('cookie-settings');
+    const acceptAllBtn    = document.getElementById('cookie-accept-all');
+    const advancedBtn     = document.getElementById('cookie-advanced');
+    const saveBtn         = document.getElementById('cookie-save');
+  
+    /* ---------- tiny cookie helpers ---------- */
+    function setCookie(name,value,days){
+      let expires="";
+      if(days){
+        const d=new Date();
+        d.setTime(d.getTime()+days*24*60*60*1000);
+        expires="; expires="+d.toUTCString();
+      }
+      document.cookie=name+"="+(value||"")+expires+"; path=/; SameSite=Lax";
     }
-
-    function getCookie(name) {
-        const nameEQ = name + "=";
-        const ca = document.cookie.split(';');
-        for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-        }
-        return null;
+    function getCookie(name){
+      const nameEQ=name+"=";
+      const ca=document.cookie.split(';');
+      for(let c of ca){
+        while(c.charAt(0)===' ') c=c.substring(1);
+        if(c.indexOf(nameEQ)===0) return c.substring(nameEQ.length);
+      }
+      return null;
     }
-
-    // Hide the banner if consent was already given
-    if (getCookie('cookie-consent')) {
-        cookieConsent.style.display = 'none';
+  
+    /* ---------- GA Consent sync helper ---------- */
+    function updateGtagConsent(){
+      const analytics   = document.getElementById('cookie-analytics').checked;
+      const marketing   = document.getElementById('cookie-marketing').checked;
+      const functional  = document.getElementById('cookie-functional').checked;
+  
+      gtag('consent','update',{
+        analytics_storage:     analytics  ? 'granted':'denied',
+        ad_storage:            marketing  ? 'granted':'denied',
+        personalization_storage:marketing ? 'granted':'denied',
+        functionality_storage: functional ? 'granted':'denied'
+      });
     }
-
-    // Set up toggle switches
-    document.querySelectorAll('.toggle-container input[type="checkbox"]').forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-        if (this.checked) {
-            this.nextElementSibling.classList.add('bg-lavender');
-            this.nextElementSibling.classList.remove('bg-lavender/30');
-            this.nextElementSibling.querySelector('.toggle-dot').style.transform = 'translateX(20px)';
-        } else {
-            this.nextElementSibling.classList.remove('bg-lavender');
-            this.nextElementSibling.classList.add('bg-lavender/30');
-            this.nextElementSibling.querySelector('.toggle-dot').style.transform = 'translateX(1px)';
+  
+    /* ---------- start-up state ---------- */
+    if(getCookie('cookie-consent')){
+      cookieConsent.style.display='none';
+      updateGtagConsent(); // respect stored prefs on reload
+      return; // nothing else to do
+    }
+  
+    /* ---------- toggle switch visuals ---------- */
+    document.querySelectorAll('.toggle-container input[type="checkbox"]').forEach(cb=>{
+      cb.addEventListener('change',function(){
+        const track=this.nextElementSibling; // label
+        if(this.checked){
+          track.classList.add('bg-lavender');
+          track.classList.remove('bg-lavender/30');
+          track.querySelector('.toggle-dot').style.transform='translateX(20px)';
+        }else{
+          track.classList.remove('bg-lavender');
+          track.classList.add('bg-lavender/30');
+          track.querySelector('.toggle-dot').style.transform='translateX(1px)';
         }
-        });
+      });
     });
-
-    // Accept all cookies
-    acceptAllBtn.addEventListener('click', function() {
-        setCookie('cookie-consent', 'all', 365);
-        setCookie('cookie-analytics', 'true', 365);
-        setCookie('cookie-marketing', 'true', 365);
-        setCookie('cookie-functional', 'true', 365);
-        
-        cookieConsent.style.display = 'none';
+  
+    /* ---------- Accept All ---------- */
+    acceptAllBtn.addEventListener('click',()=>{
+      setCookie('cookie-consent','all',365);
+      setCookie('cookie-analytics','true',365);
+      setCookie('cookie-marketing','true',365);
+      setCookie('cookie-functional','true',365);
+  
+      gtag('consent','update',{
+        ad_storage:'granted',analytics_storage:'granted',
+        personalization_storage:'granted',functionality_storage:'granted'
+      });
+      cookieConsent.style.display='none';
     });
-
-    // Show advanced settings
-    advancedBtn.addEventListener('click', function() {
-        cookieSettings.classList.toggle('hidden');
-        
-        // Update toggle states based on cookie values or default to checked
-        document.getElementById('cookie-analytics').checked = getCookie('cookie-analytics') !== 'false';
-        document.getElementById('cookie-marketing').checked = getCookie('cookie-marketing') !== 'false';
-        document.getElementById('cookie-functional').checked = getCookie('cookie-functional') !== 'false';
-        
-        // Manually trigger change event for each checkbox to update visuals
-        document.querySelectorAll('.toggle-container input[type="checkbox"]').forEach(checkbox => {
-        const event = new Event('change');
-        checkbox.dispatchEvent(event);
-        });
+  
+    /* ---------- Advanced panel ---------- */
+    advancedBtn.addEventListener('click',()=>{
+      cookieSettings.classList.toggle('hidden');
+      // restore checkbox states from cookies or defaults
+      const a=getCookie('cookie-analytics') !== 'false';
+      const m=getCookie('cookie-marketing') !== 'false';
+      const f=getCookie('cookie-functional') !== 'false';
+      document.getElementById('cookie-analytics').checked  = a;
+      document.getElementById('cookie-marketing').checked  = m;
+      document.getElementById('cookie-functional').checked = f;
+      document.querySelectorAll('.toggle-container input').forEach(cb=>cb.dispatchEvent(new Event('change')));
     });
-
-    // Save cookie preferences
-    saveBtn.addEventListener('click', function() {
-        setCookie('cookie-consent', 'custom', 365);
-        setCookie('cookie-analytics', document.getElementById('cookie-analytics').checked, 365);
-        setCookie('cookie-marketing', document.getElementById('cookie-marketing').checked, 365);
-        setCookie('cookie-functional', document.getElementById('cookie-functional').checked, 365);
-        
-        cookieConsent.style.display = 'none';
+  
+    /* ---------- Save prefs ---------- */
+    saveBtn.addEventListener('click',()=>{
+      setCookie('cookie-consent','custom',365);
+      const analytics = document.getElementById('cookie-analytics').checked;
+      const marketing = document.getElementById('cookie-marketing').checked;
+      const functional= document.getElementById('cookie-functional').checked;
+      setCookie('cookie-analytics',analytics,365);
+      setCookie('cookie-marketing',marketing,365);
+      setCookie('cookie-functional',functional,365);
+      updateGtagConsent();
+      cookieConsent.style.display='none';
     });
 }
 
@@ -354,6 +372,6 @@ function initFeatureHover(){
 document.addEventListener('DOMContentLoaded', function() {
     initMobileNav();
     initFaqToggle();
-    // initCookieConsent();
+    initCookieConsent();
     initFeatureHover();
 });
