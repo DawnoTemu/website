@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polityka Prywatności i Cookies - DawnoTemu</title>
+    <meta name="description" content="Polityka prywatności i cookies aplikacji DawnoTemu - dowiedz się jak chronimy Twoje dane osobowe.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/icons.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="scripts/tailwind-config.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <img src="images/logo.png" alt="DawnoTemu Logo" class="h-10 w-auto">
+                        <span class="text-xl font-comfortaa font-semibold text-gray-900">DawnoTemu</span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-purple-600 transition-colors">Strona główna</a>
+                    <a href="o-nas.html" class="text-gray-600 hover:text-purple-600 transition-colors">O nas</a>
+                    <a href="biblioteka.html" class="text-gray-600 hover:text-purple-600 transition-colors">Biblioteka</a>
+                    <a href="badania.html" class="text-gray-600 hover:text-purple-600 transition-colors">Badania</a>
+                    <a href="kontakt.html" class="text-gray-600 hover:text-purple-600 transition-colors">Kontakt</a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-purple-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="index.html" class="text-gray-600 hover:text-purple-600 transition-colors">Strona główna</a>
+                    <a href="o-nas.html" class="text-gray-600 hover:text-purple-600 transition-colors">O nas</a>
+                    <a href="biblioteka.html" class="text-gray-600 hover:text-purple-600 transition-colors">Biblioteka</a>
+                    <a href="badania.html" class="text-gray-600 hover:text-purple-600 transition-colors">Badania</a>
+                    <a href="kontakt.html" class="text-gray-600 hover:text-purple-600 transition-colors">Kontakt</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-br from-purple-100 via-pink-50 to-cyan-50 py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-comfortaa font-bold text-gray-900 mb-4">
+                Polityka Prywatności i Cookies
+            </h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Dowiedz się jak chronimy Twoje dane osobowe i zapewniamy bezpieczeństwo w aplikacji DawnoTemu
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-16">
+        <div class="container mx-auto px-6 max-w-4xl">
+            
+            <!-- Introduction -->
+            <section class="mb-12">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h2 class="text-2xl font-comfortaa font-semibold text-gray-900 mb-6">Wprowadzenie</h2>
+                    <div class="prose prose-lg max-w-none text-gray-700">
+                        <p>
+                            Niniejsza Polityka Prywatności i Cookies określa zasady przetwarzania i ochrony danych osobowych 
+                            użytkowników aplikacji DawnoTemu, dostępnej pod adresem <strong>www.dawnitemu.app</strong>.
+                        </p>
+                        <p>
+                            Administratorem danych osobowych jest <strong>DawnoTemu Sp. z o.o.</strong> z siedzibą w Polsce.
+                            Dokument został przygotowany zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 
+                            2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem 
+                            danych osobowych (RODO).
+                        </p>
+                        <p class="text-sm text-gray-600 mt-4">
+                            <strong>Data ostatniej aktualizacji:</strong> 25 marca 2024
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Collection -->
+            <section class="mb-12">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h2 class="text-2xl font-comfortaa font-semibold text-gray-900 mb-6">Jakie dane zbieramy</h2>
+                    <div class="prose prose-lg max-w-none text-gray-700">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Dane podawane dobrowolnie:</h3>
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li>Imię i nazwisko</li>
+                            <li>Adres e-mail</li>
+                            <li>Numer telefonu (opcjonalnie)</li>
+                            <li>Preferencje dotyczące treści baśni</li>
+                            <li>Ustawienia aplikacji</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4 mt-8">Dane zbierane automatycznie:</h3>
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li>Adres IP</li>
+                            <li>Typ przeglądarki i urządzenia</li>
+                            <li>Czas korzystania z aplikacji</li>
+                            <li>Statystyki użytkowania funkcji</li>
+                            <li>Pliki cookies (szczegóły poniżej)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Purpose of Processing -->
+            <section class="mb-12">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h2 class="text-2xl font-comfortaa font-semibold text-gray-900 mb-6">Cel przetwarzania danych</h2>
+                    <div class="prose prose-lg max-w-none text-gray-700">
+                        <p>Twoje dane osobowe przetwarzamy w następujących celach:</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-6 mt-6">
+                            <div class="bg-purple-50 rounded-lg p-6">
+                                <h4 class="font-semibold text-purple-800 mb-3">🎯 Świadczenie usług</h4>
+                                <p class="text-sm text-gray-700">
+                                    Personalizacja treści baśni, zarządzanie kontem użytkownika, 
+                                    zapewnienie funkcjonalności aplikacji
+                                </p>
+                            </div>
+                            
+                            <div class="bg-pink-50 rounded-lg p-6">
+                                <h4 class="font-semibold text-pink-800 mb-3">📊 Analityka</h4>
+                                <p class="text-sm text-gray-700">
+                                    Analiza sposobu korzystania z aplikacji, optymalizacja 
+                                    funkcjonalności, tworzenie statystyk
+                                </p>
+                            </div>
+                            
+                            <div class="bg-cyan-50 rounded-lg p-6">
+                                <h4 class="font-semibold text-cyan-800 mb-3">📧 Komunikacja</h4>
+                                <p class="text-sm text-gray-700">
+                                    Wysyłanie powiadomień, odpowiadanie na zapytania, 
+                                    informacje o aktualizacjach
+                                </p>
+                            </div>
+                            
+                            <div class="bg-green-50 rounded-lg p-6">
+                                <h4 class="font-semibold text-green-800 mb-3">⚖️ Obowiązki prawne</h4>
+                                <p class="text-sm text-gray-700">
+                                    Wypełnianie obowiązków wynikających z przepisów prawa, 
+                                    zabezpieczenie przed nadużyciami
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Legal Basis -->
+            <section class="mb-12">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h2 class="text-2xl font-comfortaa font-semibold text-gray-900 mb-6">Podstawa prawna</h2>
+                    <div class="prose prose-lg max-w-none text-gray-700">
+                        <p>Przetwarzanie danych osobowych odbywa się na podstawie:</p>
+                        <ul class="list-disc pl-6 space-y-3 mt-4">
+                            <li><strong>Art. 6 ust. 1 lit. a RODO</strong> - zgoda na przetwarzanie danych osobowych</li>
+                            <li><strong>Art. 6 ust. 1 lit. b RODO</strong> - wykonanie umowy lub działania na żądanie osoby</li>
+                            <li><strong>Art. 6 ust. 1 lit. f RODO</strong> - prawnie uzasadniony interes administratora</li>
+                            <li><strong>Art. 6 ust. 1 lit. c RODO</strong> - wypełnienie obowiązku prawnego</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Sharing -->
+            <section class="mb-12">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h2 class="text-2xl font-comfortaa font-semibold text-gray-900 mb-6">Udostępnianie danych</h2>
+                    <div class="prose prose-lg max-w-none text-gray-700">
+                        <p>
+                            Twoje dane osobowe mogą być udostępniane wyłącznie zaufanym partnerom 
+                            i dostawcom usług, którzy pomagają nam w świadczeniu usług:
+                        </p>
+                        <ul class="list-disc pl-6 space-y-2 mt-4">
+                            <li>Dostawcy usług hostingowych i chmurowych</li>
+                            <li>Systemy analityczne (Google Analytics, z anonimizacją IP)</li>
+                            <li>Dostawcy usług płatniczych (w przypadku płatnych funkcji)</li>
+                            <li>Dostawcy usług e-mail marketingu (za zgodą)</li>
+                        </ul>
+                        <p class="mt-4">
+                            <strong>Nie sprzedajemy</strong> Twoich danych osobowych osobom trzecim 
+                            w celach marketingowych.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cookies -->
+            <section class="mb-12">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h2 class="text-2xl font-comfortaa font-semibold text-gray-900 mb-6">Polityka Cookies</h2>
+                    <div class="prose prose-lg max-w-none text-gray-700">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Czym są pliki cookies?</h3>
+                        <p>
+                            Cookies to małe pliki tekstowe przechowywane na Twoim urządzeniu, 
+                            które pomagają nam zapewnić lepsze doświadczenie korzystania z aplikacji.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4 mt-8">Rodzaje cookies:</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-green-400 pl-4 bg-green-50 p-4 rounded-r-lg">
+                                <h4 class="font-semibold text-green-800">🔧 Cookies niezbędne</h4>
+                                <p class="text-sm text-gray-700 mt-2">
+                                    Umożliwiają podstawowe funkcjonowanie strony. Nie można ich wyłączyć.
+                                </p>
+                            </div>
+                            
+                            <div class="border-l-4 border-blue-400 pl-4 bg-blue-50 p-4 rounded-r-lg">
+                                <h4 class="font-semibold text-blue-800">📊 Cookies analityczne</h4>
+                                <p class="text-sm text-gray-700 mt-2">
+                                    Pomagają nam zrozumieć, jak korzystasz z aplikacji. Możesz je wyłączyć.
+                                </p>
+                            </div>
+                            
+                            <div class="border-l-4 border-purple-400 pl-4 bg-purple-50 p-4 rounded-r-lg">
+                                <h4 class="font-semibold text-purple-800">🎯 Cookies marketingowe</h4>
+                                <p class="text-sm text-gray-700 mt-2">
+                                    Używane do personalizacji reklam. Wymagają Twojej zgody.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4 mt-8">Zarządzanie cookies</h3>
+                        <p>
+                            Możesz zarządzać ustawieniami cookies w swojej przeglądarce lub 
+                            skorzystać z naszego centrum preferencji cookies dostępnego w aplikacji.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- User Rights -->
+            <section class="mb-12">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h2 class="text-2xl font-comfortaa font-semibold text-gray-900 mb-6">Twoje prawa</h2>
+                    <div class="prose prose-lg max-w-none text-gray-700">
+                        <p>Zgodnie z RODO przysługują Ci następujące prawa:</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-4 mt-6">
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <h4 class="font-semibold text-gray-800 mb-2">📋 Prawo dostępu</h4>
+                                <p class="text-sm text-gray-600">
+                                    Możesz zażądać informacji o przetwarzanych danych
+                                </p>
+                            </div>
+                            
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <h4 class="font-semibold text-gray-800 mb-2">✏️ Prawo sprostowania</h4>
+                                <p class="text-sm text-gray-600">
+                                    Możesz poprawić nieprawidłowe dane
+                                </p>
+                            </div>
+                            
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <h4 class="font-semibold text-gray-800 mb-2">🗑️ Prawo usunięcia</h4>
+                                <p class="text-sm text-gray-600">
+                                    Możesz zażądać usunięcia swoich danych
+                                </p>
+                            </div>
+                            
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <h4 class="font-semibold text-gray-800 mb-2">⏸️ Prawo ograniczenia</h4>
+                                <p class="text-sm text-gray-600">
+                                    Możesz ograniczyć przetwarzanie danych
+                                </p>
+                            </div>
+                            
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <h4 class="font-semibold text-gray-800 mb-2">📦 Prawo przenoszenia</h4>
+                                <p class="text-sm text-gray-600">
+                                    Możesz otrzymać swoje dane w formacie elektronicznym
+                                </p>
+                            </div>
+                            
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <h4 class="font-semibold text-gray-800 mb-2">❌ Prawo sprzeciwu</h4>
+                                <p class="text-sm text-gray-600">
+                                    Możesz sprzeciwić się przetwarzaniu danych
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mt-8">
+                            <h4 class="font-semibold text-yellow-800 mb-2">⚖️ Prawo wniesienia skargi</h4>
+                            <p class="text-sm text-gray-700">
+                                Masz prawo złożyć skargę do Prezesa Urzędu Ochrony Danych Osobowych 
+                                (<a href="https://uodo.gov.pl" class="text-purple-600 hover:text-purple-800">uodo.gov.pl</a>), 
+                                jeśli uważasz, że przetwarzanie Twoich danych narusza przepisy RODO.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Security -->
+            <section class="mb-12">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h2 class="text-2xl font-comfortaa font-semibold text-gray-900 mb-6">Bezpieczeństwo danych</h2>
+                    <div class="prose prose-lg max-w-none text-gray-700">
+                        <p>
+                            Stosujemy odpowiednie środki techniczne i organizacyjne w celu ochrony 
+                            Twoich danych osobowych przed:
+                        </p>
+                        <ul class="list-disc pl-6 space-y-2 mt-4">
+                            <li>Nieautoryzowanym dostępem</li>
+                            <li>Przypadkową utratą</li>
+                            <li>Zniszczeniem lub uszkodzeniem</li>
+                            <li>Nieautoryzowanym ujawnieniem lub dostępem</li>
+                            <li>Przypadkową lub niezgodną z prawem modyfikacją</li>
+                        </ul>
+                        
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mt-6">
+                            <h4 class="font-semibold text-blue-800 mb-2">🔒 Nasze zabezpieczenia:</h4>
+                            <ul class="text-sm text-gray-700 space-y-1">
+                                <li>• Szyfrowanie SSL/TLS</li>
+                                <li>• Regularne kopie zapasowe</li>
+                                <li>• Ograniczony dostęp do danych</li>
+                                <li>• Monitoring bezpieczeństwa</li>
+                                <li>• Regularne audyty bezpieczeństwa</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Retention -->
+            <section class="mb-12">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h2 class="text-2xl font-comfortaa font-semibold text-gray-900 mb-6">Okres przechowywania danych</h2>
+                    <div class="prose prose-lg max-w-none text-gray-700">
+                        <p>Dane osobowe przechowujemy przez okres:</p>
+                        <ul class="list-disc pl-6 space-y-2 mt-4">
+                            <li><strong>Dane konta:</strong> do momentu usunięcia konta lub wycofania zgody</li>
+                            <li><strong>Dane analityczne:</strong> maksymalnie 26 miesięcy</li>
+                            <li><strong>Dane marketingowe:</strong> do momentu wycofania zgody</li>
+                            <li><strong>Dane wymagane prawem:</strong> zgodnie z obowiązującymi przepisami</li>
+                        </ul>
+                        <p class="mt-4">
+                            Po upływie okresu przechowywania dane są bezpiecznie usuwane lub anonimizowane.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact -->
+            <section class="mb-12">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h2 class="text-2xl font-comfortaa font-semibold text-gray-900 mb-6">Kontakt</h2>
+                    <div class="prose prose-lg max-w-none text-gray-700">
+                        <p>
+                            W sprawach dotyczących ochrony danych osobowych oraz realizacji Twoich praw 
+                            możesz skontaktować się z nami:
+                        </p>
+                        
+                        <div class="bg-purple-50 rounded-lg p-6 mt-6">
+                            <div class="space-y-3">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-purple-600">📧</span>
+                                    <span><strong>E-mail:</strong> privacy@dawnitemu.app</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-purple-600">📮</span>
+                                    <span><strong>Adres:</strong> DawnoTemu Sp. z o.o., ul. Przykładowa 123, 00-001 Warszawa</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-purple-600">📞</span>
+                                    <span><strong>Telefon:</strong> +48 123 456 789</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="mt-6">
+                            Odpowiemy na Twoje zapytanie w terminie <strong>30 dni</strong> od otrzymania.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Changes -->
+            <section class="mb-12">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h2 class="text-2xl font-comfortaa font-semibold text-gray-900 mb-6">Zmiany w polityce</h2>
+                    <div class="prose prose-lg max-w-none text-gray-700">
+                        <p>
+                            Zastrzegamy sobie prawo do wprowadzania zmian w niniejszej Polityce Prywatności. 
+                            O wszelkich istotnych zmianach poinformujemy Cię poprzez:
+                        </p>
+                        <ul class="list-disc pl-6 space-y-2 mt-4">
+                            <li>Powiadomienie e-mail (jeśli wyraziłeś na to zgodę)</li>
+                            <li>Komunikat w aplikacji</li>
+                            <li>Aktualizację daty na tej stronie</li>
+                        </ul>
+                        <p class="mt-4">
+                            Zachęcamy do regularnego przeglądania tej strony w celu śledzenia ewentualnych zmian.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Logo and description -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <img src="images/logo-light.png" alt="DawnoTemu Logo" class="h-10 w-auto">
+                        <span class="text-xl font-comfortaa font-semibold">DawnoTemu</span>
+                    </div>
+                    <p class="text-gray-300 mb-6 max-w-md">
+                        Twój głos opowiada baśnie, zawsze gdy potrzebujesz. 
+                        Stwórz magiczne chwile z dziećmi dzięki AI.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <span class="sr-only">Facebook</span>
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <span class="sr-only">Instagram</span>
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.328-1.297L6.391 14.42c.687.687 1.574 1.111 2.555 1.111 1.961 0 3.555-1.595 3.555-3.555S10.907 8.42 8.946 8.42c-.981 0-1.868.424-2.555 1.111L5.121 8.26c.88-.807 2.031-1.297 3.328-1.297 2.758 0 4.988 2.23 4.988 4.988-.001 2.758-2.231 4.988-4.988 4.988z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <span class="sr-only">Twitter</span>
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick links -->
+                <div>
+                    <h3 class="text-lg font-comfortaa font-semibold mb-6">Szybkie linki</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Strona główna</a></li>
+                        <li><a href="o-nas.html" class="text-gray-300 hover:text-white transition-colors">O nas</a></li>
+                        <li><a href="biblioteka.html" class="text-gray-300 hover:text-white transition-colors">Biblioteka</a></li>
+                        <li><a href="badania.html" class="text-gray-300 hover:text-white transition-colors">Badania</a></li>
+                        <li><a href="kontakt.html" class="text-gray-300 hover:text-white transition-colors">Kontakt</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Legal -->
+                <div>
+                    <h3 class="text-lg font-comfortaa font-semibold mb-6">Dokumenty</h3>
+                    <ul class="space-y-3">
+                        <li><a href="polityka-prywatnosci.html" class="text-gray-300 hover:text-white transition-colors">Polityka prywatności</a></li>
+                        <li><a href="files/polityka-bezpieczenstwa.pdf" class="text-gray-300 hover:text-white transition-colors">Polityka bezpieczeństwa</a></li>
+                        <li><a href="files/zgoda-marketingowa-i-newsletter.pdf" class="text-gray-300 hover:text-white transition-colors">Zgoda marketingowa</a></li>
+                        <li><a href="files/brandbook.pdf" class="text-gray-300 hover:text-white transition-colors">Brandbook</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm">
+                        © 2024 DawnoTemu. Wszystkie prawa zastrzeżone.
+                    </p>
+                    <p class="text-gray-400 text-sm mt-4 md:mt-0">
+                        Stworzone z ❤️ dla rodzin w Polsce
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scripts/main.js"></script>
+</body>
+</html> 
