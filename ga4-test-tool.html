@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <!-- Google Consent Mode v2 – defaults (everything denied except security) -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+    
+        /*  Default state: no data until the visitor decides  */
+        gtag('consent', 'default', {
+        ad_storage:            'denied',
+        ad_user_data:          'denied',      // v2 field
+        ad_personalization:    'denied',      // v2 field
+        analytics_storage:     'denied',
+        functionality_storage: 'denied',
+        personalization_storage:'denied',
+        security_storage:      'granted',     // must stay granted
+        url_passthrough:       true           // preserve UTMs through redirects
+        });
+        
+        // Enhanced logging for testing
+        console.log('🧪 GA4 Test Tool - Consent Mode v2 initialized');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GA4 Testing Tool - DawnoTemu</title>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-W5WXGDM9');</script>
+    <!-- End Google Tag Manager -->
+    
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background: #f5f5f5; 
+        }
+        .container { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+            margin: 20px 0; 
+        }
+        h1 { color: #333; }
+        h2 { color: #666; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .test-section { margin: 20px 0; }
+        .button { 
+            background: #007cba; 
+            color: white; 
+            border: none; 
+            padding: 12px 24px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            margin: 5px; 
+            font-size: 14px;
+        }
+        .button:hover { background: #005a87; }
+        .button.secondary { background: #666; }
+        .button.secondary:hover { background: #444; }
+        .status { 
+            padding: 10px; 
+            margin: 10px 0; 
+            border-radius: 5px; 
+            font-family: monospace; 
+            font-size: 12px;
+        }
+        .status.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .status.error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .status.info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        .log-output { 
+            background: #f8f9fa; 
+            border: 1px solid #dee2e6; 
+            border-radius: 5px; 
+            padding: 15px; 
+            font-family: monospace; 
+            font-size: 12px; 
+            max-height: 300px; 
+            overflow-y: auto; 
+            white-space: pre-wrap;
+        }
+        .utm-input { 
+            width: 100%; 
+            max-width: 600px; 
+            padding: 8px; 
+            border: 1px solid #ccc; 
+            border-radius: 4px; 
+            font-family: monospace;
+        }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W5WXGDM9"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <div class="container">
+        <h1>🧪 GA4 Testing Tool - DawnoTemu</h1>
+        <div class="status info">
+            <strong>Container ID:</strong> GTM-W5WXGDM9<br>
+            <strong>Testing Mode:</strong> Local Development<br>
+            <strong>Page Load:</strong> <span id="loadTime"></span>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="container">
+            <h2>1. Consent Testing</h2>
+            <div class="test-section">
+                <p>Test different consent scenarios and verify GA4 events:</p>
+                <button class="button" onclick="testConsentAll()">Accept All Cookies</button>
+                <button class="button secondary" onclick="testConsentAnalyticsOnly()">Analytics Only</button>
+                <button class="button secondary" onclick="testConsentNone()">Reject All</button>
+                <button class="button secondary" onclick="checkConsentStatus()">Check Current Consent</button>
+                <div id="consentStatus" class="log-output" style="height: 150px;"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2>2. UTM Parameter Testing</h2>
+            <div class="test-section">
+                <p>Test Meta ads UTM parameters:</p>
+                <input type="text" class="utm-input" id="utmInput" 
+                       placeholder="Enter UTM parameters (e.g., utm_source=facebook&utm_medium=cpc&utm_campaign=test)"
+                       value="utm_source=facebook&utm_medium=cpc&utm_campaign=test_campaign&utm_content=test_ad&fbclid=test123456">
+                <br><br>
+                <button class="button" onclick="testUTMs()">Load Page with UTMs</button>
+                <button class="button secondary" onclick="clearUTMs()">Clear UTMs</button>
+                <div id="utmStatus" class="log-output" style="height: 150px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>3. GA4 DataLayer Monitoring</h2>
+        <div class="test-section">
+            <p>Monitor GTM dataLayer events in real-time:</p>
+            <button class="button" onclick="startDataLayerMonitoring()">Start Monitoring</button>
+            <button class="button secondary" onclick="stopDataLayerMonitoring()">Stop Monitoring</button>
+            <button class="button secondary" onclick="clearDataLayerLog()">Clear Log</button>
+            <button class="button secondary" onclick="sendTestEvent()">Send Test Event</button>
+            <div id="dataLayerLog" class="log-output"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>4. GA4 DebugView Setup</h2>
+        <div class="test-section">
+            <div class="status info">
+                <strong>To test with GA4 DebugView:</strong><br>
+                1. Add <code>?debug_mode=true</code> to any URL<br>
+                2. Open GA4 → Configure → DebugView<br>
+                3. Perform actions and verify events fire<br>
+                4. Look for: page_view, session_start, consent_accepted, utm_parameters_detected
+            </div>
+            <button class="button" onclick="enableDebugMode()">Enable Debug Mode</button>
+            <button class="button secondary" onclick="openGA4DebugView()">Open GA4 DebugView</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>5. Test Results Summary</h2>
+        <div id="testResults" class="log-output"></div>
+    </div>
+
+    <script src="/scripts/main.js"></script>
+    <script>
+        // Test tool specific JavaScript
+        let dataLayerMonitor = null;
+        let originalDataLayer = [];
+        
+        // Page load time
+        document.getElementById('loadTime').textContent = new Date().toLocaleTimeString();
+        
+        // Store original dataLayer for monitoring
+        if (window.dataLayer) {
+            originalDataLayer = [...window.dataLayer];
+        }
+        
+        // Consent Testing Functions
+        function testConsentAll() {
+            gtag('consent', 'update', {
+                ad_storage: 'granted',
+                analytics_storage: 'granted',
+                ad_user_data: 'granted',
+                ad_personalization: 'granted',
+                personalization_storage: 'granted',
+                functionality_storage: 'granted'
+            });
+            
+            gtag('event', 'consent_accepted', {
+                consent_type: 'all',
+                custom_parameter: 'test_mode'
+            });
+            
+            updateConsentStatus('✅ All cookies accepted - Full tracking enabled');
+        }
+        
+        function testConsentAnalyticsOnly() {
+            gtag('consent', 'update', {
+                ad_storage: 'denied',
+                analytics_storage: 'granted',
+                ad_user_data: 'denied',
+                ad_personalization: 'denied',
+                personalization_storage: 'denied',
+                functionality_storage: 'granted'
+            });
+            
+            gtag('event', 'consent_accepted', {
+                consent_type: 'analytics_only',
+                custom_parameter: 'test_mode'
+            });
+            
+            updateConsentStatus('⚠️ Analytics only - Limited tracking');
+        }
+        
+        function testConsentNone() {
+            gtag('consent', 'update', {
+                ad_storage: 'denied',
+                analytics_storage: 'denied',
+                ad_user_data: 'denied',
+                ad_personalization: 'denied',
+                personalization_storage: 'denied',
+                functionality_storage: 'denied'
+            });
+            
+            updateConsentStatus('❌ All cookies rejected - Cookieless tracking only');
+        }
+        
+        function checkConsentStatus() {
+            const status = `Current consent status checked at ${new Date().toLocaleTimeString()}\\nCheck browser console for detailed consent state`;
+            updateConsentStatus(status);
+        }
+        
+        function updateConsentStatus(message) {
+            const statusDiv = document.getElementById('consentStatus');
+            statusDiv.textContent += `[${new Date().toLocaleTimeString()}] ${message}\\n`;
+            statusDiv.scrollTop = statusDiv.scrollHeight;
+        }
+        
+        // UTM Testing Functions
+        function testUTMs() {
+            const utmParams = document.getElementById('utmInput').value;
+            if (!utmParams) {
+                updateUTMStatus('❌ Please enter UTM parameters');
+                return;
+            }
+            
+            const newUrl = `${window.location.origin}${window.location.pathname}?${utmParams}`;
+            updateUTMStatus(`🔄 Redirecting with UTMs: ${utmParams}`);
+            setTimeout(() => {
+                window.location.href = newUrl;
+            }, 1000);
+        }
+        
+        function clearUTMs() {
+            const cleanUrl = `${window.location.origin}${window.location.pathname}`;
+            window.location.href = cleanUrl;
+        }
+        
+        function updateUTMStatus(message) {
+            const statusDiv = document.getElementById('utmStatus');
+            statusDiv.textContent += `[${new Date().toLocaleTimeString()}] ${message}\\n`;
+            statusDiv.scrollTop = statusDiv.scrollHeight;
+        }
+        
+        // DataLayer Monitoring Functions
+        function startDataLayerMonitoring() {
+            if (dataLayerMonitor) return;
+            
+            const logDiv = document.getElementById('dataLayerLog');
+            logDiv.textContent += `[${new Date().toLocaleTimeString()}] 📊 DataLayer monitoring started\\n`;
+            
+            dataLayerMonitor = setInterval(() => {
+                if (window.dataLayer && window.dataLayer.length > originalDataLayer.length) {
+                    const newEvents = window.dataLayer.slice(originalDataLayer.length);
+                    newEvents.forEach(event => {
+                        logDiv.textContent += `[${new Date().toLocaleTimeString()}] 📡 ${JSON.stringify(event, null, 2)}\\n`;
+                        originalDataLayer.push(event);
+                    });
+                    logDiv.scrollTop = logDiv.scrollHeight;
+                }
+            }, 500);
+        }
+        
+        function stopDataLayerMonitoring() {
+            if (dataLayerMonitor) {
+                clearInterval(dataLayerMonitor);
+                dataLayerMonitor = null;
+                document.getElementById('dataLayerLog').textContent += `[${new Date().toLocaleTimeString()}] ⏹️ DataLayer monitoring stopped\\n`;
+            }
+        }
+        
+        function clearDataLayerLog() {
+            document.getElementById('dataLayerLog').textContent = '';
+        }
+        
+        function sendTestEvent() {
+            gtag('event', 'test_event', {
+                test_parameter: 'ga4_testing_tool',
+                timestamp: Date.now(),
+                page_location: window.location.href
+            });
+            
+            document.getElementById('dataLayerLog').textContent += `[${new Date().toLocaleTimeString()}] 🧪 Test event sent\\n`;
+        }
+        
+        // Debug Mode Functions
+        function enableDebugMode() {
+            const currentUrl = new URL(window.location);
+            currentUrl.searchParams.set('debug_mode', 'true');
+            window.location.href = currentUrl.toString();
+        }
+        
+        function openGA4DebugView() {
+            window.open('https://analytics.google.com/analytics/web/#/debugview/a', '_blank');
+        }
+        
+        // Initialize testing
+        window.addEventListener('load', function() {
+            // Check for UTM parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const utmParams = {};
+            ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid'].forEach(param => {
+                if (urlParams.get(param)) {
+                    utmParams[param] = urlParams.get(param);
+                }
+            });
+            
+            if (Object.keys(utmParams).length > 0) {
+                updateUTMStatus(`✅ UTM parameters detected: ${JSON.stringify(utmParams, null, 2)}`);
+            } else {
+                updateUTMStatus('ℹ️ No UTM parameters in current URL');
+            }
+            
+            // Start monitoring automatically
+            setTimeout(startDataLayerMonitoring, 1000);
+            
+            // Update test results
+            const resultsDiv = document.getElementById('testResults');
+            resultsDiv.textContent = `✅ Test tool loaded successfully\\n✅ GTM container: GTM-W5WXGDM9\\n✅ Consent Mode v2 initialized\\n${Object.keys(utmParams).length > 0 ? '✅ UTM parameters detected' : 'ℹ️ No UTMs in URL'}\\n✅ DataLayer monitoring active`;
+        });
+    </script>
+</body>
+</html>

@@ -223,6 +223,36 @@ function initCookieConsent() {
     const acceptAllBtn    = document.getElementById('cookie-accept-all');
     const advancedBtn     = document.getElementById('cookie-advanced');
     const saveBtn         = document.getElementById('cookie-save');
+
+    // Debug: Log UTM parameters for Meta ads tracking
+    const urlParams = new URLSearchParams(window.location.search);
+    const utmParams = {};
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid'].forEach(param => {
+        if (urlParams.get(param)) {
+            utmParams[param] = urlParams.get(param);
+        }
+    });
+    
+    if (Object.keys(utmParams).length > 0) {
+        console.log('DawnoTemu: UTM parameters detected:', utmParams);
+        // Store UTM params in sessionStorage for tracking
+        sessionStorage.setItem('dawnotemu_utm_params', JSON.stringify(utmParams));
+        
+        // Send UTM detection event to GA4 once consent is granted
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'utm_parameters_detected', {
+                        utm_source: utmParams.utm_source || '',
+                        utm_medium: utmParams.utm_medium || '',
+                        utm_campaign: utmParams.utm_campaign || '',
+                        fbclid: utmParams.fbclid ? 'detected' : '',
+                        page_location: window.location.href
+                    });
+                }
+            }, 1000); // Wait for GTM to initialize
+        });
+    }
   
     /* ---------- tiny cookie helpers ---------- */
     function setCookie(name,value,days){
@@ -251,10 +281,19 @@ function initCookieConsent() {
       const functional  = document.getElementById('cookie-functional').checked;
   
       gtag('consent','update',{
-        analytics_storage:     analytics  ? 'granted':'denied',
-        ad_storage:            marketing  ? 'granted':'denied',
-        personalization_storage:marketing ? 'granted':'denied',
-        functionality_storage: functional ? 'granted':'denied'
+        analytics_storage:      analytics  ? 'granted':'denied',
+        ad_storage:             marketing  ? 'granted':'denied',
+        ad_user_data:           marketing  ? 'granted':'denied',      // v2 field
+        ad_personalization:     marketing  ? 'granted':'denied',      // v2 field  
+        personalization_storage:marketing  ? 'granted':'denied',
+        functionality_storage:  functional ? 'granted':'denied'
+      });
+      
+      // Debug logging for consent updates
+      console.log('DawnoTemu: Updated consent -', {
+        analytics: analytics ? 'granted' : 'denied',
+        marketing: marketing ? 'granted' : 'denied',
+        functional: functional ? 'granted' : 'denied'
       });
     }
   
@@ -289,9 +328,25 @@ function initCookieConsent() {
       setCookie('cookie-functional','true',365);
   
       gtag('consent','update',{
-        ad_storage:'granted',analytics_storage:'granted',
-        personalization_storage:'granted',functionality_storage:'granted'
+        ad_storage:'granted',
+        analytics_storage:'granted',
+        ad_user_data:'granted',           // v2 field
+        ad_personalization:'granted',     // v2 field
+        personalization_storage:'granted',
+        functionality_storage:'granted'
       });
+      
+      // Debug logging and GA4 event
+      console.log('DawnoTemu: Accepted all cookies');
+      
+      // Send custom event to GA4 for tracking consent acceptance
+      if (typeof gtag === 'function') {
+        gtag('event', 'consent_accepted', {
+          consent_type: 'all',
+          custom_parameter: 'dawnotemu_consent'
+        });
+      }
+      
       cookieConsent.style.display='none';
     });
   
@@ -318,6 +373,17 @@ function initCookieConsent() {
       setCookie('cookie-marketing',marketing,365);
       setCookie('cookie-functional',functional,365);
       updateGtagConsent();
+      
+      // Send custom event to GA4 for tracking custom consent
+      if (typeof gtag === 'function') {
+        gtag('event', 'consent_accepted', {
+          consent_type: 'custom',
+          analytics: analytics ? 'granted' : 'denied',
+          marketing: marketing ? 'granted' : 'denied',
+          functional: functional ? 'granted' : 'denied'
+        });
+      }
+      
       cookieConsent.style.display='none';
     });
 }

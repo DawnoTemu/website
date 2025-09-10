@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+    <!-- Google Consent Mode v2 – defaults (everything denied except security) -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+    
+        /*  Default state: no data until the visitor decides  */
+        gtag('consent', 'default', {
+        ad_storage:            'denied',
+        ad_user_data:          'denied',      // v2 field
+        ad_personalization:    'denied',      // v2 field
+        analytics_storage:     'denied',
+        functionality_storage: 'denied',
+        personalization_storage:'denied',
+        security_storage:      'granted',     // must stay granted
+        url_passthrough:       true           // preserve UTMs through redirects
+        });
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
