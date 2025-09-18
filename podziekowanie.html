@@ -66,6 +66,14 @@
     <meta property="og:image:width" content="1200"/>
     <meta property="og:image:height" content="630"/>
 
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-W5WXGDM9');</script>
+    <!-- End Google Tag Manager -->
+
     <link rel="stylesheet" href="/styles/icons.css">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -76,6 +84,10 @@
     <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body class="bg-bg-light text-text-dark leading-relaxed font-sans font-normal overflow-x-hidden">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W5WXGDM9"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <header class="bg-white py-3 sm:py-5 fixed top-0 left-0 w-full z-50 shadow-sm-custom backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-8 relative">
             <div class="flex justify-between items-center">
@@ -392,6 +404,90 @@
             </div>
         </div>
     </footer>
+
+    <!-- ================= Cookie Banner ================= -->
+<div id="cookie-consent" role="dialog" aria-modal="true" aria-labelledby="cookie-consent-title" class="fixed inset-0 z-[9999] flex items-center justify-center bg-text-dark/60 backdrop-blur-sm px-4 py-8">
+  <div class="w-full max-w-3xl bg-white rounded-3xl shadow-2xl border border-lavender/30 overflow-hidden max-h-[90vh] flex flex-col">
+    <div class="p-6 md:p-8 space-y-4 overflow-y-auto">
+      <div class="space-y-3 text-sm text-text-medium">
+        <h2 id="cookie-consent-title" class="text-xl font-semibold text-text-dark">Polityka prywatności i plików cookies</h2>
+        <p>Używamy plików cookies, aby zapewnić najlepsze doświadczenia na naszej stronie. Korzystając ze strony, wyrażasz zgodę na używanie plików cookies zgodnie z naszą <a href="/files/polityka-prywatnosci-i-cookies.pdf" class="text-lavender hover:text-lavender-dark underline transition-colors" target="_blank">polityką prywatności i plików cookies</a>.</p>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:justify-end sm:items-center gap-3">
+        <button id="cookie-advanced" aria-controls="cookie-settings" aria-expanded="false" class="text-text-dark bg-white border border-gray-200 hover:border-lavender px-5 py-2 rounded-full text-sm font-medium transition-colors">Dostosuj ustawienia</button>
+        <button id="cookie-accept-all" class="bg-peach text-white hover:bg-peach-dark px-6 py-2.5 rounded-full text-sm font-semibold transition-colors shadow-sm">Akceptuję wszystkie</button>
+      </div>
+    </div>
+    <div id="cookie-settings" class="hidden border-t border-gray-100 bg-bg-light/40 px-6 md:px-8 py-6 md:py-8 overflow-y-auto max-h-[55vh]">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Niezbędne -->
+        <div class="bg-white p-4 md:p-5 rounded-xl border border-lavender/20 shadow-sm">
+          <div class="flex items-center justify-between mb-2">
+            <div>
+              <h5 class="font-semibold text-text-dark">Niezbędne cookies</h5>
+              <p class="text-xs text-text-medium">Wymagane do działania strony</p>
+            </div>
+            <div class="w-11 h-6 bg-lavender rounded-full flex items-center cursor-not-allowed relative">
+              <span class="absolute right-1 top-1 w-4 h-4 bg-white rounded-full shadow"></span>
+            </div>
+          </div>
+          <p class="text-xs text-text-medium">Te pliki cookies są niezbędne do prawidłowego funkcjonowania strony internetowej i nie mogą być wyłączone.</p>
+        </div>
+        <!-- Analityczne -->
+        <div class="bg-white p-4 md:p-5 rounded-xl border border-lavender/20 shadow-sm">
+          <div class="flex items-center justify-between mb-2">
+            <div>
+              <h5 class="font-semibold text-text-dark">Analityczne cookies</h5>
+              <p class="text-xs text-text-medium">Pomagają nam ulepszać stronę</p>
+            </div>
+            <div class="toggle-container">
+              <input type="checkbox" id="cookie-analytics" class="sr-only" checked>
+              <label for="cookie-analytics" class="toggle-switch w-11 h-6 bg-lavender rounded-full block relative cursor-pointer transition-colors duration-200">
+                <span class="toggle-dot absolute w-4 h-4 bg-white rounded-full shadow transition-transform duration-200 transform translate-x-5 top-1"></span>
+              </label>
+            </div>
+          </div>
+          <p class="text-xs text-text-medium">Używamy ich, aby analizować, jak nasza strona jest używana, i ulepszać jej działanie.</p>
+        </div>
+        <!-- Marketingowe -->
+        <div class="bg-white p-4 md:p-5 rounded-xl border border-lavender/20 shadow-sm">
+          <div class="flex items-center justify-between mb-2">
+            <div>
+              <h5 class="font-semibold text-text-dark">Marketingowe cookies</h5>
+              <p class="text-xs text-text-medium">Personalizacja reklam</p>
+            </div>
+            <div class="toggle-container">
+              <input type="checkbox" id="cookie-marketing" class="sr-only" checked>
+              <label for="cookie-marketing" class="toggle-switch w-11 h-6 bg-lavender rounded-full block relative cursor-pointer transition-colors duration-200">
+                <span class="toggle-dot absolute w-4 h-4 bg-white rounded-full shadow transition-transform duration-200 transform translate-x-5 top-1"></span>
+              </label>
+            </div>
+          </div>
+          <p class="text-xs text-text-medium">Pomagają nam dostarczać spersonalizowane reklamy na podstawie Twojej aktywności na stronie.</p>
+        </div>
+        <!-- Funkcjonalne -->
+        <div class="bg-white p-4 md:p-5 rounded-xl border border-lavender/20 shadow-sm">
+          <div class="flex items-center justify-between mb-2">
+            <div>
+              <h5 class="font-semibold text-text-dark">Funkcjonalne cookies</h5>
+              <p class="text-xs text-text-medium">Zwiększają funkcjonalność</p>
+            </div>
+            <div class="toggle-container">
+              <input type="checkbox" id="cookie-functional" class="sr-only" checked>
+              <label for="cookie-functional" class="toggle-switch w-11 h-6 bg-lavender rounded-full block relative cursor-pointer transition-colors duration-200">
+                <span class="toggle-dot absolute w-4 h-4 bg-white rounded-full shadow transition-transform duration-200 transform translate-x-5 top-1"></span>
+              </label>
+            </div>
+          </div>
+          <p class="text-xs text-text-medium">Zapamiętują Twoje wybory i preferencje, aby zwiększyć wygodę korzystania ze strony.</p>
+        </div>
+      </div>
+      <div class="flex justify-end mt-6 gap-2">
+        <button id="cookie-save" class="bg-lavender text-white hover:bg-lavender-dark px-6 py-2.5 rounded-full text-sm font-semibold transition-colors shadow-sm">Zapisz ustawienia</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <script src="/scripts/main.js"></script>
     <script>

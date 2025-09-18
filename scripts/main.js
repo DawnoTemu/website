@@ -224,6 +224,23 @@ function initCookieConsent() {
     const advancedBtn     = document.getElementById('cookie-advanced');
     const saveBtn         = document.getElementById('cookie-save');
 
+    const originalBodyOverflow = document.body.style.overflow;
+    const originalHtmlOverflow = document.documentElement.style.overflow;
+
+    function lockScroll(){
+      document.body.dataset.cookieOverlay = 'true';
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    }
+
+    function unlockScroll(){
+      delete document.body.dataset.cookieOverlay;
+      document.body.style.overflow = originalBodyOverflow;
+      document.documentElement.style.overflow = originalHtmlOverflow;
+    }
+
+    cookieConsent.setAttribute('aria-hidden','false');
+
     // Debug: Log UTM parameters for Meta ads tracking
     const urlParams = new URLSearchParams(window.location.search);
     const utmParams = {};
@@ -237,21 +254,7 @@ function initCookieConsent() {
         console.log('DawnoTemu: UTM parameters detected:', utmParams);
         // Store UTM params in sessionStorage for tracking
         sessionStorage.setItem('dawnotemu_utm_params', JSON.stringify(utmParams));
-        
-        // Send UTM detection event to GA4 once consent is granted
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                if (typeof gtag === 'function') {
-                    gtag('event', 'utm_parameters_detected', {
-                        utm_source: utmParams.utm_source || '',
-                        utm_medium: utmParams.utm_medium || '',
-                        utm_campaign: utmParams.utm_campaign || '',
-                        fbclid: utmParams.fbclid ? 'detected' : '',
-                        page_location: window.location.href
-                    });
-                }
-            }, 1000); // Wait for GTM to initialize
-        });
+        sessionStorage.removeItem('dawnotemu_utm_event_sent');
     }
   
     /* ---------- tiny cookie helpers ---------- */
@@ -272,6 +275,69 @@ function initCookieConsent() {
         if(c.indexOf(nameEQ)===0) return c.substring(nameEQ.length);
       }
       return null;
+    }
+
+    function reflectToggleState(toggle){
+      if(!toggle) return;
+      const track = toggle.nextElementSibling;
+      if(!track) return;
+
+      if(toggle.checked){
+        track.classList.add('bg-lavender');
+        track.classList.remove('bg-lavender/30');
+        const dot = track.querySelector('.toggle-dot');
+        if (dot) dot.style.transform='translateX(20px)';
+      }else{
+        track.classList.remove('bg-lavender');
+        track.classList.add('bg-lavender/30');
+        const dot = track.querySelector('.toggle-dot');
+        if (dot) dot.style.transform='translateX(1px)';
+      }
+    }
+
+    function applyStoredPreferences(){
+      const analyticsCheckbox  = document.getElementById('cookie-analytics');
+      const marketingCheckbox  = document.getElementById('cookie-marketing');
+      const functionalCheckbox = document.getElementById('cookie-functional');
+      if(!analyticsCheckbox || !marketingCheckbox || !functionalCheckbox) return;
+
+      const storedAnalytics  = getCookie('cookie-analytics');
+      const storedMarketing  = getCookie('cookie-marketing');
+      const storedFunctional = getCookie('cookie-functional');
+
+      if(storedAnalytics !== null)  analyticsCheckbox.checked  = storedAnalytics === 'true';
+      if(storedMarketing !== null)  marketingCheckbox.checked  = storedMarketing === 'true';
+      if(storedFunctional !== null) functionalCheckbox.checked = storedFunctional === 'true';
+
+      reflectToggleState(analyticsCheckbox);
+      reflectToggleState(marketingCheckbox);
+      reflectToggleState(functionalCheckbox);
+    }
+
+    function sendStoredUtmEvent(){
+      if (typeof gtag !== 'function') return;
+      if (sessionStorage.getItem('dawnotemu_utm_event_sent') === 'true') return;
+      const utmData = sessionStorage.getItem('dawnotemu_utm_params');
+      if (!utmData) return;
+
+      const consentChoice = getCookie('cookie-consent');
+      const analyticsAllowed = getCookie('cookie-analytics');
+      const analyticsGranted = consentChoice && analyticsAllowed === 'true';
+      if (!analyticsGranted) return;
+
+      try {
+        const parsed = JSON.parse(utmData);
+        gtag('event', 'utm_parameters_detected', {
+          utm_source: parsed.utm_source || '',
+          utm_medium: parsed.utm_medium || '',
+          utm_campaign: parsed.utm_campaign || '',
+          fbclid: parsed.fbclid ? 'detected' : '',
+          page_location: window.location.href
+        });
+        sessionStorage.setItem('dawnotemu_utm_event_sent', 'true');
+      } catch (err) {
+        console.warn('DawnoTemu: Unable to parse stored UTM parameters', err);
+      }
     }
   
     /* ---------- GA Consent sync helper ---------- */
@@ -298,26 +364,28 @@ function initCookieConsent() {
     }
   
     /* ---------- start-up state ---------- */
-    if(getCookie('cookie-consent')){
-      cookieConsent.style.display='none';
+    const existingConsent = getCookie('cookie-consent');
+    if(existingConsent){
+      applyStoredPreferences();
       updateGtagConsent(); // respect stored prefs on reload
+      sendStoredUtmEvent();
+      cookieConsent.style.display='none';
+      cookieConsent.setAttribute('aria-hidden','true');
+      unlockScroll();
       return; // nothing else to do
+    }
+
+    lockScroll();
+    if (acceptAllBtn) {
+      acceptAllBtn.focus();
     }
   
     /* ---------- toggle switch visuals ---------- */
     document.querySelectorAll('.toggle-container input[type="checkbox"]').forEach(cb=>{
       cb.addEventListener('change',function(){
-        const track=this.nextElementSibling; // label
-        if(this.checked){
-          track.classList.add('bg-lavender');
-          track.classList.remove('bg-lavender/30');
-          track.querySelector('.toggle-dot').style.transform='translateX(20px)';
-        }else{
-          track.classList.remove('bg-lavender');
-          track.classList.add('bg-lavender/30');
-          track.querySelector('.toggle-dot').style.transform='translateX(1px)';
-        }
+        reflectToggleState(this);
       });
+      reflectToggleState(cb);
     });
   
     /* ---------- Accept All ---------- */
@@ -347,21 +415,24 @@ function initCookieConsent() {
         });
       }
       
+      sendStoredUtmEvent();
       cookieConsent.style.display='none';
+      cookieConsent.setAttribute('aria-hidden','true');
+      unlockScroll();
     });
   
     /* ---------- Advanced panel ---------- */
-    advancedBtn.addEventListener('click',()=>{
-      cookieSettings.classList.toggle('hidden');
-      // restore checkbox states from cookies or defaults
-      const a=getCookie('cookie-analytics') !== 'false';
-      const m=getCookie('cookie-marketing') !== 'false';
-      const f=getCookie('cookie-functional') !== 'false';
-      document.getElementById('cookie-analytics').checked  = a;
-      document.getElementById('cookie-marketing').checked  = m;
-      document.getElementById('cookie-functional').checked = f;
-      document.querySelectorAll('.toggle-container input').forEach(cb=>cb.dispatchEvent(new Event('change')));
-    });
+    if (advancedBtn && cookieSettings){
+      advancedBtn.setAttribute('aria-expanded','false');
+      advancedBtn.addEventListener('click',()=>{
+        const isHidden = cookieSettings.classList.toggle('hidden');
+        advancedBtn.setAttribute('aria-expanded', (!isHidden).toString());
+        if(!isHidden){
+          applyStoredPreferences();
+          cookieSettings.scrollTop = 0;
+        }
+      });
+    }
   
     /* ---------- Save prefs ---------- */
     saveBtn.addEventListener('click',()=>{
@@ -373,7 +444,8 @@ function initCookieConsent() {
       setCookie('cookie-marketing',marketing,365);
       setCookie('cookie-functional',functional,365);
       updateGtagConsent();
-      
+      sendStoredUtmEvent();
+
       // Send custom event to GA4 for tracking custom consent
       if (typeof gtag === 'function') {
         gtag('event', 'consent_accepted', {
@@ -383,8 +455,10 @@ function initCookieConsent() {
           functional: functional ? 'granted' : 'denied'
         });
       }
-      
+
       cookieConsent.style.display='none';
+      cookieConsent.setAttribute('aria-hidden','true');
+      unlockScroll();
     });
 }
 
