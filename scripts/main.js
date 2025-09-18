@@ -221,8 +221,10 @@ function initCookieConsent() {
     if(!cookieConsent) return;
     const cookieSettings  = document.getElementById('cookie-settings');
     const acceptAllBtn    = document.getElementById('cookie-accept-all');
+    const rejectAllBtn    = document.getElementById('cookie-reject-all');
     const advancedBtn     = document.getElementById('cookie-advanced');
     const saveBtn         = document.getElementById('cookie-save');
+    const manageButtons   = document.querySelectorAll('[data-cookie-manage]');
 
     const originalBodyOverflow = document.body.style.overflow;
     const originalHtmlOverflow = document.documentElement.style.overflow;
@@ -237,6 +239,31 @@ function initCookieConsent() {
       delete document.body.dataset.cookieOverlay;
       document.body.style.overflow = originalBodyOverflow;
       document.documentElement.style.overflow = originalHtmlOverflow;
+    }
+
+    function resetAdvancedPanel(){
+      if (!cookieSettings || !advancedBtn) return;
+      cookieSettings.classList.add('hidden');
+      cookieSettings.scrollTop = 0;
+      advancedBtn.setAttribute('aria-expanded','false');
+    }
+
+    function openConsentModal(){
+      applyStoredPreferences();
+      cookieConsent.style.display = 'flex';
+      cookieConsent.setAttribute('aria-hidden','false');
+      resetAdvancedPanel();
+      lockScroll();
+      if (acceptAllBtn) {
+        requestAnimationFrame(() => acceptAllBtn.focus());
+      }
+    }
+
+    function closeConsentModal(){
+      cookieConsent.style.display = 'none';
+      cookieConsent.setAttribute('aria-hidden','true');
+      resetAdvancedPanel();
+      unlockScroll();
     }
 
     cookieConsent.setAttribute('aria-hidden','false');
@@ -265,7 +292,9 @@ function initCookieConsent() {
         d.setTime(d.getTime()+days*24*60*60*1000);
         expires="; expires="+d.toUTCString();
       }
-      document.cookie=name+"="+(value||"")+expires+"; path=/; SameSite=Lax";
+      const sanitizedValue = value === undefined || value === null ? '' : String(value);
+      const secureFlag = window.location.protocol === 'https:' ? '; Secure' : '';
+      document.cookie = `${name}=${sanitizedValue}${expires}; path=/; SameSite=Lax${secureFlag}`;
     }
     function getCookie(name){
       const nameEQ=name+"=";
@@ -342,9 +371,14 @@ function initCookieConsent() {
   
     /* ---------- GA Consent sync helper ---------- */
     function updateGtagConsent(){
-      const analytics   = document.getElementById('cookie-analytics').checked;
-      const marketing   = document.getElementById('cookie-marketing').checked;
-      const functional  = document.getElementById('cookie-functional').checked;
+      const analyticsToggle  = document.getElementById('cookie-analytics');
+      const marketingToggle  = document.getElementById('cookie-marketing');
+      const functionalToggle = document.getElementById('cookie-functional');
+      if(!analyticsToggle || !marketingToggle || !functionalToggle) return;
+
+      const analytics  = analyticsToggle.checked;
+      const marketing  = marketingToggle.checked;
+      const functional = functionalToggle.checked;
   
       gtag('consent','update',{
         analytics_storage:      analytics  ? 'granted':'denied',
@@ -371,13 +405,13 @@ function initCookieConsent() {
       sendStoredUtmEvent();
       cookieConsent.style.display='none';
       cookieConsent.setAttribute('aria-hidden','true');
+      resetAdvancedPanel();
       unlockScroll();
-      return; // nothing else to do
-    }
-
-    lockScroll();
-    if (acceptAllBtn) {
-      acceptAllBtn.focus();
+    } else {
+      lockScroll();
+      if (acceptAllBtn) {
+        acceptAllBtn.focus();
+      }
     }
   
     /* ---------- toggle switch visuals ---------- */
@@ -387,39 +421,70 @@ function initCookieConsent() {
       });
       reflectToggleState(cb);
     });
-  
+
     /* ---------- Accept All ---------- */
-    acceptAllBtn.addEventListener('click',()=>{
-      setCookie('cookie-consent','all',365);
-      setCookie('cookie-analytics','true',365);
-      setCookie('cookie-marketing','true',365);
-      setCookie('cookie-functional','true',365);
-  
-      gtag('consent','update',{
-        ad_storage:'granted',
-        analytics_storage:'granted',
-        ad_user_data:'granted',           // v2 field
-        ad_personalization:'granted',     // v2 field
-        personalization_storage:'granted',
-        functionality_storage:'granted'
-      });
-      
-      // Debug logging and GA4 event
-      console.log('DawnoTemu: Accepted all cookies');
-      
-      // Send custom event to GA4 for tracking consent acceptance
-      if (typeof gtag === 'function') {
-        gtag('event', 'consent_accepted', {
-          consent_type: 'all',
-          custom_parameter: 'dawnotemu_consent'
+    if (acceptAllBtn){
+      acceptAllBtn.addEventListener('click',()=>{
+        setCookie('cookie-consent','all',365);
+        setCookie('cookie-analytics','true',365);
+        setCookie('cookie-marketing','true',365);
+        setCookie('cookie-functional','true',365);
+        applyStoredPreferences();
+
+        gtag('consent','update',{
+          ad_storage:'granted',
+          analytics_storage:'granted',
+          ad_user_data:'granted',           // v2 field
+          ad_personalization:'granted',     // v2 field
+          personalization_storage:'granted',
+          functionality_storage:'granted'
         });
-      }
-      
-      sendStoredUtmEvent();
-      cookieConsent.style.display='none';
-      cookieConsent.setAttribute('aria-hidden','true');
-      unlockScroll();
-    });
+
+        // Debug logging and GA4 event
+        console.log('DawnoTemu: Accepted all cookies');
+
+        // Send custom event to GA4 for tracking consent acceptance
+        if (typeof gtag === 'function') {
+          gtag('event', 'consent_accepted', {
+            consent_type: 'all',
+            custom_parameter: 'dawnotemu_consent'
+          });
+        }
+
+        sendStoredUtmEvent();
+        closeConsentModal();
+      });
+    }
+
+    /* ---------- Reject All ---------- */
+    if (rejectAllBtn){
+      rejectAllBtn.addEventListener('click',()=>{
+        setCookie('cookie-consent','none',365);
+        setCookie('cookie-analytics','false',365);
+        setCookie('cookie-marketing','false',365);
+        setCookie('cookie-functional','false',365);
+        applyStoredPreferences();
+
+        gtag('consent','update',{
+          ad_storage:'denied',
+          analytics_storage:'denied',
+          ad_user_data:'denied',
+          ad_personalization:'denied',
+          personalization_storage:'denied',
+          functionality_storage:'denied'
+        });
+
+        console.log('DawnoTemu: Rejected all cookies');
+
+        if (typeof gtag === 'function') {
+          gtag('event', 'consent_rejected', {
+            consent_type: 'none'
+          });
+        }
+
+        closeConsentModal();
+      });
+    }
   
     /* ---------- Advanced panel ---------- */
     if (advancedBtn && cookieSettings){
@@ -435,31 +500,41 @@ function initCookieConsent() {
     }
   
     /* ---------- Save prefs ---------- */
-    saveBtn.addEventListener('click',()=>{
-      setCookie('cookie-consent','custom',365);
-      const analytics = document.getElementById('cookie-analytics').checked;
-      const marketing = document.getElementById('cookie-marketing').checked;
-      const functional= document.getElementById('cookie-functional').checked;
-      setCookie('cookie-analytics',analytics,365);
-      setCookie('cookie-marketing',marketing,365);
-      setCookie('cookie-functional',functional,365);
-      updateGtagConsent();
-      sendStoredUtmEvent();
+    if (saveBtn){
+      saveBtn.addEventListener('click',()=>{
+        setCookie('cookie-consent','custom',365);
+        const analytics = document.getElementById('cookie-analytics')?.checked ?? false;
+        const marketing = document.getElementById('cookie-marketing')?.checked ?? false;
+        const functional= document.getElementById('cookie-functional')?.checked ?? false;
+        setCookie('cookie-analytics',analytics,365);
+        setCookie('cookie-marketing',marketing,365);
+        setCookie('cookie-functional',functional,365);
+        applyStoredPreferences();
+        updateGtagConsent();
+        sendStoredUtmEvent();
 
-      // Send custom event to GA4 for tracking custom consent
-      if (typeof gtag === 'function') {
-        gtag('event', 'consent_accepted', {
-          consent_type: 'custom',
-          analytics: analytics ? 'granted' : 'denied',
-          marketing: marketing ? 'granted' : 'denied',
-          functional: functional ? 'granted' : 'denied'
+        // Send custom event to GA4 for tracking custom consent
+        if (typeof gtag === 'function') {
+          gtag('event', 'consent_accepted', {
+            consent_type: 'custom',
+            analytics: analytics ? 'granted' : 'denied',
+            marketing: marketing ? 'granted' : 'denied',
+            functional: functional ? 'granted' : 'denied'
+          });
+        }
+
+        closeConsentModal();
+      });
+    }
+
+    /* ---------- Manage buttons ---------- */
+    if (manageButtons.length){
+      manageButtons.forEach(btn => {
+        btn.addEventListener('click',()=>{
+          openConsentModal();
         });
-      }
-
-      cookieConsent.style.display='none';
-      cookieConsent.setAttribute('aria-hidden','true');
-      unlockScroll();
-    });
+      });
+    }
 }
 
 function initFeatureHover(){

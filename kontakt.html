@@ -652,6 +652,7 @@
                     </h5>
                     <ul class="list-none space-y-3">
                         <li><a href="/files/polityka-prywatnosci-i-cookies.pdf" target="_blank" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Prywatność</a></li>
+                        <li><button type="button" data-cookie-manage class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Zarządzaj cookies</button></li>
                         <li><a href="/files/polityka-bezpieczenstwa.pdf" target="_blank" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Bezpiczenstwo</a></li>
                         <li><a href="/files/polityka-ochrony-danych.pdf" target="_blank" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Ochrona Danych</a></li>
                         <li><a href="/sitemap.xml" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Mapa strony</a></li>
@@ -717,6 +718,7 @@
       </div>
       <div class="flex flex-col sm:flex-row sm:justify-end sm:items-center gap-3">
         <button id="cookie-advanced" aria-controls="cookie-settings" aria-expanded="false" class="text-text-dark bg-white border border-gray-200 hover:border-lavender px-5 py-2 rounded-full text-sm font-medium transition-colors">Dostosuj ustawienia</button>
+        <button id="cookie-reject-all" class="text-text-dark bg-white border border-gray-200 hover:border-peach px-5 py-2 rounded-full text-sm font-medium transition-colors">Odrzuć wszystkie</button>
         <button id="cookie-accept-all" class="bg-peach text-white hover:bg-peach-dark px-6 py-2.5 rounded-full text-sm font-semibold transition-colors shadow-sm">Akceptuję wszystkie</button>
       </div>
     </div>
@@ -790,78 +792,6 @@
     </div>
   </div>
 </div>
-
-    <!-- Advanced Settings Panel (hidden by default) -->
-    <div id="cookie-settings" class="hidden border-t border-gray-100 py-4 px-5 sm:px-6 md:px-8 max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <!-- Niezbędne -->
-        <div class="bg-bg-light p-4 rounded-md">
-          <div class="flex items-center justify-between mb-2">
-            <div>
-              <h5 class="font-semibold">Niezbędne cookies</h5>
-              <p class="text-xs text-text-medium">Wymagane do działania strony</p>
-            </div>
-            <div class="w-11 h-6 bg-lavender rounded-full flex items-center cursor-not-allowed relative">
-              <span class="absolute right-1 top-1 w-4 h-4 bg-white rounded-full shadow"></span>
-            </div>
-          </div>
-          <p class="text-xs text-text-medium">Te pliki cookies są niezbędne do prawidłowego funkcjonowania strony internetowej i nie mogą być wyłączone.</p>
-        </div>
-        <!-- Analityczne -->
-        <div class="bg-bg-light p-4 rounded-md">
-          <div class="flex items-center justify-between mb-2">
-            <div>
-              <h5 class="font-semibold">Analityczne cookies</h5>
-              <p class="text-xs text-text-medium">Pomagają nam ulepszać stronę</p>
-            </div>
-            <div class="toggle-container">
-              <input type="checkbox" id="cookie-analytics" class="sr-only" checked>
-              <label for="cookie-analytics" class="toggle-switch w-11 h-6 bg-lavender rounded-full block relative cursor-pointer transition-colors duration-200">
-                <span class="toggle-dot absolute w-4 h-4 bg-white rounded-full shadow transition-transform duration-200 transform translate-x-5 top-1"></span>
-              </label>
-            </div>
-          </div>
-          <p class="text-xs text-text-medium">Używamy ich, aby analizować, jak nasza strona jest używana, i ulepszać jej działanie.</p>
-        </div>
-        <!-- Marketingowe -->
-        <div class="bg-bg-light p-4 rounded-md">
-          <div class="flex items-center justify-between mb-2">
-            <div>
-              <h5 class="font-semibold">Marketingowe cookies</h5>
-              <p class="text-xs text-text-medium">Personalizacja reklam</p>
-            </div>
-            <div class="toggle-container">
-              <input type="checkbox" id="cookie-marketing" class="sr-only" checked>
-              <label for="cookie-marketing" class="toggle-switch w-11 h-6 bg-lavender rounded-full block relative cursor-pointer transition-colors duration-200">
-                <span class="toggle-dot absolute w-4 h-4 bg-white rounded-full shadow transition-transform duration-200 transform translate-x-5 top-1"></span>
-              </label>
-            </div>
-          </div>
-          <p class="text-xs text-text-medium">Pomagają nam dostarczać spersonalizowane reklamy na podstawie Twojej aktywności na stronie.</p>
-        </div>
-        <!-- Funkcjonalne -->
-        <div class="bg-bg-light p-4 rounded-md">
-          <div class="flex items-center justify-between mb-2">
-            <div>
-              <h5 class="font-semibold">Funkcjonalne cookies</h5>
-              <p class="text-xs text-text-medium">Zwiększają funkcjonalność</p>
-            </div>
-            <div class="toggle-container">
-              <input type="checkbox" id="cookie-functional" class="sr-only" checked>
-              <label for="cookie-functional" class="toggle-switch w-11 h-6 bg-lavender rounded-full block relative cursor-pointer transition-colors duration-200">
-                <span class="toggle-dot absolute w-4 h-4 bg-white rounded-full shadow transition-transform duration-200 transform translate-x-5 top-1"></span>
-              </label>
-            </div>
-          </div>
-          <p class="text-xs text-text-medium">Zapamiętują Twoje wybory i preferencje, aby zwiększyć wygodę korzystania ze strony.</p>
-        </div>
-      </div>
-      <div class="flex justify-end mt-4 gap-2">
-        <button id="cookie-save" class="bg-lavender text-white hover:bg-lavender-dark px-5 py-2 rounded-full text-sm font-semibold transition-colors shadow-sm">Zapisz ustawienia</button>
-      </div>
-    </div>
-  </div>
-    
     <script src="/scripts/main.js"></script>
     <script src="/scripts/forms.js"></script>
 </body>
