@@ -266,6 +266,23 @@ function initCookieConsent() {
       unlockScroll();
     }
 
+    function pushConsentState(consentType, { analytics, marketing, functional }) {
+      if (!window.dataLayer || !Array.isArray(window.dataLayer)) return;
+
+      window.dataLayer.push({
+        event: 'consent_status_change',
+        consent_state: {
+          consent_type: consentType,
+          analytics_storage: analytics ? 'granted' : 'denied',
+          ad_storage: marketing ? 'granted' : 'denied',
+          ad_user_data: marketing ? 'granted' : 'denied',
+          ad_personalization: marketing ? 'granted' : 'denied',
+          personalization_storage: marketing ? 'granted' : 'denied',
+          functionality_storage: functional ? 'granted' : 'denied'
+        }
+      });
+    }
+
     cookieConsent.setAttribute('aria-hidden','false');
 
     // Debug: Log UTM parameters for Meta ads tracking
@@ -451,6 +468,12 @@ function initCookieConsent() {
           });
         }
 
+        pushConsentState('all', {
+          analytics: true,
+          marketing: true,
+          functional: true
+        });
+
         sendStoredUtmEvent();
         closeConsentModal();
       });
@@ -481,6 +504,12 @@ function initCookieConsent() {
             consent_type: 'none'
           });
         }
+
+        pushConsentState('none', {
+          analytics: false,
+          marketing: false,
+          functional: false
+        });
 
         closeConsentModal();
       });
@@ -522,6 +551,12 @@ function initCookieConsent() {
             functional: functional ? 'granted' : 'denied'
           });
         }
+
+        pushConsentState('custom', {
+          analytics,
+          marketing,
+          functional
+        });
 
         closeConsentModal();
       });
