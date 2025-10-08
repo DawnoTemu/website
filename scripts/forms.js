@@ -20,6 +20,10 @@ const FORM_CONFIG = {
         requiredFields: ['email', 'message'],
         successMessage: 'Dziękujemy! Twoja wiadomość została wysłana. Odpowiemy najszybciej jak to możliwe.'
       },
+      casting: {
+        requiredFields: ['first_name', 'last_name', 'email', 'role_interest', 'consent'],
+        successMessage: 'Dziękujemy! Prześlemy pełny brief castingu na adres {email}.'
+      },
       research: {
         requiredFields: ['first_name', 'last_name', 'email', 'story_id', 'voice_sample', 'consent'],
         successMessage: 'Dziękujemy za udział w badaniu! Przygotujemy spersonalizowaną bajkę i wyślemy na podany adres email.'
@@ -104,6 +108,13 @@ const FORM_CONFIG = {
       first_name: form.querySelector('input[name="first_name"]')?.value || '',
       last_name: form.querySelector('input[name="last_name"]')?.value || '',
       story_id: form.querySelector('select[name="story_id"]')?.value || '',
+      phone: form.querySelector('input[name="phone"]')?.value || '',
+      role_interest: form.querySelector('[name="role_interest"]')?.value || '',
+      city: form.querySelector('input[name="city"]')?.value || '',
+      links: form.querySelector('[name="links"]')?.value || '',
+      talent_birth_year: form.querySelector('input[name="talent_birth_year"]')?.value || '',
+      availability: form.querySelector('input[name="availability"]')?.value || '',
+      motivation: form.querySelector('textarea[name="motivation"]')?.value || '',
       consent: form.querySelector('input[name="consent"]')?.checked || false,
       
       // Add metadata

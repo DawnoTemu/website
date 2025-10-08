@@ -195,7 +195,11 @@ function highlightCurrentPage() {
         '/biblioteka': 'nav-library',
         '/biblioteka.html': 'nav-library',
         '/kontakt': 'nav-contact',
-        '/kontakt.html': 'nav-contact'
+        '/kontakt.html': 'nav-contact',
+        '/badania': 'nav-research',
+        '/badania.html': 'nav-research',
+        '/casting': 'nav-casting',
+        '/casting.html': 'nav-casting'
     };
     
     // Get all navigation links in desktop and mobile menu
