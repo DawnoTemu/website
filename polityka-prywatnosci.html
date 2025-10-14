@@ -48,54 +48,97 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="scripts/tailwind-config.js"></script>
 </head>
-<body class="bg-gray-50 text-gray-900">
+<body class="bg-bg-light text-text-dark leading-relaxed font-sans font-normal overflow-x-hidden">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W5WXGDM9"
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <!-- Navigation -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                    <a href="index.html" class="flex items-center space-x-3">
-                        <img src="images/logo.png" alt="DawnoTemu Logo" class="h-10 w-auto">
-                        <span class="text-xl font-comfortaa font-semibold text-gray-900">DawnoTemu</span>
+    <header class="site-header bg-white py-3 sm:py-5 fixed top-0 left-0 w-full z-50 shadow-sm-custom backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-8 relative">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center nav-brand">
+                        <h1><img src="/images/logo.png" alt="DawnoTemu Logo" class="h-8 sm:h-10 mr-2 sm:mr-3" loading="lazy"></h1>
                     </a>
                 </div>
                 
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-gray-600 hover:text-purple-600 transition-colors">Strona główna</a>
-                    <a href="o-nas.html" class="text-gray-600 hover:text-purple-600 transition-colors">O nas</a>
-                    <a href="biblioteka.html" class="text-gray-600 hover:text-purple-600 transition-colors">Biblioteka</a>
-                    <a href="badania.html" class="text-gray-600 hover:text-purple-600 transition-colors">Badania</a>
-                    <a href="kontakt.html" class="text-gray-600 hover:text-purple-600 transition-colors">Kontakt</a>
-                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="/" id="nav-home" class="nav-link text-text-medium hover:text-text-dark transition-colors">Strona główna</a>
+                    <a href="/o-nas" id="nav-about" class="nav-link text-text-medium hover:text-text-dark transition-colors">O nas</a>
+                    <a href="/biblioteka" id="nav-library" class="nav-link text-text-medium hover:text-text-dark transition-colors">Biblioteka bajek</a>
+                    <a href="/kontakt" id="nav-contact" class="nav-link text-text-medium hover:text-text-dark transition-colors">Kontakt</a>
+                    <a href="/punkty-magii" id="nav-credits" class="nav-link text-text-medium hover:text-text-dark transition-colors">Punkty Magii</a>
+                    <a href="/kontakt#waitlist" class="nav-cta bg-peach text-white py-2.5 px-5 rounded-full font-semibold transition duration-300 ease-in-out border-none cursor-pointer text-sm shadow-md hover:bg-peach-dark hover:-translate-y-0.5 hover:shadow-lg">Umów kontakt</a>
+                </nav>
                 
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-600 hover:text-purple-600">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Mobile menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
-                <div class="flex flex-col space-y-3">
-                    <a href="index.html" class="text-gray-600 hover:text-purple-600 transition-colors">Strona główna</a>
-                    <a href="o-nas.html" class="text-gray-600 hover:text-purple-600 transition-colors">O nas</a>
-                    <a href="biblioteka.html" class="text-gray-600 hover:text-purple-600 transition-colors">Biblioteka</a>
-                    <a href="badania.html" class="text-gray-600 hover:text-purple-600 transition-colors">Badania</a>
-                    <a href="kontakt.html" class="text-gray-600 hover:text-purple-600 transition-colors">Kontakt</a>
+                <div class="mobile-menu-toggle flex flex-col justify-between w-[24px] sm:w-[30px] h-[18px] sm:h-[21px] cursor-pointer md:hidden" id="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+                    <span class="w-full h-[2px] sm:h-[3px] bg-text-dark rounded transition duration-300"></span>
+                    <span class="w-full h-[2px] sm:h-[3px] bg-text-dark rounded transition duration-300"></span>
+                    <span class="w-full h-[2px] sm:h-[3px] bg-text-dark rounded transition duration-300"></span>
                 </div>
             </div>
         </div>
-    </nav>
+    </header>
+    
+    <div id="mobile-nav-overlay" class="fixed inset-0 bg-text-dark/50 z-30 hidden opacity-0 transition-opacity duration-300"></div>
+
+    <div class="mobile-nav-container fixed top-[57px] sm:top-[71px] right-0 h-[calc(100vh-57px)] sm:h-[calc(100vh-71px)] bg-white z-40 p-5 sm:p-8 flex-col hidden transform translate-x-full transition-transform duration-300 ease-in-out shadow-xl" id="mobile-nav">
+        <div class="flex flex-col h-full overflow-y-auto">
+            <div class="flex items-center mb-6 sm:mb-8">
+                <img src="/images/logo.png" alt="DawnoTemu Logo" class="h-8 mr-2" loading="lazy">
+            </div>
+            
+            <nav class="flex flex-col gap-4 sm:gap-5">
+                <a href="/" id="nav-home" class="mobile-nav-link nav-link text-text-dark text-lg font-medium py-1 flex items-center">
+                    <span class="mr-3 w-5 text-center opacity-70"><i class="fas fa-home"></i></span>
+                    Strona główna
+                </a>
+                
+                <a href="/o-nas" id="nav-about" class="mobile-nav-link nav-link text-text-dark text-lg font-medium py-1 flex items-center">
+                    <span class="mr-3 w-5 text-center opacity-70"><i class="fas fa-info-circle"></i></span>
+                    O nas
+                </a>
+                
+                <a href="/biblioteka" id="nav-library" class="mobile-nav-link nav-link text-text-dark text-lg font-medium py-1 flex items-center">
+                    <span class="mr-3 w-5 text-center opacity-70"><i class="fas fa-book"></i></span>
+                    Biblioteka bajek
+                </a>
+                
+                <a href="/kontakt" id="nav-contact" class="mobile-nav-link nav-link text-text-dark text-lg font-medium py-1 flex items-center">
+                    <span class="mr-3 w-5 text-center opacity-70"><i class="fas fa-envelope"></i></span>
+                    Kontakt
+                </a>
+
+                <a href="/punkty-magii" id="nav-credits" class="mobile-nav-link nav-link text-text-dark text-lg font-medium py-1 flex items-center">
+                    <span class="mr-3 w-5 text-center opacity-70"><i class="fas fa-wand-magic-sparkles"></i></span>
+                    Punkty Magii
+                </a>
+            </nav>
+            
+            <a href="/kontakt#waitlist" class="mt-8 bg-peach text-white py-3 sm:py-4 px-6 rounded-full font-semibold transition duration-300 ease-in-out border-none cursor-pointer text-base sm:text-base shadow-md text-center hover:bg-peach-dark">
+                Umów kontakt
+            </a>
+            
+            <div class="mobile-nav-social">
+                <a href="https://www.facebook.com/dawnotemuapp" target="_blank" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/dawnotemu.app" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.tiktok.com/@dawnotemuapp" target="_blank" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+            
+            <div class="mobile-nav-footer">
+                © 2025 DawnoTemu. Wszelkie prawa zastrzeżone.
+            </div>
+        </div>
+    </div>
 
     <!-- Header -->
-    <header class="bg-gradient-to-br from-purple-100 via-pink-50 to-cyan-50 py-16">
+    <header class="bg-gradient-to-br from-purple-100 via-pink-50 to-cyan-50 pt-32 md:pt-40 pb-16">
         <div class="container mx-auto px-6 text-center">
             <h1 class="text-4xl md:text-5xl font-comfortaa font-bold text-gray-900 mb-4">
                 Polityka Prywatności i Cookies
@@ -458,74 +501,94 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-16">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-8">
-                <!-- Logo and description -->
-                <div class="md:col-span-2">
-                    <div class="flex items-center space-x-3 mb-6">
-                        <img src="images/logo-light.png" alt="DawnoTemu Logo" class="h-10 w-auto">
-                        <span class="text-xl font-comfortaa font-semibold">DawnoTemu</span>
+    <footer class="site-footer bg-gradient-to-r from-text-dark to-text-dark/95 text-white pt-20 pb-8 relative">
+        <div class="absolute top-0 left-0 w-full overflow-hidden" style="transform: translateY(-99%)">
+            <svg preserveAspectRatio="none" width="100%" height="50" viewBox="0 0 1440 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,37.7L48,42.5C96,47.3,192,57,288,56C384,55,480,43.3,576,49.7C672,56,768,80.3,864,84.8C960,89.3,1056,74,1152,58C1248,42,1344,25.3,1392,17L1440,8.7L1440,37.7L1392,37.7C1344,37.7,1248,37.7,1152,37.7C1056,37.7,960,37.7,864,37.7C768,37.7,672,37.7,576,37.7C480,37.7,384,37.7,288,37.7C192,37.7,96,37.7,48,37.7L0,37.7Z" fill="#FFFFFF"/>
+            </svg>
+        </div>
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="grid grid-cols-1 md:grid-cols-7 gap-12 mb-12">
+                <div class="md:col-span-2 flex flex-col">
+                    <div class="flex items-center mb-6">
+                        <img src="/images/logo-light.png" alt="DawnoTemu Logo" class="h-10 mr-3" loading="lazy">
                     </div>
-                    <p class="text-gray-300 mb-6 max-w-md">
-                        Twój głos opowiada baśnie, zawsze gdy potrzebujesz. 
-                        Stwórz magiczne chwile z dziećmi dzięki AI.
+                    <p class="text-white/70 text-sm mb-6 leading-relaxed">
+                        DawnoTemu pomaga rodzicom utrzymać magię wieczornych bajek — nawet gdy nie mogą być obok. Twój głos, ich ulubione historie.
                     </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <span class="sr-only">Facebook</span>
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                            </svg>
+                    <div class="flex gap-4 mb-8">
+                        <a href="https://www.facebook.com/dawnotemuapp" target="_blank" class="group flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition-all duration-300 hover:bg-peach hover:scale-110 hover:shadow-[0_0_15px_rgba(251,190,159,0.5)]">
+                            <i class="fab fa-facebook-f group-hover:animate-bounce-mini"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <span class="sr-only">Instagram</span>
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.328-1.297L6.391 14.42c.687.687 1.574 1.111 2.555 1.111 1.961 0 3.555-1.595 3.555-3.555S10.907 8.42 8.946 8.42c-.981 0-1.868.424-2.555 1.111L5.121 8.26c.88-.807 2.031-1.297 3.328-1.297 2.758 0 4.988 2.23 4.988 4.988-.001 2.758-2.231 4.988-4.988 4.988z"/>
-                            </svg>
+                        <a href="https://www.instagram.com/dawnotemu.app" target="_blank" class="group flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition-all duration-300 hover:bg-peach hover:scale-110 hover:shadow-[0_0_15px_rgba(251,190,159,0.5)]">
+                            <i class="fab fa-instagram group-hover:animate-bounce-mini"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <span class="sr-only">Twitter</span>
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                            </svg>
+                        <a href="https://www.tiktok.com/@dawnotemuapp" target="_blank" class="group flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition-all duration-300 hover:bg-peach hover:scale-110 hover:shadow-[0_0_15px_rgba(251,190,159,0.5)]">
+                            <i class="fab fa-tiktok group-hover:animate-bounce-mini"></i>
                         </a>
                     </div>
                 </div>
                 
-                <!-- Quick links -->
-                <div>
-                    <h3 class="text-lg font-comfortaa font-semibold mb-6">Szybkie linki</h3>
-                    <ul class="space-y-3">
-                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Strona główna</a></li>
-                        <li><a href="o-nas.html" class="text-gray-300 hover:text-white transition-colors">O nas</a></li>
-                        <li><a href="biblioteka.html" class="text-gray-300 hover:text-white transition-colors">Biblioteka</a></li>
-                        <li><a href="badania.html" class="text-gray-300 hover:text-white transition-colors">Badania</a></li>
-                        <li><a href="kontakt.html" class="text-gray-300 hover:text-white transition-colors">Kontakt</a></li>
+                <div class="md:col-span-1">
+                    <h5 class="text-xl mb-6 font-semibold text-white relative inline-block">
+                        Aplikacja
+                        <span class="absolute left-0 bottom-0 w-1/2 h-0.5 bg-gradient-to-r from-peach to-lavender"></span>
+                    </h5>
+                    <ul class="list-none space-y-3">
+                        <li><a href="/#features" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Funkcje</a></li>
+                        <li><a href="/#how-it-works" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Jak to działa</a></li>
+                        <li><a href="/biblioteka" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Biblioteka bajek</a></li>
+                        <li><a href="/#faq" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">FAQ</a></li>
                     </ul>
                 </div>
                 
-                <!-- Legal -->
-                <div>
-                    <h3 class="text-lg font-comfortaa font-semibold mb-6">Dokumenty</h3>
-                    <ul class="space-y-3">
-                        <li><a href="polityka-prywatnosci.html" class="text-gray-300 hover:text-white transition-colors">Polityka prywatności</a></li>
-                        <li><button type="button" data-cookie-manage class="text-gray-300 hover:text-white transition-colors">Zarządzaj cookies</button></li>
-                        <li><a href="files/polityka-bezpieczenstwa.pdf" class="text-gray-300 hover:text-white transition-colors">Polityka bezpieczeństwa</a></li>
-                        <li><a href="files/zgoda-marketingowa-i-newsletter.pdf" class="text-gray-300 hover:text-white transition-colors">Zgoda marketingowa</a></li>
-                        <li><a href="files/brandbook.pdf" class="text-gray-300 hover:text-white transition-colors">Brandbook</a></li>
+                <div class="md:col-span-1">
+                    <h5 class="text-xl mb-6 font-semibold text-white relative inline-block">
+                        Firma
+                        <span class="absolute left-0 bottom-0 w-1/2 h-0.5 bg-gradient-to-r from-peach to-lavender"></span>
+                    </h5>
+                    <ul class="list-none space-y-3">
+                        <li><a href="/o-nas" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">O nas</a></li>
+                        <li><a href="/kontakt" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Kontakt</a></li>
+                        <li><a href="/punkty-magii" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Punkty Magii</a></li>
+                        <li><a href="/polityka-prywatnosci" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Polityka prywatności</a></li>
                     </ul>
+                </div>
+                
+                <div class="md:col-span-1">
+                    <h5 class="text-xl mb-6 font-semibold text-white relative inline-block">
+                        Materiały
+                        <span class="absolute left-0 bottom-0 w-1/2 h-0.5 bg-gradient-to-r from-peach to-lavender"></span>
+                    </h5>
+                    <ul class="list-none space-y-3">
+                        <li><a href="/files/polityka-prywatnosci-i-cookies.pdf" class="text-white/70 hover:text-white transition-colors duration-300 inline-block" target="_blank" rel="noopener">Polityka cookies</a></li>
+                        <li><a href="/files/polityka-bezpieczenstwa.pdf" class="text-white/70 hover:text-white transition-colors duration-300 inline-block" target="_blank" rel="noopener">Bezpieczeństwo danych</a></li>
+                        <li><a href="/files/polityka-ochrony-danych.pdf" class="text-white/70 hover:text-white transition-colors duration-300 inline-block" target="_blank" rel="noopener">Ochrona danych</a></li>
+                        <li><a href="/files/zgoda-na-matkering-bezpisredni-newsletter.pdf" class="text-white/70 hover:text-white transition-colors duration-300 inline-block" target="_blank" rel="noopener">Zgoda marketingowa</a></li>
+                    </ul>
+                </div>
+                
+                <div class="md:col-span-2">
+                    <h5 class="text-xl mb-6 font-semibold text-white relative inline-block">
+                        Bądź na bieżąco
+                        <span class="absolute left-0 bottom-0 w-1/2 h-0.5 bg-gradient-to-r from-peach to-lavender"></span>
+                    </h5>
+                    <p class="text-white/70 mb-4">
+                        Dołącz do listy zainteresowanych subskrypcją Punkty Magii i otrzymuj wiadomości o premierach nowych funkcji.
+                    </p>
+                    <form class="flex flex-col sm:flex-row gap-4">
+                        <input type="email" class="px-5 py-3 rounded-full bg-white/10 border border-white/20 placeholder:text-white/60 text-white focus:outline-none focus:border-peach" placeholder="Twój adres e-mail">
+                        <button type="submit" class="px-6 py-3 rounded-full bg-peach text-text-dark font-semibold shadow-md hover:bg-white transition">
+                            Zapisz się
+                        </button>
+                    </form>
                 </div>
             </div>
-            
-            <div class="border-t border-gray-700 mt-12 pt-8">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 text-sm">
-                        © 2024 DawnoTemu. Wszystkie prawa zastrzeżone.
-                    </p>
-                    <p class="text-gray-400 text-sm mt-4 md:mt-0">
-                        Stworzone z ❤️ dla rodzin w Polsce
-                    </p>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-white/60 text-sm">© 2025 DawnoTemu Sp. z o.o. Wszelkie prawa zastrzeżone.</p>
+                <div class="flex gap-6 text-white/60 text-sm">
+                    <a href="/polityka-prywatnosci" class="hover:text-white transition">Polityka prywatności</a>
+                    <a href="/kontakt" class="hover:text-white transition">Kontakt</a>
                 </div>
             </div>
         </div>

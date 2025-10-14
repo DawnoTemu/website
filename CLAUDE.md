@@ -8,11 +8,33 @@ DawnoTemu is a Polish voice-powered bedtime stories website that allows parents 
 
 ## Development Commands
 
-This is a static website project with no build process or package management. Development is done by:
+This is a static website project with no build process or package management.
 
-- Opening HTML files directly in the browser for testing
-- Using a local web server for development: `python -m http.server 8000` or similar
-- No compilation, bundling, or dependency installation required
+### Local Development Server
+```bash
+# Recommended: Node.js server with CORS headers and UTM logging
+node local-testing-server.js
+
+# Alternative: Python server
+python3 -m http.server 8080
+
+# Quick start script with testing options
+./start-testing.sh
+```
+
+### Testing & Debugging
+```bash
+# Run automated GA4 tests
+node test-ga4-functionality.js
+
+# Interactive GA4 test tool
+# Start server, then open: http://localhost:8080/ga4-test-tool.html
+
+# Test with Meta ads UTMs
+http://localhost:8080/?utm_source=facebook&utm_medium=cpc&utm_campaign=test&fbclid=test123
+```
+
+No compilation, bundling, or dependency installation required
 
 ## Architecture and Structure
 
@@ -22,10 +44,13 @@ This is a static website project with no build process or package management. De
 - `badania.html` - Research page showing scientific backing
 - `biblioteka.html` - Story library page
 - `kontakt.html` - Contact page with forms
+- `casting.html` - Voice casting/recording page
+- `punkty-magii.html` - Reward points/gamification page
 - `doc.html` - Documentation page
 - `polityka-prywatnosci.html` - Privacy policy page
 - `podziekowanie.html` - Thank you page
 - `email_template.html` - Email template for communications
+- `ga4-test-tool.html` - Interactive GA4 testing interface (development only)
 
 ### Styling System
 - **Custom CSS Framework**: Uses a custom framework with consistent design tokens
@@ -86,4 +111,16 @@ This is a static website project with no build process or package management. De
 - **OpenGraph**: Full social media sharing optimization
 - **Performance**: Optimized images, minimal JavaScript, efficient CSS
 - **Accessibility**: ARIA labels, semantic HTML, keyboard navigation support
-- **Google Analytics**: GA4 implementation with GDPR-compliant consent management
+- **Analytics**: Google Tag Manager (GTM-W5WXGDM9) with GA4 and Consent Mode v2 implementation
+- **Consent Management**: GDPR-compliant with cookieless pings, url_passthrough for UTM preservation
+- **UTM Tracking**: Automatic detection and preservation via sessionStorage for attribution
+
+## Testing Infrastructure
+
+The project includes comprehensive GA4 testing tools:
+- `local-testing-server.js` - Node.js server with CORS headers and UTM parameter logging
+- `test-ga4-functionality.js` - Automated test suite for GA4 implementation validation
+- `advanced-ga4-debugger.js` - Browser console debugger for deep GTM/GA4 analysis
+- `start-testing.sh` - Interactive startup script for local testing environment
+- `ga4-test-tool.html` - Visual interface for testing consent flow and UTM detection
+- See `LOCAL_TESTING_GUIDE.md` and `README_TESTING.md` for detailed testing procedures

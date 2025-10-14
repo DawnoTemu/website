@@ -24,6 +24,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GA4 Testing Tool - DawnoTemu</title>
+
+    <link rel="stylesheet" href="/styles/icons.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/scripts/tailwind-config.js"></script>
+    <link rel="stylesheet" href="/styles/styles.css">
     
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -36,12 +41,15 @@
     <style>
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0;
+            background: #f5f5f5; 
+        }
+        main.ga4-tool {
             max-width: 1200px; 
             margin: 0 auto; 
             padding: 20px; 
-            background: #f5f5f5; 
         }
-        .container { 
+        .tool-card { 
             background: white; 
             padding: 30px; 
             border-radius: 10px; 
@@ -102,8 +110,77 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W5WXGDM9"
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+    <header class="site-header bg-white py-3 sm:py-5 fixed top-0 left-0 w-full z-50 shadow-sm-custom backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-8 relative">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center nav-brand">
+                        <h1><img src="/images/logo.png" alt="DawnoTemu Logo" class="h-8 sm:h-10 mr-2 sm:mr-3" loading="lazy"></h1>
+                    </a>
+                </div>
+                
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="/" id="nav-home" class="nav-link text-text-medium hover:text-text-dark transition-colors">Strona główna</a>
+                    <a href="/o-nas" id="nav-about" class="nav-link text-text-medium hover:text-text-dark transition-colors">O nas</a>
+                    <a href="/biblioteka" id="nav-library" class="nav-link text-text-medium hover:text-text-dark transition-colors">Biblioteka bajek</a>
+                    <a href="/kontakt" id="nav-contact" class="nav-link text-text-medium hover:text-text-dark transition-colors">Kontakt</a>
+                    <a href="/punkty-magii" id="nav-credits" class="nav-link text-text-medium hover:text-text-dark transition-colors">Punkty Magii</a>
+                    <a href="/punkty-magii#cta" class="nav-cta bg-peach text-white py-2.5 px-5 rounded-full font-semibold transition duration-300 ease-in-out border-none cursor-pointer text-sm shadow-md hover:bg-peach-dark hover:-translate-y-0.5 hover:shadow-lg">Wypróbuj za darmo</a>
+                </nav>
+                
+                <div class="mobile-menu-toggle flex flex-col justify-between w-[24px] sm:w-[30px] h-[18px] sm:h-[21px] cursor-pointer md:hidden" id="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+                    <span class="w-full h-[2px] sm:h-[3px] bg-text-dark rounded transition duration-300"></span>
+                    <span class="w-full h-[2px] sm:h-[3px] bg-text-dark rounded transition duration-300"></span>
+                    <span class="w-full h-[2px] sm:h-[3px] bg-text-dark rounded transition duration-300"></span>
+                </div>
+            </div>
+        </div>
+    </header>
     
-    <div class="container">
+    <div id="mobile-nav-overlay" class="fixed inset-0 bg-text-dark/50 z-30 hidden opacity-0 transition-opacity duration-300"></div>
+
+    <div class="mobile-nav-container fixed top-[57px] sm:top-[71px] right-0 h-[calc(100vh-57px)] sm:h-[calc(100vh-71px)] bg-white z-40 p-5 sm:p-8 flex-col hidden transform translate-x-full transition-transform duration-300 ease-in-out shadow-xl" id="mobile-nav">
+        <div class="flex flex-col h-full overflow-y-auto">
+            <div class="flex items-center mb-6 sm:mb-8">
+                <img src="/images/logo.png" alt="DawnoTemu Logo" class="h-8 mr-2" loading="lazy">
+            </div>
+            
+            <nav class="flex flex-col gap-4 sm:gap-5">
+                <a href="/" id="nav-home" class="mobile-nav-link nav-link text-text-dark text-lg font-medium py-1 flex items-center">
+                    <span class="mr-3 w-5 text-center opacity-70"><i class="fas fa-home"></i></span>
+                    Strona główna
+                </a>
+                
+                <a href="/o-nas" id="nav-about" class="mobile-nav-link nav-link text-text-dark text-lg font-medium py-1 flex items-center">
+                    <span class="mr-3 w-5 text-center opacity-70"><i class="fas fa-info-circle"></i></span>
+                    O nas
+                </a>
+                
+                <a href="/biblioteka" id="nav-library" class="mobile-nav-link nav-link text-text-dark text-lg font-medium py-1 flex items-center">
+                    <span class="mr-3 w-5 text-center opacity-70"><i class="fas fa-book"></i></span>
+                    Biblioteka bajek
+                </a>
+                
+                <a href="/kontakt" id="nav-contact" class="mobile-nav-link nav-link text-text-dark text-lg font-medium py-1 flex items-center">
+                    <span class="mr-3 w-5 text-center opacity-70"><i class="fas fa-envelope"></i></span>
+                    Kontakt
+                </a>
+
+                <a href="/punkty-magii" id="nav-credits" class="mobile-nav-link nav-link text-text-dark text-lg font-medium py-1 flex items-center">
+                    <span class="mr-3 w-5 text-center opacity-70"><i class="fas fa-wand-magic-sparkles"></i></span>
+                    Punkty Magii
+                </a>
+            </nav>
+            
+            <a href="/punkty-magii#cta" class="mt-8 bg-peach text-white py-3 sm:py-4 px-6 rounded-full font-semibold transition duration-300 ease-in-out border-none cursor-pointer text-base sm:text-base shadow-md text-center hover:bg-peach-dark">
+                Wypróbuj za darmo
+            </a>
+        </div>
+    </div>
+
+    <main class="ga4-tool pt-28 md:pt-36">
+    
+    <div class="tool-card">
         <h1>🧪 GA4 Testing Tool - DawnoTemu</h1>
         <div class="status info">
             <strong>Container ID:</strong> GTM-W5WXGDM9<br>
@@ -113,7 +190,7 @@
     </div>
 
     <div class="grid">
-        <div class="container">
+        <div class="tool-card">
             <h2>1. Consent Testing</h2>
             <div class="test-section">
                 <p>Test different consent scenarios and verify GA4 events:</p>
@@ -125,7 +202,7 @@
             </div>
         </div>
 
-        <div class="container">
+        <div class="tool-card">
             <h2>2. UTM Parameter Testing</h2>
             <div class="test-section">
                 <p>Test Meta ads UTM parameters:</p>
@@ -140,7 +217,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="tool-card">
         <h2>3. GA4 DataLayer Monitoring</h2>
         <div class="test-section">
             <p>Monitor GTM dataLayer events in real-time:</p>
@@ -152,7 +229,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="tool-card">
         <h2>4. GA4 DebugView Setup</h2>
         <div class="test-section">
             <div class="status info">
@@ -167,10 +244,105 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="tool-card">
         <h2>5. Test Results Summary</h2>
         <div id="testResults" class="log-output"></div>
     </div>
+
+    </main>
+
+    <footer class="site-footer bg-gradient-to-r from-text-dark to-text-dark/95 text-white pt-20 pb-8 relative">
+        <div class="absolute top-0 left-0 w-full overflow-hidden" style="transform: translateY(-99%)">
+            <svg preserveAspectRatio="none" width="100%" height="50" viewBox="0 0 1440 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,37.7L48,42.5C96,47.3,192,57,288,56C384,55,480,43.3,576,49.7C672,56,768,80.3,864,84.8C960,89.3,1056,74,1152,58C1248,42,1344,25.3,1392,17L1440,8.7L1440,37.7L1392,37.7C1344,37.7,1248,37.7,1152,37.7C1056,37.7,960,37.7,864,37.7C768,37.7,672,37.7,576,37.7C480,37.7,384,37.7,288,37.7C192,37.7,96,37.7,48,37.7L0,37.7Z" fill="#FFFFFF"/>
+            </svg>
+        </div>
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="grid grid-cols-1 md:grid-cols-7 gap-12 mb-12">
+                <div class="md:col-span-2 flex flex-col">
+                    <div class="flex items-center mb-6">
+                        <img src="/images/logo-light.png" alt="DawnoTemu Logo" class="h-10 mr-3" loading="lazy">
+                    </div>
+                    <p class="text-white/70 text-sm mb-6 leading-relaxed">
+                        DawnoTemu pomaga rodzicom utrzymać magię wieczornych bajek — nawet gdy nie mogą być obok. Twój głos, ich ulubione historie.
+                    </p>
+                    <div class="flex gap-4 mb-8">
+                        <a href="https://www.facebook.com/dawnotemuapp" target="_blank" class="group flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition-all duration-300 hover:bg-peach hover:scale-110 hover:shadow-[0_0_15px_rgba(251,190,159,0.5)]">
+                            <i class="fab fa-facebook-f group-hover:animate-bounce-mini"></i>
+                        </a>
+                        <a href="https://www.instagram.com/dawnotemu.app" target="_blank" class="group flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition-all duration-300 hover:bg-peach hover:scale-110 hover:shadow-[0_0_15px_rgba(251,190,159,0.5)]">
+                            <i class="fab fa-instagram group-hover:animate-bounce-mini"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@dawnotemuapp" target="_blank" class="group flex items-center justify-center w-10 h-10 bg-white/10 rounded-full transition-all duration-300 hover:bg-peach hover:scale-110 hover:shadow-[0_0_15px_rgba(251,190,159,0.5)]">
+                            <i class="fab fa-tiktok group-hover:animate-bounce-mini"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-1">
+                    <h5 class="text-xl mb-6 font-semibold text-white relative inline-block">
+                        Aplikacja
+                        <span class="absolute left-0 bottom-0 w-1/2 h-0.5 bg-gradient-to-r from-peach to-lavender"></span>
+                    </h5>
+                    <ul class="list-none space-y-3">
+                        <li><a href="/#features" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Funkcje</a></li>
+                        <li><a href="/#how-it-works" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Jak to działa</a></li>
+                        <li><a href="/biblioteka" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Biblioteka bajek</a></li>
+                        <li><a href="/#faq" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="md:col-span-1">
+                    <h5 class="text-xl mb-6 font-semibold text-white relative inline-block">
+                        Firma
+                        <span class="absolute left-0 bottom-0 w-1/2 h-0.5 bg-gradient-to-r from-peach to-lavender"></span>
+                    </h5>
+                    <ul class="list-none space-y-3">
+                        <li><a href="/o-nas" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">O nas</a></li>
+                        <li><a href="/kontakt" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Kontakt</a></li>
+                        <li><a href="/punkty-magii" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Punkty Magii</a></li>
+                        <li><a href="/polityka-prywatnosci" class="text-white/70 hover:text-white transition-colors duration-300 inline-block">Polityka prywatności</a></li>
+                    </ul>
+                </div>
+                
+                <div class="md:col-span-1">
+                    <h5 class="text-xl mb-6 font-semibold text-white relative inline-block">
+                        Materiały
+                        <span class="absolute left-0 bottom-0 w-1/2 h-0.5 bg-gradient-to-r from-peach to-lavender"></span>
+                    </h5>
+                    <ul class="list-none space-y-3">
+                        <li><a href="/files/polityka-prywatnosci-i-cookies.pdf" class="text-white/70 hover:text-white transition-colors duration-300 inline-block" target="_blank" rel="noopener">Polityka cookies</a></li>
+                        <li><a href="/files/polityka-bezpieczenstwa.pdf" class="text-white/70 hover:text-white transition-colors duration-300 inline-block" target="_blank" rel="noopener">Bezpieczeństwo danych</a></li>
+                        <li><a href="/files/polityka-ochrony-danych.pdf" class="text-white/70 hover:text-white transition-colors duration-300 inline-block" target="_blank" rel="noopener">Ochrona danych</a></li>
+                        <li><a href="/files/zgoda-na-matkering-bezpisredni-newsletter.pdf" class="text-white/70 hover:text-white transition-colors duration-300 inline-block" target="_blank" rel="noopener">Zgoda marketingowa</a></li>
+                    </ul>
+                </div>
+                
+                <div class="md:col-span-2">
+                    <h5 class="text-xl mb-6 font-semibold text-white relative inline-block">
+                        Bądź na bieżąco
+                        <span class="absolute left-0 bottom-0 w-1/2 h-0.5 bg-gradient-to-r from-peach to-lavender"></span>
+                    </h5>
+                    <p class="text-white/70 mb-4">
+                        Dołącz do listy zainteresowanych subskrypcją Punkty Magii i otrzymuj wiadomości o premierach nowych funkcji.
+                    </p>
+                    <form class="flex flex-col sm:flex-row gap-4">
+                        <input type="email" class="px-5 py-3 rounded-full bg-white/10 border border-white/20 placeholder:text-white/60 text-white focus:outline-none focus:border-peach" placeholder="Twój adres e-mail">
+                        <button type="submit" class="px-6 py-3 rounded-full bg-peach text-text-dark font-semibold shadow-md hover:bg-white transition">
+                            Zapisz się
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-white/60 text-sm">© 2025 DawnoTemu Sp. z o.o. Wszelkie prawa zastrzeżone.</p>
+                <div class="flex gap-6 text-white/60 text-sm">
+                    <a href="/polityka-prywatnosci" class="hover:text-white transition">Polityka prywatności</a>
+                    <a href="/kontakt" class="hover:text-white transition">Kontakt</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="/scripts/main.js"></script>
     <script>
