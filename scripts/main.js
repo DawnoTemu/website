@@ -196,8 +196,8 @@ function highlightCurrentPage() {
         '/biblioteka.html': 'nav-library',
         '/kontakt': 'nav-contact',
         '/kontakt.html': 'nav-contact',
-        '/punkty-magii': 'nav-credits',
-        '/punkty-magii.html': 'nav-credits',
+        '/cennik': 'nav-credits',
+        '/cennik.html': 'nav-credits',
         '/casting': 'nav-casting',
         '/casting.html': 'nav-casting'
     };

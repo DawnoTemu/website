@@ -45,7 +45,7 @@ No compilation, bundling, or dependency installation required
 - `biblioteka.html` - Story library page
 - `kontakt.html` - Contact page with forms
 - `casting.html` - Voice casting/recording page
-- `punkty-magii.html` - Reward points/gamification page
+- `cennik.html` - Reward points/gamification page
 - `doc.html` - Documentation page
 - `polityka-prywatnosci.html` - Privacy policy page
 - `podziekowanie.html` - Thank you page
